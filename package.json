@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@tanstack/eslint-plugin-query": "^5.91.2",
+    "@tanstack/react-query": "^5.90.8",
     "clsx": "^2.1.1",
     "eslint-plugin-import": "^2.32.0",
     "prettier-plugin-tailwindcss": "^0.7.1",
