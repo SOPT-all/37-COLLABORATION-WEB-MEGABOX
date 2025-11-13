@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Tag from '@ui/tag/Tag';
+import Tag from '@components/tag/Tag';
 
 const meta: Meta<typeof Tag> = {
   title: 'Components/UI/Tag',
@@ -27,11 +27,5 @@ export const Default: Story = {};
 export const LongTitle: Story = {
   args: {
     title: 'TypeScript와 Storybook 함께 사용하기',
-  },
-};
-
-export const ShortTitle: Story = {
-  args: {
-    title: 'Next',
   },
 };
