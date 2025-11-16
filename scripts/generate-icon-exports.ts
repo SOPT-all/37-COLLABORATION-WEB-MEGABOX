@@ -10,7 +10,7 @@ const INDEX_FILE = join(SVG_DIR, 'index.ts');
  */
 function toComponentName(filename: string): string {
   const nameWithoutExt = filename.replace(/\.svg$/i, '');
-  const parts = nameWithoutExt.split(/[-_]/);
+  const parts = nameWithoutExt.split('-');
   const pascalCase = parts
     .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join('');
@@ -28,7 +28,7 @@ async function generateIconExports() {
 
     // 각 SVG 파일에 대한 export 문 생성
     const exports = files
-      .filter(file => file.endsWith('.svg')) // .svg 파일만 필터링
+      .filter(file => file.endsWith('.svg'))
       .sort()
       .map(file => {
         const componentName = toComponentName(file);
