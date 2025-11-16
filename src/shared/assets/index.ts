@@ -19,5 +19,5 @@ export { default as IcStarEmpty } from '@assets/svg/star-empty.svg?react';
 export { default as IcStarFill } from '@assets/svg/star-fill.svg?react';
 export { default as IcStar } from '@assets/svg/star.svg?react';
 export { default as IcSun } from '@assets/svg/sun.svg?react';
-export { default as IcUpArrow } from '@assets/svg/up-arrow.svg?react';
 export { default as IcUp } from '@assets/svg/up.svg?react';
+export { default as IcUparrow } from '@assets/svg/uparrow.svg?react';
