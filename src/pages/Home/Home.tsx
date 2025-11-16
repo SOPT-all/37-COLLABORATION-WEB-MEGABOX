@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <Tag title='hi' />
       <div className='p-8'>
-        // TODO : 테스트 후 삭제 예정
+        {/* TODO : 테스트 후 삭제 예정 */}
         {/* 텍스트 색상 테스트 */}
         <h1 className='mb-4 text-4xl font-bold text-violet-700'>Violet 700</h1>
         <h1 className='mb-4 text-4xl font-bold text-violet-600'>Violet 600</h1>
