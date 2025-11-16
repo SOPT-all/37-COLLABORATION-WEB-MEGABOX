@@ -49,10 +49,22 @@
 @layer base {
   html {
     font-size: 62.5%;
-    font-family: "Pretendard Variable", Pretendard, -apple-system,
-      BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-family:
+      'Pretendard Variable',
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      'Helvetica Neue',
+      'Segoe UI',
+      'Apple SD Gothic Neo',
+      'Noto Sans KR',
+      'Malgun Gothic',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      sans-serif;
   }
   * {
     box-sizing: border-box;
@@ -63,6 +75,9 @@
   main {
     background-color: var(--color-white);
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.04);
+    max-width: var(--custom-max-width);
+    margin: 0 auto;
+    min-height: 100dvh;
   }
 }
 
