@@ -83,6 +83,7 @@
 
 @layer utilities {
   /* Headings */
+  /* 영화 안내 헤드라인 */
   .text-headline1 {
     font-size: var(--font-headline1-size);
     font-weight: 800;
@@ -91,6 +92,7 @@
   }
 
   /* Titles */
+  /* 상단바 페이지명 */
   .text-title1 {
     font-size: var(--font-title1-size);
     font-weight: 500;
@@ -98,6 +100,7 @@
     letter-spacing: -0.03em;
   }
 
+  /* 상단바 페이지명2 */
   .text-title2 {
     font-size: var(--font-title2-size);
     font-weight: 700;
@@ -105,6 +108,7 @@
     letter-spacing: -0.03em;
   }
 
+  /* 상단바 페이지명3 */
   .text-title3 {
     font-size: var(--font-title3-size);
     font-weight: 900;
@@ -112,7 +116,8 @@
     letter-spacing: -0.03em;
   }
 
-  /* Subtitles */
+  /* Subtitles */ 
+  /* 영화 안내 부제목 */
   .text-subtitle1 {
     font-size: var(--font-subtitle1-size);
     font-weight: 600;
@@ -120,6 +125,7 @@
   }
 
   /* Body */
+  /* 영화 설명 */
   .text-body1 {
     font-size: var(--font-body1-size);
     font-weight: 400;
@@ -134,6 +140,7 @@
     letter-spacing: -0.05em;
   }
 
+  /* 댓글 */
   .text-body3 {
     font-size: var(--font-body3-size);
     font-weight: 500;
@@ -141,6 +148,7 @@
     letter-spacing: -0.03em;
   }
 
+  /* 강조 숫자 */
   .text-body4 {
     font-size: var(--font-body4-size);
     font-weight: 700;
@@ -148,24 +156,28 @@
   }
 
   /* Button */
+  /* 칩 버튼명 */
   .text-button1 {
     font-size: var(--font-button1-size);
     font-weight: 600;
     line-height: 140%;
   }
 
+  /* 칩 버튼명2 */
   .text-button2 {
     font-size: var(--font-button2-size);
     font-weight: 700;
     line-height: 140%;
   }
 
+  /* 칩 버튼2 선택시 */
   .text-button3 {
     font-size: var(--font-button3-size);
     font-weight: 900;
     line-height: 140%;
   }
 
+  /* 하단 버튼 텍스트 */
   .text-button4 {
     font-size: var(--font-button4-size);
     font-weight: 700;
@@ -174,18 +186,21 @@
 
 
   /* Caption / Label */
+  /* 내용 설명 */
   .text-caption1 {
     font-size: var(--font-caption1-size);
     font-weight: 400;
     line-height: 140%;
   }
 
+  /* 추가 설명 */
   .text-caption2 {
     font-size: var(--font-caption2-size);
     font-weight: 600;
     line-height: 140%;
   }
 
+  /* 시간 */
   .text-label1 {
     font-size: var(--font-label1-size);
     font-weight: 500;
