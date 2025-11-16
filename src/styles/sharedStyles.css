@@ -21,8 +21,29 @@
   /* primary */
   --color-primary-900: #e91c10;
 
-  /* font size */
-  --heading-sb-20: 2rem;
+  /* font size(Headings / Titles / Body / Button / Label) */
+  --font-headline1-size: 1.9rem;
+
+  --font-title1-size: 1.8rem;
+  --font-title2-size: 1.6rem;
+  --font-title3-size: 1.6rem;
+
+  --font-subtitle1-size: 1.2rem;
+
+  --font-body1-size: 1.4rem;
+  --font-body2-size: 1.4rem;
+  --font-body3-size: 1.4rem;
+  --font-body4-size: 2.8rem;
+
+  --font-button1-size: 1.2rem;
+  --font-button2-size: 1.4rem;
+  --font-button3-size: 1.4rem;
+  --font-button4-size: 1.7rem;
+
+  --font-caption1-size: 1.2rem;
+  --font-caption2-size: 1.4rem;
+
+  --font-label1-size: 1.1rem;
 }
 
 @layer base {
@@ -46,10 +67,114 @@
 }
 
 @layer utilities {
-  /* Heading */
-  .heading-sb-20 {
-    font-size: var(--heading-sb-20);
+  /* Headings */
+  .text-headline1 {
+    font-size: var(--font-headline1-size);
+    font-weight: 800;
+    line-height: 150%;
+    letter-spacing: 0;
+  }
+
+  /* Titles */
+  .text-title1 {
+    font-size: var(--font-title1-size);
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+  }
+
+  .text-title2 {
+    font-size: var(--font-title2-size);
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+  }
+
+  .text-title3 {
+    font-size: var(--font-title3-size);
+    font-weight: 900;
+    line-height: 150%;
+    letter-spacing: -0.03em;
+  }
+
+  /* Subtitles */
+  .text-subtitle1 {
+    font-size: var(--font-subtitle1-size);
     font-weight: 600;
     line-height: 150%;
   }
+
+  /* Body */
+  .text-body1 {
+    font-size: var(--font-body1-size);
+    font-weight: 400;
+    line-height: 190%;
+    letter-spacing: -0.05em;
+  }
+
+  .text-body2 {
+    font-size: var(--font-body2-size);
+    font-weight: 700;
+    line-height: 190%;
+    letter-spacing: -0.05em;
+  }
+
+  .text-body3 {
+    font-size: var(--font-body3-size);
+    font-weight: 500;
+    line-height: 170%;
+    letter-spacing: -0.03em;
+  }
+
+  .text-body4 {
+    font-size: var(--font-body4-size);
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+  /* Button */
+  .text-button1 {
+    font-size: var(--font-button1-size);
+    font-weight: 600;
+    line-height: 140%;
+  }
+
+  .text-button2 {
+    font-size: var(--font-button2-size);
+    font-weight: 700;
+    line-height: 140%;
+  }
+
+  .text-button3 {
+    font-size: var(--font-button3-size);
+    font-weight: 900;
+    line-height: 140%;
+  }
+
+  .text-button4 {
+    font-size: var(--font-button4-size);
+    font-weight: 700;
+    line-height: 140%;
+  }
+
+
+  /* Caption / Label */
+  .text-caption1 {
+    font-size: var(--font-caption1-size);
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  .text-caption2 {
+    font-size: var(--font-caption2-size);
+    font-weight: 600;
+    line-height: 140%;
+  }
+
+  .text-label1 {
+    font-size: var(--font-label1-size);
+    font-weight: 500;
+    line-height: 140%;
+  }
 }
+
