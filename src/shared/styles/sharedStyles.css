@@ -70,7 +70,7 @@
     box-sizing: border-box;
   }
   #root {
-    background-color: var(--color-grayscale-50);
+    background-color: var(--color-gray-100);
   }
   main {
     background-color: var(--color-white);
