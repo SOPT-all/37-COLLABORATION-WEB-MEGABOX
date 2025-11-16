@@ -3,6 +3,7 @@ export { default as IcCard } from '@assets/svg/card.svg?react';
 export { default as IcCheckFill } from '@assets/svg/check-fill.svg?react';
 export { default as IcChooseFill } from '@assets/svg/choose-fill.svg?react';
 export { default as IcClose } from '@assets/svg/close.svg?react';
+export { default as IcDownarrow } from '@assets/svg/downarrow.svg?react';
 export { default as IcFilter } from '@assets/svg/filter.svg?react';
 export { default as IcGoodFill } from '@assets/svg/good-fill.svg?react';
 export { default as IcHalfStarFill } from '@assets/svg/half-star-fill.svg?react';
