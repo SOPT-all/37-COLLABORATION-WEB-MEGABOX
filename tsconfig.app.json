@@ -38,6 +38,7 @@
       "@assets/*": ["./src/shared/assets/*"],
       "@components/*": ["./src/shared/components/*"],
       "@api/*": ["./src/shared/api/*"],
+      "@query-keys/*": ["./src/shared/query-keys/*"],
     }
   },
   "include": ["src"]
