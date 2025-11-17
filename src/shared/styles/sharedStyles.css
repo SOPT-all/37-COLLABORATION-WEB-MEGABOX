@@ -1,9 +1,8 @@
 @import './tokens/color.css';
+@import './tokens/typography.css';
 
 @theme {
   --custom-max-width: 60rem;
-  /* font size */
-  --heading-sb-20: 2rem;
 }
 
 @layer base {
@@ -42,10 +41,5 @@
 }
 
 @layer utilities {
-  /* Heading */
-  .heading-sb-20 {
-    font-size: var(--heading-sb-20);
-    font-weight: 600;
-    line-height: 150%;
-  }
+
 }
