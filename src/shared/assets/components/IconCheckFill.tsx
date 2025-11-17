@@ -1,7 +1,21 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
-import type { SVGProps } from "react";
-const IconCheckFill = (props: SVGProps<SVGSVGElement>) => <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM17.3506 8.64355C17.1536 8.45018 16.8371 8.45268 16.6436 8.64941L10.6543 14.7471L7.38965 10.6865C7.21661 10.4714 6.9017 10.4374 6.68652 10.6104C6.47143 10.7834 6.43737 11.0983 6.61035 11.3135L10.5801 16.252L17.3564 9.35059C17.5498 9.15365 17.5473 8.83705 17.3506 8.64355Z" fill="currentColor" /></svg>;
+
+import type { SVGProps } from 'react';
+
+const IconCheckFill = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m5.35 6.644a.5.5 0 0 0-.706.005l-5.99 6.098-3.264-4.06a.5.5 0 0 0-.78.627l3.97 4.938 6.776-6.901a.5.5 0 0 0-.005-.707"
+    />
+  </svg>
+);
 export default IconCheckFill;

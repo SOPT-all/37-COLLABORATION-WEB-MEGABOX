@@ -1,7 +1,21 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
-import type { SVGProps } from "react";
-const IconSystemBack = (props: SVGProps<SVGSVGElement>) => <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M10.6091 3.1387C10.8035 2.95379 11.1187 2.95374 11.3131 3.1387C11.5074 3.32367 11.5074 3.62356 11.3131 3.80853L3.20139 11.5263H21.4162C21.691 11.5264 21.9141 11.7385 21.9141 12C21.9141 12.2615 21.691 12.4736 21.4162 12.4737H3.20139L11.3131 20.1915C11.5074 20.3764 11.5074 20.6763 11.3131 20.8613C11.1187 21.0463 10.8035 21.0462 10.6091 20.8613L2.35152 13.0047C1.76824 12.4498 1.76824 11.5502 2.35152 10.9953L10.6091 3.1387Z" fill="currentColor" /></svg>;
+
+import type { SVGProps } from 'react';
+
+const IconSystemBack = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M10.61 3.139a.516.516 0 0 1 .703 0 .46.46 0 0 1 0 .67l-8.112 7.717h18.215c.275 0 .498.213.498.474a.487.487 0 0 1-.498.474H3.201l8.112 7.718a.46.46 0 0 1 0 .67.516.516 0 0 1-.704 0l-8.257-7.857a1.37 1.37 0 0 1 0-2.01z"
+    />
+  </svg>
+);
 export default IconSystemBack;

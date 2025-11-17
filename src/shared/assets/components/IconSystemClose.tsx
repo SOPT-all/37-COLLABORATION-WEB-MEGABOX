@@ -1,7 +1,21 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
-import type { SVGProps } from "react";
-const IconSystemClose = (props: SVGProps<SVGSVGElement>) => <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M18.6464 4.64645C18.8417 4.45118 19.1582 4.45118 19.3535 4.64645C19.5487 4.84171 19.5487 5.15822 19.3535 5.35348L12.707 12L19.3535 18.6464C19.5487 18.8417 19.5487 19.1582 19.3535 19.3535C19.1582 19.5487 18.8417 19.5487 18.6464 19.3535L12 12.707L5.35348 19.3535C5.15822 19.5487 4.84171 19.5487 4.64645 19.3535C4.45118 19.1582 4.45118 18.8417 4.64645 18.6464L11.2929 12L4.64645 5.35348C4.45118 5.15822 4.45118 4.84171 4.64645 4.64645C4.84171 4.45118 5.15822 4.45118 5.35348 4.64645L12 11.2929L18.6464 4.64645Z" fill="currentColor" /></svg>;
+
+import type { SVGProps } from 'react';
+
+const IconSystemClose = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M18.646 4.646a.5.5 0 0 1 .707.707L12.708 12l6.647 6.646a.5.5 0 0 1-.708.707L12 12.708l-6.647 6.647a.5.5 0 0 1-.707-.708L11.293 12 4.646 5.353a.5.5 0 1 1 .707-.707L12 11.293z"
+    />
+  </svg>
+);
 export default IconSystemClose;

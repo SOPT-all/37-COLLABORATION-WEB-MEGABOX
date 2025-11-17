@@ -1,9 +1,10 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
 import type { SVGProps } from 'react';
+
 export type IconProps = SVGProps<SVGSVGElement>;
+
 export { default as IconCard } from './components/IconCard';
 export { default as IconCheckFill } from './components/IconCheckFill';
 export { default as IconChooseFill } from './components/IconChooseFill';

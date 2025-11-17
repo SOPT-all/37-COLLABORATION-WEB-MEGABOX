@@ -1,7 +1,21 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
-import type { SVGProps } from "react";
-const IconSystemUparrow = (props: SVGProps<SVGSVGElement>) => <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M11.0018 7.32336C11.5531 6.77763 12.4469 6.77763 12.9982 7.32336L19.8622 14.1188C20.0459 14.3007 20.0459 14.5957 19.8622 14.7776C19.6784 14.9595 19.3805 14.9595 19.1967 14.7776L12.3327 7.98216C12.149 7.80031 11.851 7.80031 11.6673 7.98216L4.80328 14.7776C4.6195 14.9595 4.32161 14.9595 4.13783 14.7776C3.95406 14.5957 3.95406 14.3007 4.13783 14.1188L11.0018 7.32336Z" fill="currentColor" /></svg>;
+
+import type { SVGProps } from 'react';
+
+const IconSystemUparrow = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M11.002 7.323a1.42 1.42 0 0 1 1.996 0l6.864 6.796a.463.463 0 0 1 0 .659.474.474 0 0 1-.665 0l-6.864-6.796a.474.474 0 0 0-.666 0l-6.864 6.796a.474.474 0 0 1-.665 0 .463.463 0 0 1 0-.66z"
+    />
+  </svg>
+);
 export default IconSystemUparrow;

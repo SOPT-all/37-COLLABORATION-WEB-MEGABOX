@@ -1,7 +1,21 @@
 /**
  * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.
- * scripts/generate-icon-exports.ts를 다시 실행하여 갱신할 수 있습니다.
  */
-import type { SVGProps } from "react";
-const IconSystemDownarrow = (props: SVGProps<SVGSVGElement>) => <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M12.9982 14.5048C12.4469 15.0505 11.5531 15.0505 11.0018 14.5048L4.13783 7.70932C3.95406 7.52738 3.95406 7.23246 4.13783 7.05052C4.32161 6.86858 4.6195 6.86858 4.80328 7.05052L11.6673 13.846C11.851 14.0278 12.149 14.0278 12.3327 13.846L19.1967 7.05052C19.3805 6.86858 19.6784 6.86858 19.8622 7.05052C20.0459 7.23246 20.0459 7.52738 19.8622 7.70932L12.9982 14.5048Z" fill="currentColor" /></svg>;
+
+import type { SVGProps } from 'react';
+
+const IconSystemDownarrow = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={24}
+    height={24}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M12.998 14.505a1.42 1.42 0 0 1-1.996 0L4.138 7.709a.463.463 0 0 1 0-.658.474.474 0 0 1 .665 0l6.864 6.795a.474.474 0 0 0 .666 0l6.864-6.795a.474.474 0 0 1 .665 0 .463.463 0 0 1 0 .658z"
+    />
+  </svg>
+);
 export default IconSystemDownarrow;
