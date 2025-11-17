@@ -68,7 +68,12 @@ async function generateIconComponent(file: string) {
   return { file, componentName };
 }
 
-async function generateIndexFile(icons: any[]) {
+type GeneratedIcon = {
+  file: string;
+  componentName: string;
+};
+
+async function generateIndexFile(icons: GeneratedIcon[]) {
   const imports = `import type { SVGProps } from 'react';`;
   const iconType = `export type IconProps = SVGProps<SVGSVGElement>;`;
 
