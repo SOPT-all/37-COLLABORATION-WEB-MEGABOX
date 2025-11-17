@@ -1,48 +1,109 @@
-import { readdir, writeFile } from 'fs/promises';
+import { mkdir, readdir, readFile, rm, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { transform } from '@svgr/core';
+import prettier from 'prettier';
 
-const SVG_DIR = join(process.cwd(), 'src/shared/assets');
-const INDEX_FILE = join(SVG_DIR, 'index.ts');
+const ROOT_DIR = process.cwd();
+const ASSET_DIR = join(ROOT_DIR, 'src/shared/assets');
+const SVG_DIR = join(ASSET_DIR, 'svg');
+const COMPONENT_DIR = join(ASSET_DIR, 'components');
+const INDEX_FILE = join(ASSET_DIR, 'index.tsx');
 
-/**
- * 파일명을 PascalCase 컴포넌트 이름으로 변환
- * 예: arrow-left.svg -> IcArrowLeft
- */
+const HEADER_COMMENT = [
+  '/**',
+  ' * ⚠️ 자동 생성된 파일입니다. 직접 수정하지 마세요.',
+  ' */',
+].join('\n');
+
 function toComponentName(filename: string): string {
   const nameWithoutExt = filename.replace(/\.svg$/i, '');
-  const parts = nameWithoutExt.split('-');
-  const pascalCase = parts
+  return nameWithoutExt
+    .split('-')
+    .filter(Boolean)
     .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join('');
-  return `Ic${pascalCase}`;
 }
 
-async function generateIconExports() {
+function normalizeFillAttributes(svg: string): string {
+  return svg.replace(/fill="(?!none\b)[^"]*"/gi, 'fill="currentColor"');
+}
+
+async function ensureCleanComponentsDir() {
+  await rm(COMPONENT_DIR, { recursive: true, force: true });
+  await mkdir(COMPONENT_DIR, { recursive: true });
+}
+
+async function generateIconComponent(file: string) {
+  const componentName = toComponentName(file);
+  const svgPath = join(SVG_DIR, file);
+  const svgRaw = await readFile(svgPath, 'utf-8');
+  const sanitizedSvg = normalizeFillAttributes(svgRaw);
+
+  const jsCode = await transform(
+    sanitizedSvg,
+    {
+      typescript: true,
+      jsxRuntime: 'automatic',
+      expandProps: 'end',
+      prettier: false,
+      plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+    },
+    { componentName }
+  );
+
+  const pretty = await prettier.format(jsCode, {
+    parser: 'babel-ts',
+    singleQuote: true,
+    semi: true,
+    printWidth: 80,
+  });
+  const withImportSpacing = pretty.replace(
+    /(import\s+type\s+\{[^}]+\}\s+from\s+'react';\n)(?!\n)/,
+    '$1\n'
+  );
+  const final = `${HEADER_COMMENT}\n\n${withImportSpacing}`;
+  const outputPath = join(COMPONENT_DIR, `${componentName}.tsx`);
+  await writeFile(outputPath, final, 'utf-8');
+
+  return { file, componentName };
+}
+
+type GeneratedIcon = {
+  file: string;
+  componentName: string;
+};
+
+async function generateIndexFile(icons: GeneratedIcon[]) {
+  const imports = `import type { SVGProps } from 'react';`;
+  const iconType = `export type IconProps = SVGProps<SVGSVGElement>;`;
+
+  const exportLines = icons
+    .map(
+      ({ componentName }) =>
+        `export { default as ${componentName} } from './components/${componentName}';`
+    )
+    .join('\n');
+
+  const content = `${HEADER_COMMENT}\n${imports}\n\n${iconType}\n\n${exportLines}\n`;
+  await writeFile(INDEX_FILE, content, 'utf-8');
+}
+
+export default async function generate() {
   try {
-    // SVG 디렉토리에서 모든 파일 읽기
-    const files = await readdir(join(SVG_DIR, '/svg'));
+    const files = await readdir(SVG_DIR);
+    const svgFiles = files.filter(f => f.endsWith('.svg')).sort();
 
-    if (files.length === 0) {
-      return;
-    }
+    await ensureCleanComponentsDir();
 
-    // 각 SVG 파일에 대한 export 문 생성
-    const exports = files
-      .filter(file => file.endsWith('.svg'))
-      .sort()
-      .map(file => {
-        const componentName = toComponentName(file);
-        return `export { default as ${componentName} } from '@assets/svg/${file}?react';`;
-      })
-      .join('\n');
+    const icons = await Promise.all(svgFiles.map(generateIconComponent));
 
-    await writeFile(INDEX_FILE, exports, 'utf-8');
+    await generateIndexFile(icons);
 
-    console.log(`🎉 아이콘을 성공적으로 생성했습니다`);
-  } catch (error) {
-    console.error('❌ 아이콘 생성 중 오류가 발생했습니다:', error);
+    console.info('🎉 아이콘 컴포넌트를 성공적으로 생성했습니다');
+  } catch (e) {
+    console.error('❌ 에러:', e);
     process.exit(1);
   }
 }
 
-generateIconExports();
+void generate();
