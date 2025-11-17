@@ -24,7 +24,6 @@ export default function Review({
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-[0.2rem]'>
             {getRoundedStarStates(rating).map((state, index) => {
-              console.log(state);
               if (state === 1) {
                 return (
                   <IconStarFill

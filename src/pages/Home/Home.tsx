@@ -1,11 +1,9 @@
-import Tag from '@components/tag/Tag';
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
 
 export default function Home() {
   return (
     <div>
-      <Tag title='hi' />
       <div className='p-8'>
         {/* TODO : 테스트 후 삭제 예정 */}
         {/* 텍스트 색상 테스트 */}
