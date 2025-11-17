@@ -1,49 +1,8 @@
+@import './tokens/color.css';
+@import './tokens/typography.css';
+
 @theme {
   --custom-max-width: 60rem;
-
-  --color-*: initial;
-
-  /* white ,black*/
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-black50: rgba(0, 0, 0, 0.5);
-  --color-black70: rgba(0, 0, 0, 0.7);
-
-  /* grayscale */
-  --color-grayscale-50: #f8fafb;
-  --color-grayscale-100: #f2f3f7;
-  --color-grayscale-200: #e7eaef;
-  --color-grayscale-300: #ccced5;
-  --color-grayscale-500: #838992;
-  --color-grayscale-700: #565b65;
-  --color-grayscale-900: #19212a;
-
-  /* primary */
-  --color-primary-900: #e91c10;
-
-  /* font size(Headings / Titles / Body / Button / Label) */
-  --font-headline1-size: 1.9rem;
-
-  --font-title1-size: 1.8rem;
-  --font-title2-size: 1.6rem;
-  --font-title3-size: 1.6rem;
-
-  --font-subtitle1-size: 1.2rem;
-
-  --font-body1-size: 1.4rem;
-  --font-body2-size: 1.4rem;
-  --font-body3-size: 1.4rem;
-  --font-body4-size: 2.8rem;
-
-  --font-button1-size: 1.2rem;
-  --font-button2-size: 1.4rem;
-  --font-button3-size: 1.4rem;
-  --font-button4-size: 1.7rem;
-
-  --font-caption1-size: 1.2rem;
-  --font-caption2-size: 1.4rem;
-
-  --font-label1-size: 1.1rem;
 }
 
 @layer base {
@@ -70,7 +29,7 @@
     box-sizing: border-box;
   }
   #root {
-    background-color: var(--color-grayscale-50);
+    background-color: var(--color-gray-100);
   }
   main {
     background-color: var(--color-white);
@@ -82,129 +41,5 @@
 }
 
 @layer utilities {
-  /* Headings */
-  /* 영화 안내 헤드라인 */
-  .text-headline1 {
-    font-size: var(--font-headline1-size);
-    font-weight: 800;
-    line-height: 150%;
-    letter-spacing: 0;
-  }
 
-  /* Titles */
-  /* 상단바 페이지명 */
-  .text-title1 {
-    font-size: var(--font-title1-size);
-    font-weight: 500;
-    line-height: 150%;
-    letter-spacing: -0.03em;
-  }
-
-  /* 상단바 페이지명2 */
-  .text-title2 {
-    font-size: var(--font-title2-size);
-    font-weight: 700;
-    line-height: 150%;
-    letter-spacing: -0.03em;
-  }
-
-  /* 상단바 페이지명3 */
-  .text-title3 {
-    font-size: var(--font-title3-size);
-    font-weight: 900;
-    line-height: 150%;
-    letter-spacing: -0.03em;
-  }
-
-  /* Subtitles */ 
-  /* 영화 안내 부제목 */
-  .text-subtitle1 {
-    font-size: var(--font-subtitle1-size);
-    font-weight: 600;
-    line-height: 150%;
-  }
-
-  /* Body */
-  /* 영화 설명 */
-  .text-body1 {
-    font-size: var(--font-body1-size);
-    font-weight: 400;
-    line-height: 190%;
-    letter-spacing: -0.05em;
-  }
-
-  .text-body2 {
-    font-size: var(--font-body2-size);
-    font-weight: 700;
-    line-height: 190%;
-    letter-spacing: -0.05em;
-  }
-
-  /* 댓글 */
-  .text-body3 {
-    font-size: var(--font-body3-size);
-    font-weight: 500;
-    line-height: 170%;
-    letter-spacing: -0.03em;
-  }
-
-  /* 강조 숫자 */
-  .text-body4 {
-    font-size: var(--font-body4-size);
-    font-weight: 700;
-    line-height: 150%;
-  }
-
-  /* Button */
-  /* 칩 버튼명 */
-  .text-button1 {
-    font-size: var(--font-button1-size);
-    font-weight: 600;
-    line-height: 140%;
-  }
-
-  /* 칩 버튼명2 */
-  .text-button2 {
-    font-size: var(--font-button2-size);
-    font-weight: 700;
-    line-height: 140%;
-  }
-
-  /* 칩 버튼2 선택시 */
-  .text-button3 {
-    font-size: var(--font-button3-size);
-    font-weight: 900;
-    line-height: 140%;
-  }
-
-  /* 하단 버튼 텍스트 */
-  .text-button4 {
-    font-size: var(--font-button4-size);
-    font-weight: 700;
-    line-height: 140%;
-  }
-
-
-  /* Caption / Label */
-  /* 내용 설명 */
-  .text-caption1 {
-    font-size: var(--font-caption1-size);
-    font-weight: 400;
-    line-height: 140%;
-  }
-
-  /* 추가 설명 */
-  .text-caption2 {
-    font-size: var(--font-caption2-size);
-    font-weight: 600;
-    line-height: 140%;
-  }
-
-  /* 시간 */
-  .text-label1 {
-    font-size: var(--font-label1-size);
-    font-weight: 500;
-    line-height: 140%;
-  }
 }
-
