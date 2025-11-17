@@ -1,47 +1,7 @@
+@import './tokens/color.css';
+
 @theme {
   --custom-max-width: 60rem;
-
-  --color-*: initial;
-
-  /* white ,black*/
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-black50: rgba(0, 0, 0, 0.5);
-  --color-black70: rgba(0, 0, 0, 0.7);
-
-  /* grayscale */
-  --color-gray-900: #131313;
-  --color-gray-800: #1A1A1A;
-  --color-gray-700: #232428;
-  --color-gray-600: #3D3D3D;
-  --color-gray-500: #676767;
-  --color-gray-400: #999999;
-  --color-gray-300: #CCCCCC;
-  --color-gray-200: #E0E0E0;
-  --color-gray-100: #F5F5F5;
-  --color-gray-0: #FFFFFF;
-
-  /* primary */
-  --color-primary-900: #e91c10;
-
-  /* Main Violet Colors */
-  --color-violet-700: #41266C;
-  --color-violet-600: #660AD9;
-  --color-violet-500: #943FFF;
-  --color-violet-400: #A669F3;
-  --color-violet-300: #AD86FF;
-  --color-violet-200: #DEB5FC;
-
-  /* Main Violet Gradient */
-  --gradient-1: linear-gradient(97deg, #AD86FF -6.84%, #1A1A1A 121.28%);
-  --gradient-2: linear-gradient(90deg, #0A0533 0%, #480051 100%);
-  --gradient-3: linear-gradient(103deg, #2E285E 6.95%, #41266C 65.1%);
-
-  /* Sub Color */
-  --color-red-500: #FF5251;
-  --color-blue-500: #4CB1FA;
-  --color-blueGreen-500: #08B9CB;
-
   /* font size */
   --heading-sb-20: 2rem;
 }
@@ -87,18 +47,5 @@
     font-size: var(--heading-sb-20);
     font-weight: 600;
     line-height: 150%;
-  }
-
-    /* Gradient */
-  .gradient-1 {
-    background: linear-gradient(97deg, #AD86FF -6.84%, #1A1A1A 121.28%);
-  }
-
-  .gradient-2 {
-    background: linear-gradient(90deg, #0A0533 0%, #480051 100%);
-  }
-
-  .gradient-3 {
-    background: linear-gradient(103deg, #2E285E 6.95%, #41266C 65.1%);
   }
 }
