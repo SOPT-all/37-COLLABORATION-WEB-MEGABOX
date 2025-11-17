@@ -13,7 +13,8 @@
     "format:check": "prettier --check .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate:icons": "tsx scripts/generate-icon-exports.ts"
+    "build:icons": "tsx scripts/generate-icon-exports.ts",
+    "generate:icons": "pnpm build:icons"
   },
   "dependencies": {
     "@tanstack/eslint-plugin-query": "^5.91.2",
@@ -40,6 +41,9 @@
     "@storybook/addon-viewport": "^9.0.8",
     "@storybook/addon-vitest": "^10.0.7",
     "@storybook/react-vite": "^10.0.7",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@tailwindcss/vite": "^4.1.16",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",

@@ -1,5 +1,5 @@
 import Tag from '@components/tag/Tag';
-import { IcStarFill } from '@assets/index';
+import { IconStarFill } from '@assets/index';
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <div className='gradient-2 mb-4 h-64 w-64 rounded-3xl'></div>
         <div className='gradient-3 h-64 w-64 rounded-3xl'></div>
       </div>
-      <IcStarFill />
+      <IconStarFill className='text-red-500' />
     </div>
   );
 }
