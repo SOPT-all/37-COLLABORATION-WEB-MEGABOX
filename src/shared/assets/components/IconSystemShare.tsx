@@ -14,10 +14,10 @@ const IconSystemShare = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 24 24"
   >
     <path
-      stroke="#000"
+      stroke="#ffffff"
       d="M18 15.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm-12-6a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm12-6a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
     />
-    <path stroke="#000" strokeLinecap="square" d="m15 7-6 4m6 6-6-4" />
+    <path stroke="#ffffff" strokeLinecap="square" d="m15 7-6 4m6 6-6-4" />
   </svg>
 );
 export default IconSystemShare;
