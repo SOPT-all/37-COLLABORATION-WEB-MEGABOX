@@ -1,4 +1,5 @@
 import { IconStarFill } from '@assets/index';
+import Review from '@components/review/Review';
 import MovieHeader from '@components/header/MovieHeader';
 
 export default function Home() {
@@ -27,6 +28,14 @@ export default function Home() {
           <div className="gradient-3 h-64 w-64 rounded-3xl" />
         </div>
         <IconStarFill className="text-red-500" />
+        <div className='p-[2rem]'>
+        <Review
+          content='영화를 2회차 시청하는 건 이 작품이 첨입니다. 너무 재밌어요. 초반엔 달달한 로맨스를 풍기다 전투씬부터는 화려하고 역동작인 액션씬이라 보는 재미가 있었습니다. 만족 100입니다'
+          rating={4.3}
+          createdAt={new Date()}
+          nickname='test'
+        />
+        </div>
       </div>
     </>
   );
