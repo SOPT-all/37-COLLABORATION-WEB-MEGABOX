@@ -13,6 +13,7 @@ export { default as IconHalfstarFill } from './components/IconHalfstarFill';
 export { default as IconHeartFill } from './components/IconHeartFill';
 export { default as IconHeart } from './components/IconHeart';
 export { default as IconItemPlus } from './components/IconItemPlus';
+export { default as IconKebab } from './components/IconKebab';
 export { default as IconMyCard } from './components/IconMyCard';
 export { default as IconPhone } from './components/IconPhone';
 export { default as IconSimpleCard } from './components/IconSimpleCard';

@@ -11,6 +11,7 @@ const IconStar = (props: SVGProps<SVGSVGElement>) => (
     height={24}
     fill="none"
     {...props}
+    viewBox="0 0 24 24"
   >
     <path
       stroke="#000"

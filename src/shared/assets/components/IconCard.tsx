@@ -11,6 +11,7 @@ const IconCard = (props: SVGProps<SVGSVGElement>) => (
     height={24}
     fill="none"
     {...props}
+    viewBox="0 0 24 24"
   >
     <path fill="currentColor" d="M10.5 16a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
     <path
