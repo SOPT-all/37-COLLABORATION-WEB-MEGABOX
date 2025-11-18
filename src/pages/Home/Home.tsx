@@ -1,7 +1,13 @@
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
+import { useToastStore } from '@/shared/store/toast';
 
 export default function Home() {
+  const showToast = useToastStore(state => state.showToast);
+
+  const handleClick = () => {
+    showToast("토스트 안내 메시지")
+  }
   return (
     <div>
       <div className='p-8'>
@@ -32,6 +38,12 @@ export default function Home() {
           createdAt={new Date()}
           nickname='test'
         />
+        <button
+          onClick={handleClick}
+          className='mt-4 rounded-lg bg-violet-500 px-8 py-4 text-2xl text-white'
+        >
+          토스트
+        </button>
       </div>
     </div>
   );
