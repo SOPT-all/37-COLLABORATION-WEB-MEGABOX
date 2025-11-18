@@ -28,6 +28,11 @@ function normalizeFillAttributes(svg: string): string {
   return svg.replace(/fill="(?!none\b)[^"]*"/gi, 'fill="currentColor"');
 }
 
+function extractViewBox(svg: string): string | null {
+  const viewBoxMatch = svg.match(/viewBox=["']([^"']+)["']/i);
+  return viewBoxMatch ? viewBoxMatch[1] : null;
+}
+
 async function ensureCleanComponentsDir() {
   await rm(COMPONENT_DIR, { recursive: true, force: true });
   await mkdir(COMPONENT_DIR, { recursive: true });
@@ -37,6 +42,7 @@ async function generateIconComponent(file: string) {
   const componentName = toComponentName(file);
   const svgPath = join(SVG_DIR, file);
   const svgRaw = await readFile(svgPath, 'utf-8');
+  const viewBox = extractViewBox(svgRaw);
   const sanitizedSvg = normalizeFillAttributes(svgRaw);
 
   const jsCode = await transform(
@@ -51,7 +57,16 @@ async function generateIconComponent(file: string) {
     { componentName }
   );
 
-  const pretty = await prettier.format(jsCode, {
+  // viewBox가 없으면 추가
+  let finalCode = jsCode;
+  if (viewBox && !jsCode.includes('viewBox')) {
+    finalCode = jsCode.replace(
+      /<svg\s+([^>]*)>/,
+      `<svg $1 viewBox="${viewBox}">`
+    );
+  }
+
+  const pretty = await prettier.format(finalCode, {
     parser: 'babel-ts',
     singleQuote: true,
     semi: true,
