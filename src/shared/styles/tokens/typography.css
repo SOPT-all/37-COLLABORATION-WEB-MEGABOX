@@ -67,8 +67,9 @@
   /* 영화 안내 부제목 */
   .text-subtitle1 {
     font-size: var(--font-subtitle1-size);
-    font-weight: 600;
-    line-height: 150%;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: -0.06em;
   }
 
   /* Body */
@@ -76,59 +77,64 @@
   .text-body1 {
     font-size: var(--font-body1-size);
     font-weight: 400;
-    line-height: 190%;
+    line-height: 135.7%;
     letter-spacing: -0.05em;
   }
 
   .text-body2 {
     font-size: var(--font-body2-size);
     font-weight: 700;
-    line-height: 190%;
+    line-height: 135.7%;
     letter-spacing: -0.05em;
   }
 
   /* 댓글 */
   .text-body3 {
     font-size: var(--font-body3-size);
-    font-weight: 500;
-    line-height: 170%;
-    letter-spacing: -0.03em;
+    font-weight: 400;
+    line-height: 142.9%;
+    letter-spacing: -0.01em;
   }
 
   /* 강조 숫자 */
   .text-body4 {
     font-size: var(--font-body4-size);
     font-weight: 700;
-    line-height: 150%;
+    line-height: 142.9%;
+    letter-spacing: -0.03em;
   }
 
   /* Button */
   /* 칩 버튼명 */
   .text-button1 {
     font-size: var(--font-button1-size);
-    font-weight: 600;
-    line-height: 140%;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.06em;
   }
 
   /* 칩 버튼명2 */
   .text-button2 {
     font-size: var(--font-button2-size);
-    font-weight: 700;
-    line-height: 140%;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.05em;
   }
 
   /* 칩 버튼2 선택시 */
   .text-button3 {
     font-size: var(--font-button3-size);
-    font-weight: 900;
-    line-height: 140%;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: -0.04em;
   }
 
   /* 하단 버튼 텍스트 */
   .text-button4 {
     font-size: var(--font-button4-size);
     font-weight: 700;
-    line-height: 140%;
+    line-height: 150%;
+    letter-spacing: 0;
   }
 
 
@@ -137,20 +143,23 @@
   .text-caption1 {
     font-size: var(--font-caption1-size);
     font-weight: 400;
-    line-height: 140%;
+    line-height: 150%;
+    letter-spacing: -0.06em;
   }
 
   /* 추가 설명 */
   .text-caption2 {
     font-size: var(--font-caption2-size);
-    font-weight: 600;
-    line-height: 140%;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.06em;
   }
 
   /* 시간 */
   .text-label1 {
     font-size: var(--font-label1-size);
-    font-weight: 500;
-    line-height: 140%;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: -0.06em;
   }
 }
