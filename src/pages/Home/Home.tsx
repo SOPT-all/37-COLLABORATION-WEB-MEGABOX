@@ -1,4 +1,4 @@
-import { IconHalfstarFill, IconItemPlus, IconStarFill } from '@assets/index';
+import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
 
 export default function Home() {
