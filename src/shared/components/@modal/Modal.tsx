@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 interface ModalProps {
   isOpen: boolean;
-  handleOpenChange: (open: boolean) => void;
+  handleOpenChange: (_open: boolean) => void;
   movieTitle: string;
   date: string;
   location: string;
