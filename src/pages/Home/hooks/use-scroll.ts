@@ -1,11 +1,8 @@
 import { useRef, type RefObject } from 'react';
+import { getItemSlideIndex } from '../utils/slide';
 
-interface UseScrollResult {
-  containerRef: RefObject<HTMLDivElement | null>;
-  scrollToIndex: (index: number) => void;
-}
 // 화면 정중앙에 와야하는 item index를 받아서 스크롤을 이동시키는 hook
-export default function useScroll(): UseScrollResult {
+export function useScroll() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToIndex = (index: number) => {
@@ -33,4 +30,48 @@ export default function useScroll(): UseScrollResult {
   };
 
   return { containerRef, scrollToIndex };
+}
+
+// 스크롤 시, selectedSlideIndex를 업데이트하는 함수
+export function handleScroll(
+  containerRef: RefObject<HTMLDivElement | null>,
+  handleSetSelectedSlideIndex: (index: number) => void,
+
+  slideLength: number
+) {
+  const container = containerRef.current;
+  if (!container) return;
+
+  const children = Array.from(container.children).slice(
+    1,
+    container.children.length - 1
+  );
+  //화면 중앙 위치 계산
+  const containerRect = container.getBoundingClientRect();
+  const containerCenter = containerRect.left + containerRect.width / 2;
+
+  //화면중앙에  가장 가까운 아이템 index 찾기
+  let minDistance = Infinity;
+  let centerItemIndex = 0;
+
+  children.forEach((child, index) => {
+    const childRect = child.getBoundingClientRect();
+    const childCenter = childRect.left + childRect.width / 2;
+    const distance = Math.abs(childCenter - containerCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      centerItemIndex = index;
+    }
+  });
+
+  //아이템이 몇번째 슬라이드에 위치하는지 계산
+  const itemSlideIndex = getItemSlideIndex(
+    centerItemIndex,
+    children.length,
+    slideLength
+  );
+
+  //selectedSlideIndex 업데이트
+  handleSetSelectedSlideIndex(itemSlideIndex);
 }
