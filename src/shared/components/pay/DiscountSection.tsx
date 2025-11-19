@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { cn } from "@utils/cn";
+import DiscountGrid from './DiscountGrid';
+import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
+import IconCheckFill from '@assets/svg/icon-check-fill.svg?react'
 
 type TabType = 'coupon' | 'point';
 
 export const DiscountSection = () => {
   const [activeTab, setActiveTab] = useState<TabType | null>(null);
+  const [selectedDiscountId, setSelectedDiscountId] = useState<number | null>(null);
 
   const getTabClassName = (isActive: boolean) =>
     cn(
@@ -39,8 +43,41 @@ export const DiscountSection = () => {
       </div>
       {/* 탭 내용 */}
       <div>
-        {activeTab === 'coupon' && <div>쿠폰 탭 내용</div>}
-        {activeTab === 'point' && <div>포인트 탭 내용</div>}
+        {activeTab === 'coupon' && (
+          <DiscountGrid
+            items={COUPON_ITEMS}
+            selectedId={selectedDiscountId}
+            onSelect={setSelectedDiscountId}
+            firstItem={false}
+          >
+            <div className='mt-[0.8rem] flex items-center justify-between py-[0.5rem]'>
+              <div className='flex items-center gap-[0.6rem]'>
+                <IconCheckFill width={18} height={18} />
+                <label className='font-caption2 cursor-pointer text-gray-800'>
+                  할인 쿠폰 자동 적용
+                </label>
+              </div>
+              <button className='font-label2 whitespace-nowrap text-gray-300'>
+                적용 쿠폰 확인
+              </button>
+            </div>
+
+            <ul className='mt-[0.8rem] list-disc pl-[1.6rem]'>
+              <li className='font-caption1 text-gray-400'>
+                기프트콘, 기프티쇼, 아이넘버, 도너블, 스마트콘, 스마일콘, G마켓
+                예매권은 [모바일 관람권]에서 사용하실 수 있습니다.
+              </li>
+            </ul>
+          </DiscountGrid>
+        )}
+        {activeTab === 'point' && (
+          <DiscountGrid
+            items={POINT_ITEMS}
+            selectedId={selectedDiscountId}
+            onSelect={setSelectedDiscountId}
+            firstItem={true}
+          />
+        )}
       </div>
     </section>
   );
