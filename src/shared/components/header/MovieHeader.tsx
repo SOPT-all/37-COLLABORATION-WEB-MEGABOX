@@ -33,7 +33,7 @@ export default function MovieHeader({
     return (
       <header className={headerClassName}>
         <img
-          src="/assets/img/img-logo.png" 
+          src="/assets/img/img-logo.png"
           alt="MEGABOX"
           className="h-[2.1rem] w-auto"
         />
