@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
-import useCarousel from '../hooks/use-carousel';
-import useScroll from '../hooks/use-scroll';
+import { useCallback, useEffect } from 'react';
+import useCarousel from '../hooks/use-slide';
+import { useScroll } from '../hooks/use-scroll';
 import { cn } from '@utils/index';
+import { handleScroll } from '../hooks/use-scroll';
 
 interface CarouselProps {
   items: { id: number; image: string }[];
@@ -9,23 +10,28 @@ interface CarouselProps {
 }
 
 export default function Carousel({ items, handleClickItem }: CarouselProps) {
+  const ITEMS_LENGTH = items.length;
   const {
     handleClickSlide,
     SLIDE_LENGTH,
     selectedSlideIndex,
     firstSlideIndex,
+    setSelectedSlideIndex,
   } = useCarousel();
-  const { containerRef, scrollToIndex, clampToEdge } = useScroll();
-  const ITEMS_LENGTH = items.length;
+  const { containerRef, scrollToIndex } = useScroll();
+  const handleScrollCallback = useCallback(
+    () => handleScroll(containerRef, setSelectedSlideIndex, SLIDE_LENGTH),
+    [containerRef, setSelectedSlideIndex]
+  );
 
   useEffect(() => {
     scrollToIndex(firstSlideIndex);
-    console.log(firstSlideIndex);
   }, [firstSlideIndex, scrollToIndex]);
 
   return (
     <div className='flex flex-col gap-[3rem] px-[1rem]'>
       <div
+        onScroll={handleScrollCallback}
         ref={containerRef}
         className='scrollbar-hide flex gap-[1.2rem] overflow-x-auto opacity-80'
       >
