@@ -1,10 +1,12 @@
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
+import Divider from '@components/divider/Divider';
 
 export default function Home() {
   return (
     <div>
       <div className='p-8'>
+        <Divider />
         {/* TODO : 테스트 후 삭제 예정 */}
         {/* 텍스트 색상 테스트 */}
         <h1 className='mb-4 font-bold text-violet-700'>Violet 700</h1>
