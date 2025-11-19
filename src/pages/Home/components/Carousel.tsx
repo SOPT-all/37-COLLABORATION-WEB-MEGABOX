@@ -15,7 +15,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
     selectedSlideIndex,
     firstSlideIndex,
   } = useCarousel();
-  const { containerRef, scrollToIndex } = useScroll();
+  const { containerRef, scrollToIndex, clampToEdge } = useScroll();
   const ITEMS_LENGTH = items.length;
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
         ref={containerRef}
         className='scrollbar-hide flex gap-[1.2rem] overflow-x-auto opacity-80'
       >
-        <div className='w-[50rem] flex-shrink-0' aria-hidden='true' />
+        <div className='w-[15rem] flex-shrink-0' aria-hidden='true' />
         {items.map(movie => (
           <div
             onClick={() => handleClickItem(movie.id)}
@@ -43,7 +43,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
             />
           </div>
         ))}
-        <div className='w-[50rem] flex-shrink-0' aria-hidden='true' />
+        <div className='w-[15rem] flex-shrink-0' aria-hidden='true' />
       </div>
       <div className='flex w-full items-center justify-center gap-[0.4rem]'>
         {Array.from({ length: SLIDE_LENGTH }).map((_, index) => (
