@@ -4,7 +4,7 @@ import ImgBtPlay from '@/../public/assets/img-bt-4d.png';
 import { cn } from '@utils/cn';
 
 interface MovieProps {
-  id: keyof typeof MOVIES;
+  id: number;
   title: string;
   tag: string;
   ageRating: number;
