@@ -11,6 +11,7 @@ const IconHalfstarFill = (props: SVGProps<SVGSVGElement>) => (
     height={16}
     fill="none"
     {...props}
+    viewBox="0 0 17 16"
   >
     <path
       fill="currentColor"
