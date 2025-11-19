@@ -40,7 +40,7 @@ export default function Home() {
         />
         <button
           onClick={handleClick}
-          className='mt-4 rounded-lg bg-violet-500 px-8 py-4 text-2xl text-white'
+          className='mt-[1.6rem] rounded-[0.8rem] bg-violet-500 px-[3.2rem] py-[1.6rem] text-[2rem] text-white'
         >
           토스트
         </button>
