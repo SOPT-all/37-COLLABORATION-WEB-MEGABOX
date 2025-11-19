@@ -1,4 +1,4 @@
-import { useToastStore } from '@/shared/store/toast';
+import { useToastStore } from '@store/toast';
 
 const Toast = () => {
   const toast = useToastStore(state => state.toast);
