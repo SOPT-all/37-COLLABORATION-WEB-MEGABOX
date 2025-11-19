@@ -6,19 +6,43 @@ import {
   IconSystemShare,
 } from '@assets/index';
 
+type HeaderVariant = 'main' | 'movie';
+
 interface MovieHeaderProps {
-  title: string;
+  variant?: HeaderVariant;
+  title?: string;
   onClickBack?: () => void;
 }
 
 const ICON_BUTTON_CLASS =
   'flex h-[2.4rem] w-[2.4rem] items-center justify-center';
 
-export default function MovieHeader({ title, onClickBack }: MovieHeaderProps) {
+export default function MovieHeader({
+  variant = 'movie',
+  title = '',
+  onClickBack,
+}: MovieHeaderProps) {
   const [liked, setLiked] = useState(false);
+  const isMain = variant === 'main';
+
+  const headerClassName = isMain
+    ? 'sticky top-0 z-10 gradient-2 flex h-[5.2rem] w-full items-center px-[1.5rem] text-white'
+    : 'sticky top-0 z-10 gradient-2 flex h-[5.2rem] w-full items-center justify-between px-[1.5rem] text-white';
+
+  if (isMain) {
+    return (
+      <header className={headerClassName}>
+        <img
+          src="/assets/img/img-logo.png" 
+          alt="MEGABOX"
+          className="h-[2.1rem] w-auto"
+        />
+      </header>
+    );
+  }
 
   return (
-    <header className="sticky top-0 z-10 gradient-2 flex h-[5.2rem] w-full items-center justify-between px-[1.5rem] text-white">
+    <header className={headerClassName}>
       <button
         type="button"
         aria-label="뒤로가기"
@@ -28,7 +52,7 @@ export default function MovieHeader({ title, onClickBack }: MovieHeaderProps) {
         <IconSystemBack />
       </button>
 
-      <h1 className="flex-1 text-center text-title1">{title}</h1>
+      <h1 className="flex-1 text-center font-title1">{title}</h1>
 
       <div className="flex items-center gap-[1.3rem]">
         <button
