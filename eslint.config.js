@@ -19,6 +19,7 @@ export default tseslint.config({
     'storybook-static',
     '*.config.js',
     '*min.js',
+    '.history',
   ],
 }, {
   extends: [js.configs.recommended, ...tseslint.configs.recommended],
