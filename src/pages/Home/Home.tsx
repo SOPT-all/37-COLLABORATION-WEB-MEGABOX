@@ -1,6 +1,7 @@
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
 import Divider from '@components/divider/Divider';
+import DiscountSection from '@/shared/components/pay/DiscountSection';
 
 export default function Home() {
   return (
@@ -32,6 +33,9 @@ export default function Home() {
           createdAt={new Date()}
           nickname='test'
         />
+      </div>
+      <div className='p-[2rem]'>
+        <DiscountSection />
       </div>
     </div>
   );
