@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { getSlidesPage } from '../utils/slide';
 
-export default function useCarousel() {
+// 슬라이드 관련 상태와 함수를 관리하는 hook
+export default function useSlide() {
   const SLIDE_LENGTH = 4;
   const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
   const [firstSlideIndex, setFirstSlideIndex] = useState<number>(0);
 
   const handleClickSlide = (index: number, itemsLength: number) => {
-    const slidesPerPage = Math.max(1, Math.ceil(itemsLength / SLIDE_LENGTH));
+    const slidesPerPage = getSlidesPage(itemsLength, SLIDE_LENGTH);
     const firstIndex = slidesPerPage * index;
     setFirstSlideIndex(firstIndex);
     setSelectedSlideIndex(index);
@@ -17,5 +19,6 @@ export default function useCarousel() {
     SLIDE_LENGTH,
     selectedSlideIndex,
     firstSlideIndex,
+    setSelectedSlideIndex,
   };
 }
