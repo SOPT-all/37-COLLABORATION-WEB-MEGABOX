@@ -24,7 +24,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
   }, [firstSlideIndex, scrollToIndex]);
 
   return (
-    <div className='flex flex-col gap-12 px-4'>
+    <div className='flex flex-col gap-[3rem] px-[1rem]'>
       <div
         ref={containerRef}
         className='scrollbar-hide flex gap-[1.2rem] overflow-x-auto opacity-80'
