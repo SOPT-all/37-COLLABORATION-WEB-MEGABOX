@@ -8,23 +8,23 @@ type Toast = {
 type ToastStore = {
   // TODO : 여러 토스트 동시 표시를 위해 배열 처리 검토, 현재는 단일 토스트만 관리
   toast: Toast | null;
-  showToast: (message: string) => void;
+  showToast: (_message: string) => void;
   hideToast: () => void;
 };
 
-export const useToastStore = create<ToastStore>(set => ({
+export const useToastStore = create<ToastStore>(_set => ({
   toast: null,
 
-  showToast: message => {
+  showToast: _message => {
     const id = Date.now();
-    set({ toast: { id, message } });
+    _set({ toast: { id, message: _message } });
 
     setTimeout(() => {
-      set({ toast: null });
+      _set({ toast: null });
     }, 3000);
   },
 
   hideToast: () => {
-    set({ toast: null });
+    _set({ toast: null });
   },
 }));
