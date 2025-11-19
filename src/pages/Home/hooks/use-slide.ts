@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { getSlidesPage } from '../utils/slide';
+
+import { getSlidesPage } from '@pages/Home/utils/slide';
 
 // 슬라이드 관련 상태와 함수를 관리하는 hook
-export default function useSlide() {
+export function useSlide() {
   const SLIDE_LENGTH = 4;
   const [selectedSlideIndex, setSelectedSlideIndex] = useState<number>(0);
   const [firstSlideIndex, setFirstSlideIndex] = useState<number>(0);

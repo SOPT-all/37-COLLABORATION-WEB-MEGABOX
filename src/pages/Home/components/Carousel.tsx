@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import useCarousel from '../hooks/use-slide';
-import { useScroll } from '../hooks/use-scroll';
+
+import { useScroll, useSlide, handleScroll } from '@pages/Home/hooks';
 import { cn } from '@utils/index';
-import { handleScroll } from '../hooks/use-scroll';
 
 interface CarouselProps {
   items: { id: number; image: string }[];
@@ -11,13 +10,14 @@ interface CarouselProps {
 
 export default function Carousel({ items, handleClickItem }: CarouselProps) {
   const ITEMS_LENGTH = items.length;
+
   const {
     handleClickSlide,
     SLIDE_LENGTH,
     selectedSlideIndex,
     firstSlideIndex,
     setSelectedSlideIndex,
-  } = useCarousel();
+  } = useSlide();
   const { containerRef, scrollToIndex } = useScroll();
   const handleScrollCallback = useCallback(
     () => handleScroll(containerRef, setSelectedSlideIndex, SLIDE_LENGTH),

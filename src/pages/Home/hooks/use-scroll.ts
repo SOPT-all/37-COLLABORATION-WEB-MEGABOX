@@ -1,5 +1,6 @@
 import { useRef, type RefObject } from 'react';
-import { getItemSlideIndex } from '../utils/slide';
+
+import { getItemSlideIndex } from '@pages/Home/utils/slide';
 
 // 화면 정중앙에 와야하는 item index를 받아서 스크롤을 이동시키는 hook
 export function useScroll() {
