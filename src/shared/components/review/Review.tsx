@@ -49,17 +49,17 @@ export default function Review({
             })}
           </div>
 
-          <div className='text-label2 flex gap-[0.5rem]'>
+          <div className='font-label2 flex gap-[0.5rem]'>
             <span>{nickname}</span>
             <span>·</span>
             <span>{formatDate(createdAt)}</span>
           </div>
         </div>
-        <p className='text-body1'>{content}</p>
+        <p className='font-body1'>{content}</p>
       </div>
       <div className='flex items-center justify-end gap-[0.1rem]'>
         <IconGoodFill className='cursor-pointer text-gray-200' />
-        <span className='text-caption2 text-blue-500'>0</span>
+        <span className='font-caption2 text-blue-500'>0</span>
         <IconKebab className='cursor-pointer text-gray-200' />
       </div>
     </div>

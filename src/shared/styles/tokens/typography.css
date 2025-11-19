@@ -32,7 +32,7 @@
 @layer utilities {
   /* Headings */
   /* 영화 안내 헤드라인 */
-  .text-headline1 {
+  .font-headline1 {
     font-size: var(--font-headline1-size);
     font-weight: 800;
     line-height: 150%;
@@ -41,7 +41,7 @@
 
   /* Titles */
   /* 상단바 페이지명 */
-  .text-title1 {
+  .font-title1 {
     font-size: var(--font-title1-size);
     font-weight: 500;
     line-height: 150%;
@@ -49,7 +49,7 @@
   }
 
   /* 상단바 페이지명2 */
-  .text-title2 {
+  .font-title2 {
     font-size: var(--font-title2-size);
     font-weight: 700;
     line-height: 150%;
@@ -57,7 +57,7 @@
   }
 
   /* 상단바 페이지명3 */
-  .text-title3 {
+  .font-title3 {
     font-size: var(--font-title3-size);
     font-weight: 900;
     line-height: 150%;
@@ -66,7 +66,7 @@
 
   /* Subtitles */
   /* 영화 안내 부제목 */
-  .text-subtitle1 {
+  .font-subtitle1 {
     font-size: var(--font-subtitle1-size);
     font-weight: 400;
     line-height: 160%;
@@ -75,14 +75,14 @@
 
   /* Body */
   /* 영화 설명 */
-  .text-body1 {
+  .font-body1 {
     font-size: var(--font-body1-size);
     font-weight: 400;
     line-height: 135.7%;
     letter-spacing: -0.05em;
   }
 
-  .text-body2 {
+  .font-body2 {
     font-size: var(--font-body2-size);
     font-weight: 700;
     line-height: 135.7%;
@@ -90,7 +90,7 @@
   }
 
   /* 댓글 */
-  .text-body3 {
+  .font-body3 {
     font-size: var(--font-body3-size);
     font-weight: 400;
     line-height: 142.9%;
@@ -98,7 +98,7 @@
   }
 
   /* 강조 숫자 */
-  .text-body4 {
+  .font-body4 {
     font-size: var(--font-body4-size);
     font-weight: 700;
     line-height: 142.9%;
@@ -107,7 +107,7 @@
 
   /* Button */
   /* 칩 버튼명 */
-  .text-button1 {
+  .font-button1 {
     font-size: var(--font-button1-size);
     font-weight: 400;
     line-height: 150%;
@@ -115,7 +115,7 @@
   }
 
   /* 칩 버튼명2 */
-  .text-button2 {
+  .font-button2 {
     font-size: var(--font-button2-size);
     font-weight: 400;
     line-height: 150%;
@@ -123,7 +123,7 @@
   }
 
   /* 칩 버튼2 선택시 */
-  .text-button3 {
+  .font-button3 {
     font-size: var(--font-button3-size);
     font-weight: 700;
     line-height: 150%;
@@ -131,7 +131,7 @@
   }
 
   /* 하단 버튼 텍스트 */
-  .text-button4 {
+  .font-button4 {
     font-size: var(--font-button4-size);
     font-weight: 700;
     line-height: 150%;
@@ -140,7 +140,7 @@
 
   /* Caption / Label */
   /* 내용 설명 */
-  .text-caption1 {
+  .font-caption1 {
     font-size: var(--font-caption1-size);
     font-weight: 400;
     line-height: 150%;
@@ -148,7 +148,7 @@
   }
 
   /* 추가 설명 */
-  .text-caption2 {
+  .font-caption2 {
     font-size: var(--font-caption2-size);
     font-weight: 400;
     line-height: 150%;
@@ -156,13 +156,13 @@
   }
 
   /* 시간 */
-  .text-label1 {
+  .font-label1 {
     font-size: var(--font-label1-size);
     font-weight: 300;
     line-height: 150%;
     letter-spacing: -0.06em;
   }
-  .text-label2 {
+  .font-label2 {
     font-size: var(--font-label2-size);
     font-weight: 600;
     line-height: 140%;
