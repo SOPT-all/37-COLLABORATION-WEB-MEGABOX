@@ -10,7 +10,6 @@ type TabType = 'coupon' | 'point';
 export const DiscountSection = () => {
   const [activeTab, setActiveTab] = useState<TabType | null>(null);
   const [selectedDiscountId, setSelectedDiscountId] = useState<number | null>(null);
-  const [isExpanded, setIsExpanded] = useState<boolean>(true);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const getTabClassName = (isActive: boolean) =>
@@ -25,18 +24,20 @@ export const DiscountSection = () => {
     <section className='bg-white p-[1.6rem]'>
       <div className='mb-[2.5rem] flex items-center justify-between'>
         <h2 className='font-title2'>할인적용</h2>
-        <div className='flex items-center gap-[0.9rem]'>
-          <span className='font-caption1 text-gray-400'>
-            할인 수단을 선택하세요
-          </span>
-          <button onClick={() => setIsExpanded(!isExpanded)}>
+        <div>
+          <button onClick={() => setActiveTab(null)}
+            className='flex items-center gap-[0.9rem]'
+          >
+            <span className='font-caption1 text-gray-400'>
+              할인 수단을 선택하세요
+            </span>
             <UppArrow
               width={14}
               height={14}
               className={cn(
                 'text-gray-300',
                 'transition-transform',
-                !isExpanded && 'rotate-180'
+                !activeTab && 'rotate-180'
               )}
             />
           </button>
@@ -58,7 +59,6 @@ export const DiscountSection = () => {
         </button>
       </div>
       {/* 탭 내용 */}
-      {isExpanded && (
         <div>
           {activeTab === 'coupon' && (
             <DiscountGrid
@@ -73,6 +73,7 @@ export const DiscountSection = () => {
                     onClick={() => {
                       setIsChecked(!isChecked);
                     }}
+                    className='flex items-center gap-[0.6rem]'
                   >
                     <IconCheckFill
                       width={18}
@@ -83,10 +84,10 @@ export const DiscountSection = () => {
                           : 'text-gray-300 transition-colors'
                       }
                     />
+                    <label className='font-caption2 cursor-pointer text-gray-800'>
+                      할인 쿠폰 자동 적용
+                    </label>
                   </button>
-                  <label className='font-caption2 cursor-pointer text-gray-800'>
-                    할인 쿠폰 자동 적용
-                  </label>
                 </div>
                 <button className='font-label2 whitespace-nowrap text-gray-300'>
                   적용 쿠폰 확인
@@ -110,7 +111,6 @@ export const DiscountSection = () => {
             />
           )}
         </div>
-      )}
     </section>
   );
 }
