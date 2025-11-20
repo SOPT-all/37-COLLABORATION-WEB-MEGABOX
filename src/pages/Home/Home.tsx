@@ -8,7 +8,7 @@ import Tooltip from '@components/tooltip/Tooltip';
 
 export default function Home() {
   const [showTooltip, setShowTooltip] = useState(true);
-  
+
   const maxQuantity = 10;
   const { isOpen, handleOpenChange, quantity, handleDecrease, handleIncrease } =
     useModal(maxQuantity);
