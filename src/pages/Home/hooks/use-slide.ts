@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getSlidesPage } from '@pages/Home/utils/slide';
+import { getSlidesPage } from '@/pages/home/utils/slide';
 
 // 슬라이드 관련 상태와 함수를 관리하는 hook
 export function useSlide() {

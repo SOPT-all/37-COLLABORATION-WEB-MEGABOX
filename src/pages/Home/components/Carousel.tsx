@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import { useScroll, useSlide, handleScroll } from '@pages/Home/hooks';
+import { useScroll, useSlide, handleScroll } from '@/pages/home/hooks';
 import { cn } from '@utils/index';
 
 interface CarouselProps {

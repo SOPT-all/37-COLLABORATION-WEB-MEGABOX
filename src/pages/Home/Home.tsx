@@ -1,21 +1,28 @@
-import Divider from '@components/divider/Divider';
-import { MOVIES } from '@constants/movies';
-import Carousel from '@pages/Home/components/Carousel';
+import { Divider, Movie } from '@components/index';
+import Carousel from '@/pages/home/components/Carousel';
+import { useMovie } from '@/pages/home/hooks';
 
 export default function Home() {
-  const item = Object.values(MOVIES).map(movie => ({
-    id: movie.id,
-    image: movie.image,
-  }));
-  const handleClickItem = (id: number) => {
-    console.info(id);
-  };
+  const { selectedMovie, item, handleClickItem, handleClickCard } = useMovie();
 
   return (
     <div>
       {/* header 영역 */}
-      {/* main 영역 */}
-      <div className='h-[50rem]' />
+
+      {selectedMovie && (
+        <Movie
+          key={selectedMovie.id}
+          id={selectedMovie.id}
+          title={selectedMovie.title}
+          tag={selectedMovie.tag}
+          ageRating={selectedMovie.ageRating}
+          releaseDate={selectedMovie.releaseDate}
+          runningTimeMinutes={selectedMovie.runningTimeMinutes}
+          className='mb-[0.9rem] cursor-pointer'
+          handleClickCard={handleClickCard}
+        />
+      )}
+
       <div className='flex flex-col gap-[1rem] px-[1.7rem]'>
         <Divider />
         <Carousel items={item} handleClickItem={handleClickItem} />
