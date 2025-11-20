@@ -72,7 +72,7 @@ export const WithClickHandler: Story = {
     releaseDate: '2024.01.15',
     runningTimeMinutes: 120,
     handleClickCard: () => {
-      console.log('Movie card clicked!');
+      console.info('Movie card clicked!');
     },
     className: 'cursor-pointer',
   },
