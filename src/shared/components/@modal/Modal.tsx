@@ -1,4 +1,4 @@
-import { IconItemMinus, IconItemPlus, IconSystemClose } from '@/shared/assets';
+import { IconItemMinus, IconItemPlus, IconSystemClose } from '@assets/index';
 import * as Dialog from '@radix-ui/react-dialog';
 import Button from '@components/button/Button';
 
