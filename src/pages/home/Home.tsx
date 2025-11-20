@@ -1,8 +1,6 @@
-import { Divider, Movie } from '@components/index';
-import Carousel from '@/pages/home/components/Carousel';
-import { useMovie } from '@/pages/home/hooks';
-import Header from '@/shared/components/header/Header';
-import Button from '@/shared/components/button/Button';
+import { Divider, Movie, Header, Button } from '@components/index';
+import Carousel from '@pages/home/components/Carousel';
+import { useMovie } from '@pages/home/hooks';
 
 export default function Home() {
   const { selectedMovie, item, handleClickItem, handleClickCard } = useMovie();
