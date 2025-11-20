@@ -9,7 +9,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* header 영역 */}
       <Header variant='main' />
 
       {selectedMovie && (
@@ -30,6 +29,7 @@ export default function Home() {
         <Divider />
         <Carousel items={item} handleClickItem={handleClickItem} />
       </div>
+
       <footer className='fixed-center right-0 bottom-0 left-0 px-[1.7rem] pb-[4.9rem]'>
         <Button variant='primary' onClick={handleClickCard}>
           바로 예매 하기
