@@ -10,10 +10,13 @@ export default function Home() {
   const maxQuantity = 10;
   const { isOpen, handleOpenChange, quantity, handleDecrease, handleIncrease } =
     useModal(maxQuantity);
-  
+
+  const handleBack = () => {
+    alert('뒤로가기 버튼 눌림 (테스트용)');
+  };
+
   return (
     <>
-
       {/* 영화 헤더 테스트: 테스트 후 삭제 예정 */}
       <Header variant="main" />
       <Header variant="movie" title="무비 제목" handleClickBack={handleBack} />
@@ -50,7 +53,6 @@ export default function Home() {
           />
         </div>
       </div>
-
       <button
         className='rounded-md bg-violet-500 px-4 py-2 text-white'
         onClick={() => handleOpenChange(true)}
@@ -78,6 +80,6 @@ export default function Home() {
         handleClickCard={() => {}}
         className='cursor-pointer'
       />
-    </div>
+    </>
   );
 }
