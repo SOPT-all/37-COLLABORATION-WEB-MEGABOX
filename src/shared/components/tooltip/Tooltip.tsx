@@ -2,10 +2,10 @@ import CloseIcon from '@assets/svg/icon-system-close.svg?react';
 
 interface TooltipProps {
   message: string;
-  onClose?: () => void;
+  handleClose?: () => void;
 }
 
-export default function Tooltip({ message, onClose }: TooltipProps) {
+export default function Tooltip({ message, handleClose }: TooltipProps) {
   return (
     <div className="relative inline-block">
       <div
@@ -16,18 +16,14 @@ export default function Tooltip({ message, onClose }: TooltipProps) {
           text-white
         "
       >
-        <span className="font-label2 tracking-[-0.72px]">
-          {message}
-        </span>
+        <span className="font-label2 tracking-[-0.72px]">{message}</span>
 
-        {onClose && (
-          <button
-            type="button"
-            onClick={onClose}
-            className="flex h-[10px] w-[10px] items-center justify-center"
-          >
-            <CloseIcon className="h-[10px] w-[10px] stroke-white" />
-          </button>
+        {handleClose && (
+          <CloseIcon
+            className="h-[10px] w-[10px] stroke-white cursor-pointer"
+            aria-label="툴팁 닫기"
+            onClick={handleClose}
+          />
         )}
       </div>
 
