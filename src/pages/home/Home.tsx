@@ -23,7 +23,7 @@ export default function Home() {
         />
       )}
 
-      <div className='flex flex-col gap-[1rem] px-[1.7rem]'>
+      <div className='flex flex-col gap-[2rem] px-[1.7rem]'>
         <Divider />
         <Carousel items={item} handleClickItem={handleClickItem} />
       </div>

@@ -29,7 +29,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
   }, [firstSlideIndex, scrollToIndex]);
 
   return (
-    <div className='flex flex-col gap-[3rem] px-[1rem]'>
+    <div className='flex flex-col gap-[5rem] px-[1rem]'>
       <div
         onScroll={handleScrollCallback}
         ref={containerRef}
