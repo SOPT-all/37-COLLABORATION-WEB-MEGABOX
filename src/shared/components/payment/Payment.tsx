@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { cn } from "@utils/cn";
 import UppArrow from '@assets/components/IconSystemUparrow';
+import IconItemPlus from '@assets/components/IconItemPlus';
 
 type PaymentMethodType =
   | 'credit-card'
@@ -48,11 +49,12 @@ const Payment = () => {
         </button>
       </div>
       {/* 중앙페이 */}
-      { activeTab && (
+      {activeTab && (
         <>
-          <div>
-            <button>
-              <span>JoonAng PAY</span>
+          <div className='mb-[1.6rem]'>
+            <button className='flex w-full items-center justify-between rounded-[0.4rem] border border-gray-300 px-[2rem] py-[0.6rem]'>
+              <img src='/assets/img-joonang-logo.png' alt='JoongAng PAY' className='h-[3.2rem]'/>
+              <IconItemPlus width={24} height={24} className='text-gray-500' />
             </button>
           </div>
           {/* 결제 방법 그리드 */}
@@ -83,7 +85,7 @@ const Payment = () => {
           </div>
 
           {/* toss 카드 */}
-          <div>
+          <div className='mb-[1.6rem]'>
             <button></button>
           </div>
           {/* 라디오 그룹 */}

@@ -5,6 +5,7 @@ import { useModal } from '@components/@modal/hooks/use-modal';
 import Divider from '@components/divider/Divider';
 import Header from '@components/header/Header';
 import Movie from '@components/movie/Movie';
+import Payment from '@/shared/components/payment/Payment';
 
 export default function Home() {
   const maxQuantity = 10;
@@ -53,6 +54,7 @@ export default function Home() {
           />
         </div>
       </div>
+      <Payment />
       <button
         className='rounded-md bg-violet-500 px-4 py-2 text-white'
         onClick={() => handleOpenChange(true)}
