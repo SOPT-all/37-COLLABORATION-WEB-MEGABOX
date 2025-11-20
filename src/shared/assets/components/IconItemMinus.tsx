@@ -6,19 +6,19 @@ import type { SVGProps } from 'react';
 
 const IconItemMinus = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    xmlns='http://www.w3.org/2000/svg'
+    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill='none'
+    fill="none"
     {...props}
-    viewBox='0 0 16 16'
+    viewBox="0 0 16 16"
   >
     <rect
       width={12.667}
       height={0.667}
       x={1.334}
       y={7.333}
-      fill='currentColor'
+      fill="currentColor"
       rx={0.333}
     />
   </svg>
