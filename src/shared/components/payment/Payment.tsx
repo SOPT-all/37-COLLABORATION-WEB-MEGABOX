@@ -7,6 +7,7 @@ import IconCard from '@assets/components/IconCard';
 import IconSimpleCard from '@assets/components/IconSimpleCard';
 import Phone from '@assets/components/IconPhone';
 import MyCard from '@assets/components/IconMyCard';
+import IconRadio from '@assets/components/IconChooseFill'
 import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
@@ -56,6 +57,7 @@ SelectItem.displayName = 'SelectItem';
 const Payment = () => {
   const [activeTab, setActiveTab] = useState<boolean>(true);
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethodType | null>(null);
+  const [paymentType, setPaymentType] = useState<'isp' | 'general'>('isp');
 
   const handlePaymentMethodClick = (method: PaymentMethodType) => {
     if(method === 'simple-pay') {
@@ -131,8 +133,8 @@ const Payment = () => {
             })}
           </div>
 
-          {/* toss 카드 */}
-          <div className='mb-[2rem]'>
+          {/* 카드 */}
+          <div className='mb-[1rem]'>
             <Select.Root>
               <Select.Trigger className='font-button2 flex w-full items-center justify-between rounded-[0.4rem] border border-gray-300 px-[1rem] py-[1.2rem]'>
                 <Select.Value placeholder='카드 선택하기' />
@@ -154,9 +156,26 @@ const Payment = () => {
             </Select.Root>
           </div>
           {/* 라디오 그룹 */}
-          <div>
-            <button>
-              <div></div>
+          <div className='flex gap-[0.8rem] mb-[2.2rem]'>
+            <button onClick={() => setPaymentType('isp')}
+              className='flex items-center gap-[0.5rem]'
+              >
+              <IconRadio
+                width={18}
+                height={18}
+                className={paymentType === 'isp' ? 'text-violet-600' : 'text-gray-300'}
+              />
+              <span className='font-button2 text-gray800'>ISP</span>
+            </button>
+            <button onClick={() => setPaymentType('general')}
+              className='flex items-center gap-[0.5rem]'
+              >
+              <IconRadio
+                width={18}
+                height={18}
+                className={paymentType === 'general' ? 'text-violet-600' : 'text-gray-300'}
+              />
+              <span className='font-button2 text-gray800'>일반결제</span>
             </button>
           </div>
         </>
