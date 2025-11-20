@@ -1,5 +1,6 @@
 import { IconItemMinus, IconItemPlus, IconSystemClose } from '@/shared/assets';
 import * as Dialog from '@radix-ui/react-dialog';
+import Button from '@components/button/Button';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ModalProps {
   quantity: number;
   handleDecrease: () => void;
   handleIncrease: () => void;
+  handleClickPayment: () => void;
 }
 export default function Modal({
   isOpen,
@@ -20,6 +22,7 @@ export default function Modal({
   quantity,
   handleDecrease,
   handleIncrease,
+  handleClickPayment,
 }: ModalProps) {
   //TODO: maxQuantity toast 추가
   return (
@@ -31,30 +34,30 @@ export default function Modal({
             <IconSystemClose className='text-gray-300' />
           </Dialog.Close>
           <Dialog.Title className='mb-[2.7rem] flex flex-col items-center gap-[1.1rem]'>
-            <span className='text-button3 text-gray-0'> {movieTitle}</span>
+            <span className='font-button3 text-gray-0'> {movieTitle}</span>
             <div className='flex flex-col gap-[0.4rem]'>
-              <p className='text-caption1 text-gray-500'>{date}</p>
-              <p className='text-caption1 text-gray-500'>{location}</p>
+              <p className='font-caption1 text-gray-500'>{date}</p>
+              <p className='font-caption1 text-gray-500'>{location}</p>
             </div>
           </Dialog.Title>
 
           <div className='mb-[4.4rem] flex w-full items-center justify-between'>
-            <span className='text-body2 text-gray-100'>성인</span>
+            <span className='font-body2 text-gray-100'>성인</span>
             <div className='border-gray-0 flex items-center justify-center gap-[1rem] rounded-[0.4rem] border p-[0.5rem]'>
-              <button
+              <IconItemMinus
                 onClick={handleDecrease}
-                disabled={quantity <= 1}
-                aria-label='인원 감소'
-              >
-                <IconItemMinus className='text-gray-0 h-[1.6rem] w-[1.6rem]' />
-              </button>
-              <span className='text-button2 text-violet-400'>{quantity}</span>
-              <button onClick={handleIncrease} aria-label='인원 증가'>
-                <IconItemPlus className='text-gray-0 h-[1.6rem] w-[1.6rem]' />
-              </button>
+                className='text-gray-0 h-[1.6rem] w-[1.6rem]'
+              />
+              <span className='font-button2 text-violet-400'>{quantity}</span>
+              <IconItemPlus
+                onClick={handleIncrease}
+                className='text-gray-0 h-[1.6rem] w-[1.6rem]'
+              />
             </div>
           </div>
-          {/* TODO : 버튼 컴포넌트 추가 */}
+          <Button variant='primary' onClick={handleClickPayment}>
+            결제하기
+          </Button>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

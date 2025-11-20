@@ -53,6 +53,7 @@ export default function Home() {
         quantity={quantity}
         handleDecrease={handleDecrease}
         handleIncrease={handleIncrease}
+        handleClickPayment={() => {}}
       />
     </div>
   );
