@@ -21,12 +21,18 @@ export const DiscountSection = () => {
     );
 
   return (
-    <section className='bg-white p-[1.6rem]'>
+    <section className='bg-white p-[1.6rem]' aria-labelledby='할인 세션'>
       <div className='mb-[2.5rem] flex items-center justify-between'>
-        <h2 className='font-title2'>할인적용</h2>
+        <h2 id='할인 타이틀' className='font-title2'>
+          할인적용
+        </h2>
         <div>
-          <button onClick={() => setActiveTab(null)}
+          <button
+            onClick={() => setActiveTab(null)}
             className='flex items-center gap-[0.9rem]'
+            aria-label={
+              activeTab ? '할인 수단 선택 닫기' : '할인 수단 선택 열기'
+            }
           >
             <span className='font-caption1 text-gray-400'>
               할인 수단을 선택하세요
@@ -44,73 +50,85 @@ export const DiscountSection = () => {
         </div>
       </div>
       {/* 탭 버튼 */}
-      <div className='mb-[1.8rem] flex gap-[0.7rem]'>
+      <div
+        className='mb-[1.8rem] flex gap-[0.7rem]'
+        aria-label='할인 수단 종류'
+      >
         <button
           onClick={() => setActiveTab(activeTab === 'coupon' ? null : 'coupon')}
           className={getTabClassName(activeTab === 'coupon')}
+          role='tab'
+          aria-selected={activeTab === 'coupon'}
         >
           쿠폰/관람권/기타
         </button>
         <button
           onClick={() => setActiveTab(activeTab === 'point' ? null : 'point')}
           className={getTabClassName(activeTab === 'point')}
+          role='tab'
+          aria-selected={activeTab === 'point'}
         >
           포인트
         </button>
       </div>
       {/* 탭 내용 */}
-        <div>
-          {activeTab === 'coupon' && (
-            <DiscountGrid
-              items={COUPON_ITEMS}
-              selectedId={selectedDiscountId}
-              onSelect={setSelectedDiscountId}
-              firstItem={false}
-            >
-              <div className='mt-[0.8rem] flex items-center justify-between py-[0.5rem]'>
-                <div className='flex items-center gap-[0.6rem]'>
-                  <button
-                    onClick={() => {
-                      setIsChecked(!isChecked);
-                    }}
-                    className='flex items-center gap-[0.6rem]'
+      <div role='tabpanel' aria-labelledby='coupon-tab'>
+        {activeTab === 'coupon' && (
+          <DiscountGrid
+            items={COUPON_ITEMS}
+            selectedId={selectedDiscountId}
+            onSelect={setSelectedDiscountId}
+            firstItem={false}
+          >
+            <div className='mt-[0.8rem] flex items-center justify-between py-[0.5rem]'>
+              <div className='flex items-center gap-[0.6rem]'>
+                <button
+                  onClick={() => {
+                    setIsChecked(!isChecked);
+                  }}
+                  className='flex items-center gap-[0.6rem]'
+                  role='checkbox'
+                  aria-label='할인 쿠폰 자동 적용'
+                >
+                  <IconCheckFill
+                    width={18}
+                    height={18}
+                    className={
+                      isChecked
+                        ? 'text-violet-600 transition-colors'
+                        : 'text-gray-300 transition-colors'
+                    }
+                  />
+                  <label
+                    className='font-caption2 cursor-pointer text-gray-800'
+                    aria-label='적용된 쿠폰 확인하기'
                   >
-                    <IconCheckFill
-                      width={18}
-                      height={18}
-                      className={
-                        isChecked
-                          ? 'text-violet-600 transition-colors'
-                          : 'text-gray-300 transition-colors'
-                      }
-                    />
-                    <label className='font-caption2 cursor-pointer text-gray-800'>
-                      할인 쿠폰 자동 적용
-                    </label>
-                  </button>
-                </div>
-                <button className='font-label2 whitespace-nowrap text-gray-300'>
-                  적용 쿠폰 확인
+                    할인 쿠폰 자동 적용
+                  </label>
                 </button>
               </div>
+              <button className='font-label2 whitespace-nowrap text-gray-300'>
+                적용 쿠폰 확인
+              </button>
+            </div>
 
-              <ul className='mt-[0.8rem] list-disc pl-[1.6rem]'>
-                <li className='font-caption1 text-gray-400'>
-                  기프트콘, 기프티쇼, 아이넘버, 도너블, 스마트콘, 스마일콘,
-                  G마켓 예매권은 [모바일 관람권]에서 사용하실 수 있습니다.
-                </li>
-              </ul>
-            </DiscountGrid>
-          )}
-          {activeTab === 'point' && (
-            <DiscountGrid
-              items={POINT_ITEMS}
-              selectedId={selectedDiscountId}
-              onSelect={setSelectedDiscountId}
-              firstItem={true}
-            />
-          )}
-        </div>
+            <ul className='mt-[0.8rem] list-disc pl-[1.6rem]'>
+              <li className='font-caption1 text-gray-400'>
+                기프트콘, 기프티쇼, 아이넘버, 도너블, 스마트콘, 스마일콘, G마켓
+                예매권은 [모바일 관람권]에서 사용하실 수 있습니다.
+              </li>
+            </ul>
+          </DiscountGrid>
+        )}
+        {activeTab === 'point' && (
+          <DiscountGrid
+            items={POINT_ITEMS}
+            selectedId={selectedDiscountId}
+            onSelect={setSelectedDiscountId}
+            firstItem={true}
+          />
+        )}
+      </div>
     </section>
   );
 }

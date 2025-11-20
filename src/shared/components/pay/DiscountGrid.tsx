@@ -18,7 +18,7 @@ export const DiscountGrid = ({
   children,
 }: DiscountGridProps) => {
   return (
-    <div className='rounded-[0.4rem] bg-gray-100 px-[1.5rem] py-[1.2rem]'>
+    <div className='rounded-[0.4rem] bg-gray-100 px-[1.5rem] py-[1.2rem]' role='group' aria-label='할인 수단 목록'>
       <div className='grid grid-cols-2 gap-[0.8rem]'>
         {items.map((item, index) => (
           <button
