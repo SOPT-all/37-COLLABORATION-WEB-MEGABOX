@@ -17,7 +17,7 @@ export const DiscountSection = () => {
     cn(
       'font-button2 relative flex-1 rounded-[0.4rem] border-[0.1rem] p-[1rem]',
       isActive
-        ? 'border-violet-600 text-violet-600'
+        ? 'font-button3 border-violet-600 text-violet-600'
         : 'border-gray-300 text-gray-900'
     );
 
