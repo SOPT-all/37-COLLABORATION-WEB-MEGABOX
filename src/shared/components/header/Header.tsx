@@ -69,8 +69,6 @@ export default function Header({
 
         <IconSystemShare
           aria-label="공유하기"
-          // 👉 IconSystemShare SVG 안에서 stroke/fill 이 currentColor 여야 이게 먹어요.
-          // (hard-coded #000 이면 흰색으로 안 바뀜)
           className="h-[2.4rem] w-[2.4rem] cursor-pointer text-white"
         />
       </div>
