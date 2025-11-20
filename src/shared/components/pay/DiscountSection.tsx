@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { cn } from "@utils/cn";
 import DiscountGrid from './DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
-import IconCheckFill from '@assets/svg/icon-check-fill.svg?react'
-import UpArrow from "@assets/svg/icon-system-uparrow.svg?react";
+// import IconCheckFill from '@assets/svg/icon-check-fill.svg?react'
+import IconCheckFill from '@assets/components/IconCheckFill'
+// import UpArrow from "@assets/svg/icon-system-uparrow.svg?react";
+import UppArrow from "@assets/components/IconSystemUparrow"
 
 type TabType = 'coupon' | 'point';
 
@@ -30,10 +32,11 @@ export const DiscountSection = () => {
             할인 수단을 선택하세요
           </span>
           <button onClick={() => setIsExpanded(!isExpanded)}>
-            <UpArrow
+            <UppArrow
               width={14}
               height={14}
               className={cn(
+                'text-gray-300',
                 'transition-transform',
                 !isExpanded && 'rotate-180'
               )}
@@ -70,9 +73,7 @@ export const DiscountSection = () => {
                 <div className='flex items-center gap-[0.6rem]'>
                   <button
                     onClick={() => {
-                      console.log('Before:', isChecked);
                       setIsChecked(!isChecked);
-                      console.log('After:', isChecked);
                     }}
                   >
                     <IconCheckFill
