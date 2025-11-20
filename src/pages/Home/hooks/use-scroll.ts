@@ -11,7 +11,6 @@ export function useScroll() {
 
     const container = containerRef.current;
     const target = container?.children?.[index + 1] as HTMLElement | undefined;
-    console.log(container, target);
     if (!container || !target) return;
 
     // 뷰포트(화면) 중앙
@@ -36,8 +35,7 @@ export function useScroll() {
 // 스크롤 시, selectedSlideIndex를 업데이트하는 함수
 export function handleScroll(
   containerRef: RefObject<HTMLDivElement | null>,
-  handleSetSelectedSlideIndex: (index: number) => void,
-
+  handleSetSelectedSlideIndex: (_index: number) => void,
   slideLength: number
 ) {
   const container = containerRef.current;
