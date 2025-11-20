@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 type DiscountGridProps = {
   items: DiscountItem[];
   selectedId: number | null;
-  onSelect: (_id: number) => void;
+  onSelect: (_id: number | null) => void;
   firstItem?: boolean;
   children?: ReactNode;
 };
@@ -23,7 +23,7 @@ export const DiscountGrid = ({
         {items.map((item, index) => (
           <button
             key={item.id}
-            onClick={() => onSelect(item.id)}
+            onClick={() => onSelect(selectedId === item.id ? null : item.id)}
             className={cn(
               'font-button1 rounded-[0.4rem] border-[0.1rem] bg-white px-[1rem] py-[1.2rem]',
               index === 0 && firstItem && 'col-span-2',
