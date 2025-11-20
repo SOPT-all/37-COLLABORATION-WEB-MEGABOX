@@ -41,11 +41,25 @@
 }
 
 @layer utilities {
-  .scrollbar-hide {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  .fixed-center {
+    width: 100%;
+    max-width: var(--custom-max-width);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
+
+  /* Hide scrollbar for Chrome, Safari, and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }

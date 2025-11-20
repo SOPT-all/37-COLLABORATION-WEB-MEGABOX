@@ -3,7 +3,10 @@ import { MOVIES } from '@constants/movies';
 import Carousel from '@pages/Home/components/Carousel';
 
 export default function Home() {
-  const item = MOVIES.map(movie => ({ id: movie.id, image: movie.image }));
+  const item = Object.values(MOVIES).map(movie => ({
+    id: movie.id,
+    image: movie.image,
+  }));
   const handleClickItem = (id: number) => {
     console.info(id);
   };
