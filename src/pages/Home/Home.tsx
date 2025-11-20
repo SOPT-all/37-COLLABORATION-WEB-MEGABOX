@@ -1,8 +1,7 @@
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
 import Divider from '@components/divider/Divider';
-
-import MovieHeader from '@components/header/MovieHeader';
+import Header from '@components/header/Header';
 
 export default function HomeMovieHeaderTest() {
   const handleBack = () => {
@@ -11,12 +10,10 @@ export default function HomeMovieHeaderTest() {
 
   return (
     <>
-      {/* <MovieHeader variant="main" /> */}
-      <MovieHeader
-        variant="movie"
-        title="체인소맨 헤더 테스트"
-        onClickBack={handleBack}
-      />
+
+      {/* 영화 헤더 테스트: 테스트 후 삭제 예정 */}
+      <Header variant="main" />
+      <Header variant="movie" title="무비 제목" handleClickBack={handleBack} />
 
       <div>
         <div className="p-8">
@@ -40,9 +37,7 @@ export default function HomeMovieHeaderTest() {
           <div className="gradient-2 mb-4 h-64 w-64 rounded-3xl" />
           <div className="gradient-3 h-64 w-64 rounded-3xl" />
         </div>
-
         <IconStarFill className="text-red-500" />
-
         <div className="p-[2rem]">
           <Review
             content="영화를 2회차 시청하는 건 이 작품이 첨입니다. 너무 재밌어요. 초반엔 달달한 로맨스를 풍기다 전투씬부터는 화려하고 역동작인 액션씬이라 보는 재미가 있었습니다. 만족 100입니다"
