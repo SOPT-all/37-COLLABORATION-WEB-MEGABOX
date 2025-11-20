@@ -37,7 +37,7 @@ export default function Movie({
       aria-label={`${title} 영화 정보`}
       onClick={handleClickCard ?? undefined}
     >
-      <div className='gradient-movie-overlay absolute inset-0' />
+      <div className='absolute inset-0 h-full w-full bg-gray-900/70' />
       <div className='relative z-10 flex shrink-0 flex-col gap-[0.8rem] px-[3.1rem] py-[2rem]'>
         <div className='flex h-full items-end gap-[2rem]'>
           <img
@@ -47,21 +47,15 @@ export default function Movie({
           />
           <div className='flex flex-col gap-[1.9rem]'>
             <div className='flex flex-col gap-[0.5rem]'>
-              <h1 className='text-headline1 text-gray-0'>{title}</h1>
-              <p className='text-label1 text-violet-200'>{tag}</p>
+              <h1 className='font-headline1 text-gray-0'>{title}</h1>
+              <p className='font-label1 text-violet-200'>{tag}</p>
             </div>
-            <div className='flex flex-col gap-[0.3rem]'>
-              <span className='text-caption2 text-gray-0'>
-                {ageRating}세이상관람가
-              </span>
-              <div className='flex gap-[0.3rem]'>
-                <span className='text-label1 text-gray-0'>
-                  {releaseDate} 개봉
-                </span>
-                <span className='text-label1 text-gray-0'>·</span>
-                <span className='text-label1 text-gray-0'>
-                  {runningTimeMinutes}분
-                </span>
+            <div className='font-caption2 text-gray-0 flex flex-col gap-[0.3rem]'>
+              <span>{ageRating}세이상관람가</span>
+              <div className='flex gap-[0.4rem]'>
+                <span>{releaseDate} 개봉</span>
+                <span>·</span>
+                <span>{runningTimeMinutes}분</span>
               </div>
             </div>
           </div>

@@ -36,13 +36,6 @@
   --gradient-2: linear-gradient(90deg, #0a0533 0%, #480051 100%);
   --gradient-3: linear-gradient(103deg, #2e285e 6.95%, #41266c 65.1%);
 
-  /* Movie Overlay Gradient */
-  --gradient-movie-overlay: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 82.95%,
-    var(--color-gray-900) 100%
-  );
-
   /* Sub Color */
   --color-red-500: #ff5251;
   --color-blue-500: #4cb1fa;
