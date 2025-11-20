@@ -1,9 +1,14 @@
 import { IconStarFill } from '@assets/index';
 import Review from '@components/review/Review';
+import Modal from '@components/@modal/Modal';
+import { useModal } from '@components/@modal/hooks/use-modal';
 import Divider from '@components/divider/Divider';
 import Movie from '@components/movie/Movie';
 
 export default function Home() {
+  const maxQuantity = 10;
+  const { isOpen, handleOpenChange, quantity, handleDecrease, handleIncrease } =
+    useModal(maxQuantity);
   return (
     <div>
       <div className='p-8'>
@@ -34,6 +39,23 @@ export default function Home() {
           nickname='test'
         />
       </div>
+      <button
+        className='rounded-md bg-violet-500 px-4 py-2 text-white'
+        onClick={() => handleOpenChange(true)}
+      >
+        Open Modal
+      </button>
+      <Modal
+        isOpen={isOpen}
+        handleOpenChange={handleOpenChange}
+        movieTitle='영화 제목'
+        date='2025.11.18(수) 19:00 ~ 21:00'
+        location='강남/르 리클라이너 1관 2D(자막)'
+        quantity={quantity}
+        handleDecrease={handleDecrease}
+        handleIncrease={handleIncrease}
+        handleClickPayment={() => {}}
+      />
       <Movie
         id={1}
         title='나우 유 씨 미 3'
