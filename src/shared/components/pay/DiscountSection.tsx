@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { cn } from "@utils/cn";
 import DiscountGrid from './DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
-// import IconCheckFill from '@assets/svg/icon-check-fill.svg?react'
 import IconCheckFill from '@assets/components/IconCheckFill'
-// import UpArrow from "@assets/svg/icon-system-uparrow.svg?react";
 import UppArrow from "@assets/components/IconSystemUparrow"
 
 type TabType = 'coupon' | 'point';
@@ -47,13 +45,13 @@ export const DiscountSection = () => {
       {/* 탭 버튼 */}
       <div className='mb-[1.8rem] flex gap-[0.7rem]'>
         <button
-          onClick={() => setActiveTab('coupon')}
+          onClick={() => setActiveTab(activeTab === 'coupon' ? null : 'coupon')}
           className={getTabClassName(activeTab === 'coupon')}
         >
           쿠폰/관람권/기타
         </button>
         <button
-          onClick={() => setActiveTab('point')}
+          onClick={() => setActiveTab(activeTab === 'point' ? null : 'point')}
           className={getTabClassName(activeTab === 'point')}
         >
           포인트
