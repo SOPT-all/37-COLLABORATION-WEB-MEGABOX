@@ -8,6 +8,7 @@ import IconSimpleCard from '@assets/components/IconSimpleCard';
 import Phone from '@assets/components/IconPhone';
 import MyCard from '@assets/components/IconMyCard';
 import IconRadio from '@assets/components/IconChooseFill'
+import IconCheckFill from '@assets/components/IconCheckFill';
 import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 
@@ -41,7 +42,7 @@ const SelectItem = forwardRef<
     <Select.Item
       className={cn(
         'relative flex cursor-pointer items-center rounded-[0.4rem] px-[1rem] py-[1.2rem] font-body2 text-gray-900',
-        'hover:bg-gray-100 focus:bg-gray-100 outline-none',
+        'focus:bg-gray-100 outline-none',
         className
       )}
       {...props}
@@ -58,6 +59,7 @@ const Payment = () => {
   const [activeTab, setActiveTab] = useState<boolean>(true);
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethodType | null>(null);
   const [paymentType, setPaymentType] = useState<'isp' | 'general'>('isp');
+  const [isRefundAgreed, setIsRefundAgreed] = useState(false);
 
   const handlePaymentMethodClick = (method: PaymentMethodType) => {
     if(method === 'simple-pay') {
@@ -92,13 +94,17 @@ const Payment = () => {
         <>
           <div className='mb-[1.6rem]'>
             <button className='flex w-full items-center justify-between rounded-[0.4rem] border border-gray-300 px-[2rem] py-[0.6rem]'>
-              <img src='/assets/img-joonang-logo.png' alt='JoongAng PAY' className='h-[3.2rem]'/>
+              <img
+                src='/assets/img-joonang-logo.png'
+                alt='JoongAng PAY'
+                className='h-[3.2rem]'
+              />
               <IconItemPlus width={24} height={24} className='text-gray-500' />
             </button>
           </div>
           {/* 결제 방법 그리드 */}
           <div className='mb-[2rem] grid grid-cols-2 gap-[1.2rem]'>
-            {PAYMENT_METHODS.map((method) => {
+            {PAYMENT_METHODS.map(method => {
               const Icon = method.icon;
               return (
                 <button
@@ -111,7 +117,9 @@ const Payment = () => {
                       : 'border-gray-300'
                   )}
                 >
-                  <Icon width={30} height={30}
+                  <Icon
+                    width={30}
+                    height={30}
                     className={cn(
                       selectedMethod === method.id
                         ? 'text-violet-600'
@@ -129,7 +137,7 @@ const Payment = () => {
                     {method.label}
                   </span>
                 </button>
-              )
+              );
             })}
           </div>
 
@@ -145,7 +153,7 @@ const Payment = () => {
               <Select.Portal>
                 <Select.Content className='overflow-hidden rounded-[0.8rem] border border-gray-300 bg-white shadow-lg'>
                   <Select.Viewport className='p-[0.8rem]'>
-                    {CARD_OPTIONS.map((option) => (
+                    {CARD_OPTIONS.map(option => (
                       <SelectItem key={option.value} value={option.value}>
                         {option.label}
                       </SelectItem>
@@ -156,27 +164,86 @@ const Payment = () => {
             </Select.Root>
           </div>
           {/* 라디오 그룹 */}
-          <div className='flex gap-[0.8rem] mb-[2.2rem]'>
-            <button onClick={() => setPaymentType('isp')}
+          <div className='mb-[2.2rem] flex gap-[0.8rem]'>
+            <button
+              onClick={() => setPaymentType('isp')}
               className='flex items-center gap-[0.5rem]'
-              >
+            >
               <IconRadio
                 width={18}
                 height={18}
-                className={paymentType === 'isp' ? 'text-violet-600' : 'text-gray-300'}
+                className={
+                  paymentType === 'isp' ? 'text-violet-600' : 'text-gray-300'
+                }
               />
               <span className='font-button2 text-gray800'>ISP</span>
             </button>
-            <button onClick={() => setPaymentType('general')}
+            <button
+              onClick={() => setPaymentType('general')}
               className='flex items-center gap-[0.5rem]'
-              >
+            >
               <IconRadio
                 width={18}
                 height={18}
-                className={paymentType === 'general' ? 'text-violet-600' : 'text-gray-300'}
+                className={
+                  paymentType === 'general'
+                    ? 'text-violet-600'
+                    : 'text-gray-300'
+                }
               />
               <span className='font-button2 text-gray800'>일반결제</span>
             </button>
+          </div>
+          {/* 이벤트 배너 */}
+          <div className='rounded-[0.4rem] bg-gray-100 px-[1rem] py-[1.3rem]'>
+            <div className='flex items-center gap-[0.2rem]'>
+              <img
+                src='/assets/img-toss-logo.png'
+                alt='toss-payments'
+                className='h-[2.9rem]'
+              />
+              <span className='font-caption1 text-gray-500'>
+                11월 토스페이 생애 첫 결제 시 1천원 즉시 할인
+              </span>
+            </div>
+            <div className='flex items-center gap-[3.3rem]'>
+              <img
+                src='/assets/img-010Pay-logo.png'
+                alt='010Pay'
+                className='h-[1.9rem]'
+              />
+              <span className='font-caption1 text-gray-500'>
+                1.5만원 이상 내통장결제 시 굿즈 증정! (이벤트 탭 확인)
+              </span>
+            </div>
+          </div>
+          {/* 취소/환불 정책 */}
+          <div className='mt-[2.2rem]'>
+            <button
+              onClick={() => setIsRefundAgreed(!isRefundAgreed)}
+              className='flex items-center gap-[0.6rem]'
+            >
+              <IconCheckFill
+                width={18}
+                height={18}
+                className={cn(
+                  'transition-colors',
+                  isRefundAgreed ? 'text-violet-600' : 'text-gray-300'
+                )}
+              />
+              <span className='font-caption2 text-gray-800'>
+                취소/환불 정첵에 대한 동의
+              </span>
+            </button>
+            <div className='mt-[1.6rem] space-y-[1.4rem] border-t border-gray-200 pt-[1.6rem]'>
+              <p className='font-caption3 text-gray-400 mb-[0.9rem]'>
+                - 온라인 예매는 영화 상영시간 20분전까지 취소 가능하며, 20분
+                이후 현장 취소만 가능합니다.
+              </p>
+              <p className='font-caption3 text-gray-400'>
+                - 현장 취소 시 영화 상영시간 이전까지만 가능합니다.
+              </p>
+            </div>
           </div>
         </>
       )}
