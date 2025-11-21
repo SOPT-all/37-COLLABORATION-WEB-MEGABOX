@@ -1,5 +1,5 @@
 import {useController, type UseFormReturn } from 'react-hook-form';
-import type { DiscountFormData } from '@pages/Payment/schemas/payment.schema';
+import type { DiscountFormData } from '@/pages/payment/schemas/payment.schema';
 import { cn } from '@utils/cn';
 import DiscountGrid from '../section/DiscountSection/DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';

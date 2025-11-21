@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ROUTES } from '@router/constant/routes';
 import Layout from '@router/Layout';
 
-import Payment from '@pages/Payment/Payment';
+import Payment from '@/pages/payment/Payment';
 import Home from '@/pages/home/Home';
 
 
