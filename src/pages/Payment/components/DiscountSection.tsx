@@ -1,16 +1,39 @@
-import { useState } from 'react'
-import { cn } from "@utils/cn";
+import {useController, type UseFormReturn } from 'react-hook-form';
+import type { DiscountFormData } from '@pages/Payment/schemas/payment.schema';
+import { cn } from '@utils/cn';
 import DiscountGrid from './DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
-import IconCheckFill from '@assets/components/IconCheckFill'
-import UppArrow from "@assets/components/IconSystemUparrow"
+import IconCheckFill from '@assets/components/IconCheckFill';
+import UppArrow from '@assets/components/IconSystemUparrow';
 
-type TabType = 'coupon' | 'point';
+interface DiscountSectionProps {
+  form: UseFormReturn<DiscountFormData>;
+}
 
-export const DiscountSection = () => {
-  const [activeTab, setActiveTab] = useState<TabType | null>(null);
-  const [selectedDiscountId, setSelectedDiscountId] = useState<number | null>(null);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+export const DiscountSection = ({ form }: DiscountSectionProps) => {
+  // 탭 컨트롤러
+  const {
+    field: { value: activeTab, onChange: onTabChange },
+  } = useController({
+    name: 'activeTab',
+    control: form.control,
+  });
+
+  // 그리드 아이템 컨트롤러
+  const {
+    field: { value: selectedDiscountId, onChange: onDiscountChange },
+  } = useController({
+    name: 'selectedDiscountId',
+    control: form.control,
+  });
+
+  // 체크박스 컨트롤러
+  const {
+    field: {value: isChecked, onChange: onCheckedChange},
+  } = useController({
+    name: 'isChecked',
+    control: form.control,
+  })
 
   const getTabClassName = (isActive: boolean) =>
     cn(
@@ -22,13 +45,19 @@ export const DiscountSection = () => {
 
   return (
     <section className='bg-white p-[1.6rem]' aria-labelledby='할인 세션'>
+      <input type='hidden' {...form.register('activeTab')} />
       <div className='mb-[2.5rem] flex items-center justify-between'>
         <h2 id='할인 타이틀' className='font-title2'>
           할인적용
         </h2>
         <div>
           <button
-            onClick={() => setActiveTab(null)}
+            type='button'
+            onClick={() => {
+              if (activeTab) {
+                onTabChange(null);
+              }
+            }}
             className='flex items-center gap-[0.9rem]'
             aria-label={
               activeTab ? '할인 수단 선택 닫기' : '할인 수단 선택 열기'
@@ -55,7 +84,8 @@ export const DiscountSection = () => {
         aria-label='할인 수단 종류'
       >
         <button
-          onClick={() => setActiveTab(activeTab === 'coupon' ? null : 'coupon')}
+          type='button'
+          onClick={() => onTabChange(activeTab === 'coupon' ? null : 'coupon')}
           className={getTabClassName(activeTab === 'coupon')}
           role='tab'
           aria-selected={activeTab === 'coupon'}
@@ -63,7 +93,9 @@ export const DiscountSection = () => {
           쿠폰/관람권/기타
         </button>
         <button
-          onClick={() => setActiveTab(activeTab === 'point' ? null : 'point')}
+          type='button'
+          // onClick={() => handleTabChange('point')}
+          onClick={() => onTabChange(activeTab === 'point' ? null : 'point')}
           className={getTabClassName(activeTab === 'point')}
           role='tab'
           aria-selected={activeTab === 'point'}
@@ -77,14 +109,15 @@ export const DiscountSection = () => {
           <DiscountGrid
             items={COUPON_ITEMS}
             selectedId={selectedDiscountId}
-            onSelect={setSelectedDiscountId}
+            onSelect={onDiscountChange}
             firstItem={false}
           >
             <div className='mt-[0.8rem] flex items-center justify-between py-[0.5rem]'>
               <div className='flex items-center gap-[0.6rem]'>
                 <button
+                  type='button'
                   onClick={() => {
-                    setIsChecked(!isChecked);
+                    onCheckedChange(!isChecked);
                   }}
                   className='flex items-center gap-[0.6rem]'
                   role='checkbox'
@@ -107,7 +140,10 @@ export const DiscountSection = () => {
                   </label>
                 </button>
               </div>
-              <button className='font-label2 whitespace-nowrap text-gray-300'>
+              <button
+                type='button'
+                className='font-label2 whitespace-nowrap text-gray-300'
+              >
                 적용 쿠폰 확인
               </button>
             </div>
@@ -124,13 +160,13 @@ export const DiscountSection = () => {
           <DiscountGrid
             items={POINT_ITEMS}
             selectedId={selectedDiscountId}
-            onSelect={setSelectedDiscountId}
+            onSelect={onDiscountChange}
             firstItem={true}
           />
         )}
       </div>
     </section>
   );
-}
+};
 
-export default DiscountSection
+export default DiscountSection;
