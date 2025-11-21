@@ -3,7 +3,7 @@ import Review from '@components/review/Review';
 import Modal from '@components/@modal/Modal';
 import { useModal } from '@components/@modal/hooks/use-modal';
 import Divider from '@components/divider/Divider';
-import DiscountSection from '@/shared/components/pay/DiscountSection';
+import DiscountSection from '@/pages/Payment/components/DiscountSection';
 import Header from '@components/header/Header';
 import Movie from '@components/movie/Movie';
 
