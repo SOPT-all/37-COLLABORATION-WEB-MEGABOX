@@ -13,17 +13,19 @@ const variants = {
   },
   secondary: {
     layout: 'w-full px-[1rem] py-[1.2rem]',
-    style: 'border border-gray-300 rounded-[0.4rem] active:border-gray-100 active:bg-gray-600',
+    style:
+      'border border-gray-300 rounded-[0.4rem] active:border-gray-100 active:bg-gray-600',
     text: 'font-button3 text-gray-400 active:text-gray-100',
   },
   sub: {
     layout: 'w-fit px-[0.8rem] py-[0.7rem]',
-    style: 'border border-gray-300 rounded-[0.4rem] active:border-gray-100 active:bg-gray-600',
+    style:
+      'border border-gray-300 rounded-[0.4rem] active:border-gray-100 active:bg-gray-600',
     text: 'font-button1 text-gray-400 active:text-gray-0',
   },
 } as const;
 
-export default function Button ({
+export default function Button({
   variant,
   children,
   className,
