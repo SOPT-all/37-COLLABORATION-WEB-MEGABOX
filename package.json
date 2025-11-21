@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "eslint-plugin-import": "^2.32.0",
+    "lottie-react": "^2.4.1",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
