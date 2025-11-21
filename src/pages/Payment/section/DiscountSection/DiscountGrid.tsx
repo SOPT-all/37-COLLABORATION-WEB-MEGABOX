@@ -2,7 +2,7 @@ import { cn } from "@utils/cn";
 import type { DiscountItem } from '@constants/discount';
 import type { ReactNode } from 'react';
 
-type DiscountGridProps = {
+interface DiscountGridProps {
   items: DiscountItem[];
   selectedId: number | null;
   onSelect: (_id: number | null) => void;
