@@ -3,7 +3,6 @@ import Review from '@components/review/Review';
 import Modal from '@components/@modal/Modal';
 import { useModal } from '@components/@modal/hooks/use-modal';
 import Divider from '@components/divider/Divider';
-import DiscountSection from '@/pages/Payment/components/DiscountSection';
 import Header from '@components/header/Header';
 import Movie from '@components/movie/Movie';
 
@@ -62,9 +61,6 @@ export default function Home() {
           nickname='test'
         />
       </div> */}
-      <div className='p-[2rem]'>
-        <DiscountSection />
-      </div>
       <div>
         <button
           className='rounded-md bg-violet-500 px-4 py-2 text-white'
