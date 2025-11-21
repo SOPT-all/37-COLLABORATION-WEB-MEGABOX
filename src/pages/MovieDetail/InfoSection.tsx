@@ -1,8 +1,9 @@
+import { useState } from 'react';
+
 import ImgTrailer1 from '@/../public/assets/@movies/img-trailer.png';
 import ImgTrailer2 from '@/../public/assets/@movies/img-trailer2.png';
 import ImgTrailer3 from '@/../public/assets/@movies/img-trailer3.png';
 import ImgStillCut from '@/../public/assets/@movies/img-stillcut1.png';
-import ImgPoster from '@/../public/assets/@movies/img-moviePoster.png';
 import ImgGoods from '@/../public/assets/@movies/img-goods.png';
 
 // 테스트용 더미 데이터(나중에 지울 예정)
@@ -10,11 +11,8 @@ const TRAILERS = [ImgTrailer1, ImgTrailer2, ImgTrailer3, ImgTrailer1, ImgTrailer
 
 const POSTERS = [
   ImgStillCut,
-  ImgPoster,
   ImgStillCut,
-  ImgPoster,
   ImgStillCut,
-  ImgPoster,
 ];
 
 const GOODS = [
@@ -23,10 +21,35 @@ const GOODS = [
     title: '<체인소 맨> 특별 포스터',
     image: ImgGoods,
   },
-
 ];
 
 export default function InfoSection() {
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [viewerImages, setViewerImages] = useState<string[]>([]);
+  const [viewerIndex, setViewerIndex] = useState(0);
+
+  const openViewer = (images: string[], index: number) => {
+    setViewerImages(images);
+    setViewerIndex(index);
+    setIsViewerOpen(true);
+  };
+
+  const closeViewer = () => setIsViewerOpen(false);
+
+  const showPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setViewerIndex((prev) =>
+      viewerImages.length === 0 ? 0 : (prev - 1 + viewerImages.length) % viewerImages.length,
+    );
+  };
+
+  const showNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setViewerIndex((prev) =>
+      viewerImages.length === 0 ? 0 : (prev + 1) % viewerImages.length,
+    );
+  };
+
   return (
     <div className="bg-gray-900 px-6 pb-10 pt-2 text-gray-0">
       <section className="mb-8">
@@ -40,7 +63,7 @@ export default function InfoSection() {
             bg-gray-800
             px-4 py-4
           "
-          style={{ height: '10.5rem' }} 
+          style={{ height: '10.5rem' }}
         >
           <div
             aria-hidden
@@ -85,11 +108,13 @@ export default function InfoSection() {
                 className="
                   flex shrink-0 items-center justify-center
                   overflow-hidden rounded-[0.8rem] bg-gray-800
+                  cursor-pointer
                 "
                 style={{
-                  width: '18.1875rem', 
-                  height: '10.1875rem', 
+                  width: '18.1875rem',
+                  height: '10.1875rem',
                 }}
+                onClick={() => openViewer(TRAILERS, index)}
               >
                 <img
                   src={src}
@@ -118,11 +143,13 @@ export default function InfoSection() {
                 className="
                   flex shrink-0 items-center justify-center
                   overflow-hidden rounded-[0.8rem] bg-gray-800
+                  cursor-pointer
                 "
                 style={{
                   width: '29.6875rem',
-                  height: '12.4375rem', 
+                  height: '12.4375rem',
                 }}
+                onClick={() => openViewer(POSTERS, index)}
               >
                 <img
                   src={src}
@@ -166,11 +193,11 @@ export default function InfoSection() {
                   bg-[#647392]
                 "
                 style={{
-                  height: '8.75rem', 
-                  paddingTop: '1.9375rem', 
-                  paddingBottom: '1.875rem', 
+                  height: '8.75rem',
+                  paddingTop: '1.9375rem',
+                  paddingBottom: '1.875rem',
                   paddingLeft: '0.875rem',
-                  paddingRight: '0.875rem', 
+                  paddingRight: '0.875rem',
                 }}
               >
                 <img
@@ -185,6 +212,44 @@ export default function InfoSection() {
           ))}
         </div>
       </section>
+
+      {isViewerOpen && viewerImages.length > 0 && (
+        <div
+          className="
+            fixed inset-y-0 left-1/2 z-50
+            w-full max-w-[600px]
+            -translate-x-1/2 bg-black
+          "
+          onClick={closeViewer}
+        >
+          <div className="absolute right-4 top-4 flex flex-col items-end gap-1 text-white">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeViewer();
+              }}
+              className="text-2xl leading-none"
+            >
+              ✕
+            </button>
+            <span className="text-xs">
+              {viewerIndex + 1} / {viewerImages.length}
+            </span>
+          </div>
+
+          <div
+            className="flex h-full items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={viewerImages[viewerIndex]}
+              alt=""
+              className="max-h-[80%] w-full object-contain"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
