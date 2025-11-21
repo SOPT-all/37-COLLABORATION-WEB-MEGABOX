@@ -15,7 +15,7 @@ const Payment = () => {
   });
 
   const onSubmit = (data: DiscountFormData) => {
-    console.log('폼 데이터', data);
+    console.info('폼 데이터', data);
   }
 
   return (
