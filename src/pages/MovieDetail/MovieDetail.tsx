@@ -29,7 +29,7 @@ export default function MovieDetail() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-0">
       <Header variant="movie" title="극장판 체인소 맨: 레제편" />
-      
+
       <main className="bg-gray-900 pb-[4rem]">
         <section>
           <Movie

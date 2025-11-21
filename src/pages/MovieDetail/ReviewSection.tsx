@@ -24,8 +24,8 @@ const MOCK_REVIEWS = [
   },
 ];
 
-const AVERAGE_SCORE = 9.5;   
-const STAR_RATING = 4.5;     
+const AVERAGE_SCORE = 9.5;
+const STAR_RATING = 4.5;
 
 export default function ReviewSection() {
   return (
@@ -39,7 +39,7 @@ export default function ReviewSection() {
 
           <div className="mt-2 flex justify-center gap-[0.2rem]">
             {Array.from({ length: 5 }).map((_, index) => {
-              const diff = STAR_RATING - index; 
+              const diff = STAR_RATING - index;
               const fillPercent = Math.max(0, Math.min(1, diff)) * 100;
 
               return (

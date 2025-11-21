@@ -5,7 +5,7 @@ export type MovieDetailTab = 'info' | 'review';
 
 interface MovieDetailTabsProps {
   activeTab: MovieDetailTab;
-  onChange: (tab: MovieDetailTab) => void;
+  onChange: (_tab: MovieDetailTab) => void;
   reviewCount?: number;
 }
 
@@ -27,8 +27,8 @@ export default function MovieDetailTabs({
           className={cn(
             'flex-1 text-center',
             activeTab === 'info'
-              ? 'font-body2 text-gray-0'  
-              : 'font-body1 text-gray-300' 
+              ? 'font-body2 text-gray-0'
+              : 'font-body1 text-gray-300'
           )}
           onClick={() => onChange('info')}
         >

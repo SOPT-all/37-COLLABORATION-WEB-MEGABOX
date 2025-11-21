@@ -9,11 +9,7 @@ import ImgGoods from '@/../public/assets/@movies/img-goods.png';
 // 테스트용 더미 데이터(나중에 지울 예정)
 const TRAILERS = [ImgTrailer1, ImgTrailer2, ImgTrailer3, ImgTrailer1, ImgTrailer2];
 
-const POSTERS = [
-  ImgStillCut,
-  ImgStillCut,
-  ImgStillCut,
-];
+const POSTERS = [ImgStillCut, ImgStillCut, ImgStillCut];
 
 const GOODS = [
   {
@@ -35,20 +31,6 @@ export default function InfoSection() {
   };
 
   const closeViewer = () => setIsViewerOpen(false);
-
-  const showPrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setViewerIndex((prev) =>
-      viewerImages.length === 0 ? 0 : (prev - 1 + viewerImages.length) % viewerImages.length,
-    );
-  };
-
-  const showNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setViewerIndex((prev) =>
-      viewerImages.length === 0 ? 0 : (prev + 1) % viewerImages.length,
-    );
-  };
 
   return (
     <div className="bg-gray-900 px-6 pb-10 pt-2 text-gray-0">
