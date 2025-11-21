@@ -5,7 +5,7 @@ import { useModal } from '@components/@modal/hooks/use-modal';
 import Divider from '@components/divider/Divider';
 import Header from '@components/header/Header';
 import Movie from '@components/movie/Movie';
-import Payment from '@/shared/components/payment/Payment';
+import Payment from '@/shared/components/payment/PaymentInfo';
 
 export default function Home() {
   const maxQuantity = 10;
