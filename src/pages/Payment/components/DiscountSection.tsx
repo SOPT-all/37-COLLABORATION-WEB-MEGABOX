@@ -45,7 +45,6 @@ export const DiscountSection = ({ form }: DiscountSectionProps) => {
 
   return (
     <section className='bg-white p-[1.6rem]' aria-labelledby='할인 세션'>
-      <input type='hidden' {...form.register('activeTab')} />
       <div className='mb-[2.5rem] flex items-center justify-between'>
         <h2 id='할인 타이틀' className='font-title2'>
           할인적용
