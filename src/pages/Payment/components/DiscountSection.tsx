@@ -1,7 +1,7 @@
 import {useController, type UseFormReturn } from 'react-hook-form';
 import type { DiscountFormData } from '@pages/Payment/schemas/payment.schema';
 import { cn } from '@utils/cn';
-import DiscountGrid from './DiscountGrid';
+import DiscountGrid from '../section/DiscountSection/DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
 import IconCheckFill from '@assets/components/IconCheckFill';
 import UppArrow from '@assets/components/IconSystemUparrow';

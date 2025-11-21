@@ -5,7 +5,7 @@ import {
   discountFormSchema,
   type DiscountFormData,
 } from '@pages/Payment/schemas/payment.schema'
-import { DiscountSection } from './components/DiscountSection'
+import { DiscountSection } from './section/DiscountSection'
 
 
 const Payment = () => {
