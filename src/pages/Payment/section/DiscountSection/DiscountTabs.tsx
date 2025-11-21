@@ -2,7 +2,7 @@ import { cn } from '@utils/cn';
 
 interface DiscountTabsProps {
   activeTab: 'coupon' | 'point' | null;
-  onTabChange: (tab: 'coupon' | 'point' | null) => void;
+  onTabChange: (_tab: 'coupon' | 'point' | null) => void;
 }
 
 export const DiscountTabs = ({ activeTab, onTabChange }: DiscountTabsProps) => {
