@@ -4,7 +4,7 @@ import {
   discountFormDefaultValues,
   discountFormSchema,
   type DiscountFormData,
-} from '@/pages/payment/schemas/payment.schema'
+} from '@pages/payment/schemas/payment.schema'
 import { DiscountSection } from './section/DiscountSection'
 
 
