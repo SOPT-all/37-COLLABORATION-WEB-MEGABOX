@@ -38,6 +38,7 @@ export default function Movie({
       aria-label={`${title} 영화 정보`}
       onClick={handleClickCard ?? undefined}
     >
+      <div className='gradient-4 absolute inset-0 h-full w-full' />
       <div className='absolute inset-0 h-full w-full bg-gray-900/70' />
       <div className='relative z-10 flex shrink-0 flex-col gap-[0.8rem] px-[3.1rem] py-[2rem]'>
         <div className='flex h-full items-end gap-[2rem]'>
