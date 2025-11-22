@@ -8,7 +8,7 @@ import {
 
 export default function ReviewSection() {
   const averageScore = MOVIE_DETAIL_STATS.averageScore;
-  const starRating = averageScore / 2; 
+  const starRating = averageScore / 2;
   const starStates = getRoundedStarStates(starRating);
 
   return (

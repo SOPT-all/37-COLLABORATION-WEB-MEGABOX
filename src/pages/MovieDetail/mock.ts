@@ -17,7 +17,7 @@ export const MOVIE_DETAIL_STATS = {
   reservationRank: 2,
   reservationSharePercent: 13.2,
   totalAudienceText: '285.0만',
-  averageScore: 9.5, 
+  averageScore: 9.5,
   totalReviewCount: 13298,
 };
 
