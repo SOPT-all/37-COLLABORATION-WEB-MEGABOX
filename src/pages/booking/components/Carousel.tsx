@@ -2,6 +2,7 @@ import { cn } from '@utils/cn';
 
 interface MovieItem {
   id: number;
+  title: string;
   image: string;
 }
 
@@ -31,8 +32,8 @@ export default function Carousel({
               onClick={() => handleClick(movie.id)}
             >
               <img
-                src='/assets/@movies/img-moviePoster.png'
-                alt='영화 포스터'
+                src={movie.image}
+                alt={movie.title}
                 className='w-full h-full'
               />
             </button>

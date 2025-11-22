@@ -41,6 +41,7 @@ export default function Booking() {
   // 영화캐러셀 목록
   const movies = Object.entries(MOVIES).map(([id, movie]) => ({
     id: Number(id),
+    title: movie.title,
     image: movie.image,
   }));
 
