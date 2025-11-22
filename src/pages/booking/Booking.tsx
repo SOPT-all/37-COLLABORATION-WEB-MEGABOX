@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Lottie from 'lottie-react';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
 import Tooltip from '@components/tooltip/Tooltip';
 import { MOVIES } from '@constants/movies';
 import { cn } from '@/shared/utils/cn';
-import { useFilter, useSpinner, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
-import spinnerData from '@pages/booking/components/spinner.json';
+import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
 import { type ShowtimeDetail } from '@pages/booking/types';
 import { Chip, Carousel, Showtime } from '@pages/booking/components/index';
 import { TIMES, CINEMAS } from '@pages/booking/constants/index';
@@ -19,9 +17,6 @@ export default function Booking() {
 
   const navigate = useNavigate();
 
-  const {
-    isLoading,
-  } = useSpinner();
   const {
     isTooltipOpen,
     handleCloseTooltip,
@@ -119,61 +114,48 @@ export default function Booking() {
           <Divider />
         </div>
 
-        { isLoading ?
-          (
-            <div className='flex justify-center w-full pt-[7.1rem]'>
-              <Lottie
-                className='w-[15rem] h-[11.3rem]'
-                animationData={spinnerData}
-                loop={true}
-                autoplay={true}
+        <div className='flex flex-col items-start gap-[1.1rem] w-full'>
+          <div className='flex items-start gap-[0.8rem] w-full py-[1rem] opacity-70 overflow-x-scroll scrollbar-hide'>
+            {TIMES.map((time, idx) => (
+              <Chip
+                key={idx}
+                variant='time'
+                isSelected={selectedTimeId === idx}
+                onClick={() => handleClickTime(idx)}
+              >
+                {time}
+              </Chip>
+            ))}
+          </div>
+
+          { isTooltipOpen && (
+              <Tooltip
+                message='최근 이용극장을 선호극장에 추가해보세요'
+                handleClose={handleCloseTooltip}
               />
-            </div>
-          ) : (
-            <div className='flex flex-col items-start gap-[1.1rem] w-full'>
-              <div className='flex items-start gap-[0.8rem] w-full py-[1rem] opacity-70 overflow-x-scroll scrollbar-hide'>
-                {TIMES.map((time, idx) => (
-                  <Chip
-                    key={idx}
-                    variant='time'
-                    isSelected={selectedTimeId === idx}
-                    onClick={() => handleClickTime(idx)}
-                  >
-                    {time}
-                  </Chip>
-                ))}
-              </div>
+            )
+          }
 
-              { isTooltipOpen && (
-                  <Tooltip
-                    message='최근 이용극장을 선호극장에 추가해보세요'
-                    handleClose={handleCloseTooltip}
+          <div className='flex flex-col gap-[2.2rem] w-full'>
+            {filteredShowtimes.length > 0 ? (
+              filteredShowtimes.map((cinema, idx) => (
+                <div key={cinema.cinemaName} className='w-full'>
+                  <Showtime
+                    cinema={cinema}
+                    handleClickShowtime={handleClickShowtime}
                   />
-                )
-              }
-
-              <div className='flex flex-col gap-[2.2rem] w-full'>
-                {filteredShowtimes.length > 0 ? (
-                  filteredShowtimes.map((cinema, idx) => (
-                    <div key={cinema.cinemaName} className='w-full'>
-                      <Showtime
-                        cinema={cinema}
-                        handleClickShowtime={handleClickShowtime}
-                      />
-                      { idx !== filteredShowtimes.length - 1 && (
-                        <div className="w-full h-[0.8rem] mt-[2.2rem] bg-gray-800" />
-                      )}
-                    </div>
-                  ))
-                ) : (
-                  <div className='flex justify-center w-full pt-[4rem] text-gray-400 font-label1'>
-                    선택한 조건에 맞는 상영 시간이 없습니다.
-                  </div>
-                )}
+                  { idx !== filteredShowtimes.length - 1 && (
+                    <div className="w-full h-[0.8rem] mt-[2.2rem] bg-gray-800" />
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className='flex justify-center w-full pt-[4rem] text-gray-400 font-label1'>
+                선택한 조건에 맞는 상영 시간이 없습니다.
               </div>
-            </div>
-          )
-        }
+            )}
+          </div>
+        </div>
 
         <Modal
           isOpen={isOpen}
