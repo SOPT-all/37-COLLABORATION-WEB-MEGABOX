@@ -1,15 +1,23 @@
-import { Divider, Movie, Header, Button } from '@components/index';
+import { Divider, Movie, Header, Button, Spinner } from '@components/index';
 import Carousel from '@/pages/home/components/Carousel';
 import { useMovie } from '@/pages/home/hooks';
 
 export default function Home() {
-  const { selectedMovie, item, handleClickItem, handleClickCard, isPending } =
-    useMovie();
-
+  const {
+    selectedMovie,
+    item,
+    handleClickItem,
+    handleClickCard,
+    isPending,
+    isError,
+  } = useMovie();
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
-
+  if (isError) {
+    //TODO:토스트 추가
+    return <div className='text-center text-gray-500'>Error</div>;
+  }
   return (
     <div>
       <Header variant='main' />

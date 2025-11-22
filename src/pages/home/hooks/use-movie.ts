@@ -6,7 +6,7 @@ import { getMovieListQuery } from '../api/api-request';
 
 export function useMovie() {
   const navigate = useNavigate();
-  const { data: movieList, isPending } = getMovieListQuery();
+  const { data: movieList, isPending, isError } = getMovieListQuery();
   const [selectedMovieId, setSelectedMovieId] = useState<number>(1);
   const selectedMovie = movieList?.data?.movies?.find(
     item => item.id === selectedMovieId
@@ -23,5 +23,12 @@ export function useMovie() {
     //TODO: 영화 상세 페이지로 이동
     navigate(`/movie/${selectedMovieId}`);
   };
-  return { selectedMovie, item, handleClickItem, handleClickCard, isPending };
+  return {
+    selectedMovie,
+    item,
+    handleClickItem,
+    handleClickCard,
+    isPending,
+    isError,
+  };
 }
