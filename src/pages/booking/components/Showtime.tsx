@@ -3,11 +3,46 @@ import { IconStarFill } from '@assets/index';
 import UpArrow from '@assets/components/IconSystemUparrow';
 import { formatTime, cn } from '@utils/index';
 import type {
-  ShowtimeByTimeProps,
-  ShowtimeByTheaterProps,
-  ShowtimeByMovieProps,
-  ShowtimeProps,
-} from '@/pages/booking/types';
+  MovieResponse,
+  CinemaResponse,
+  TheaterResponse,
+  ShowtimeResponse
+} from '../../../../apis/data-contracts';
+
+export interface ShowtimeDetail {
+  cinemaName: string;
+  movieTitle: string;
+  theaterName: string;
+  screenType: string;
+  showtimeId: number;
+  startTime: string;
+  endTime: string;
+  totalSeatCount: number;
+  availableSeatCount: number;
+}
+export interface ShowtimeByTimeProps {
+  showtime: ShowtimeResponse;
+  movieTitle: string;
+  cinemaName: string;
+  theaterName: string;
+  screenType: string;
+  handleClick: (_: ShowtimeDetail) => void;
+}
+export interface ShowtimeByTheaterProps {
+  theater: TheaterResponse;
+  movieTitle: string;
+  cinemaName: string;
+  handleClick: (_: ShowtimeDetail) => void;
+}
+export interface ShowtimeByMovieProps {
+  movie: MovieResponse;
+  cinemaName: string;
+  handleClickShowtime: (_: ShowtimeDetail) => void;
+}
+export interface ShowtimeProps {
+  cinema: CinemaResponse;
+  handleClickShowtime: (_: ShowtimeDetail) => void;
+}
 
 // 특정 시간대의 상영 정보를 나타내는 컴포넌트
 function ShowtimeByTime({
@@ -18,8 +53,8 @@ function ShowtimeByTime({
   screenType,
   handleClick
 }: ShowtimeByTimeProps) {
-  const startTime = formatTime(showtime.startTime);
-  const endTime = formatTime(showtime.endTime);
+  const startTime = formatTime(showtime.startTime ?? '');
+  const endTime = formatTime(showtime.endTime ?? '');
 
   // 모달 클릭 시 모달에 전달해줄 데이터
   const detail = {
@@ -27,11 +62,11 @@ function ShowtimeByTime({
     movieTitle,
     theaterName,
     screenType,
-    showtimeId: showtime.showtimeId,
-    startTime: showtime.startTime,
-    endTime: showtime.endTime,
-    seatCount: showtime.seatCount,
-    leftSeatCount: showtime.leftSeatCount,
+    showtimeId: showtime.showtimeId ?? 0,
+    startTime: showtime.startTime ?? '',
+    endTime: showtime.endTime ?? '',
+    totalSeatCount: showtime.totalSeatCount ?? 0,
+    availableSeatCount: showtime.availableSeatCount ?? 0,
   };
 
   return (
@@ -44,9 +79,9 @@ function ShowtimeByTime({
         <span className='font-label1 text-gray-400'>~{endTime}</span>
       </div>
       <div className='flex justify-center gap-[0.3rem] w-full py-[0.2rem] rounded-b-[0.4rem] bg-gray-800'>
-        <span className='font-subtitle1 text-violet-400'>{showtime.leftSeatCount}</span>
+        <span className='font-subtitle1 text-violet-400'>{showtime.availableSeatCount}</span>
         <span className='font-subtitle1 text-gray-600'>|</span>
-        <span className='font-subtitle1 text-gray-400'>{showtime.seatCount}</span>
+        <span className='font-subtitle1 text-gray-400'>{showtime.totalSeatCount}</span>
       </div>
     </div>
   );
@@ -66,14 +101,14 @@ function ShowtimeByTheater({
         <span className='font-label2 text-gray-500'>{theater.screenType}</span>
       </div>
       <div className='flex gap-[0.9rem] flex-wrap'>
-        {theater.showtimes.map((showtime) => (
+        {(theater.showtimes || []).map((showtime) => (
           <ShowtimeByTime
             key={showtime.showtimeId}
             showtime={showtime}
             movieTitle={movieTitle}
             cinemaName={cinemaName}
-            theaterName={theater.theaterName}
-            screenType={theater.screenType}
+            theaterName={theater.theaterName ?? ''}
+            screenType={theater.screenType ?? ''}
             handleClick={handleClick}
           />
         ))}
@@ -89,7 +124,7 @@ function ShowtimeByMovie({
   handleClickShowtime,
 }: ShowtimeByMovieProps) {
   // 현재 상영 정보 API에서 나이 제한을 전달해주지 않아 일단 임의로 설정함 (개선 필요)
-  const ageRating: 'ALL' | 12 | 15 | 19 = movie.ageRating || 15;
+  const ageRating = 12;
   const movieTitle = movie.movieTitle;
 
   return (
@@ -111,11 +146,11 @@ function ShowtimeByMovie({
           </div>
         </div>
       </div>
-      {movie.theaters.map((theater, idx) => (
+      {(movie.theaters || []).map((theater, idx) => (
         <ShowtimeByTheater
           key={`${theater.theaterName}-${idx}`}
           theater={theater}
-          movieTitle={movieTitle}
+          movieTitle={movieTitle ?? ''}
           cinemaName={cinemaName}
           handleClick={handleClickShowtime}
         />
@@ -153,11 +188,11 @@ export default function Showtime({
           onClick={handleClickUpArrow}
         />
       </div>
-      {isOpen && cinema.movies.map((movie, idx) => (
+      {isOpen && (cinema.movies || []).map((movie, idx) => (
         <ShowtimeByMovie
           key={`${movie.movieTitle}-${idx}`}
           movie={movie}
-          cinemaName={cinema.cinemaName}
+          cinemaName={cinema.cinemaName ?? ''}
           handleClickShowtime={handleClickShowtime}
         />
       ))}

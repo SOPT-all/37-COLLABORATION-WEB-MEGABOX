@@ -36,8 +36,8 @@ export const mockShowtimes = [
                 showtimeId: 1,
                 startTime: '2025-11-16T09:30:00',
                 endTime: '2025-11-16T11:22:00',
-                seatCount: 120,
-                leftSeatCount: 65
+                totalSeatCount: 120,
+                availableSeatCount: 65
               }
             ]
           },
@@ -49,8 +49,8 @@ export const mockShowtimes = [
                 showtimeId: 4,
                 startTime: '2025-11-16T22:40:00',
                 endTime: '2025-11-17T00:32:00',
-                seatCount: 180,
-                leftSeatCount: 77
+                totalSeatCount: 180,
+                availableSeatCount: 77
               }
             ]
           }
@@ -67,8 +67,8 @@ export const mockShowtimes = [
                 showtimeId: 11,
                 startTime: '2025-11-18T20:40:00',
                 endTime: '2025-11-18T22:30:00',
-                seatCount: 120,
-                leftSeatCount: 37
+                totalSeatCount: 120,
+                availableSeatCount: 37
               }
             ]
           }
@@ -85,8 +85,8 @@ export const mockShowtimes = [
                 showtimeId: 23,
                 startTime: '2025-11-22T19:30:00',
                 endTime: '2025-11-22T21:17:00',
-                seatCount: 180,
-                leftSeatCount: 46
+                totalSeatCount: 180,
+                availableSeatCount: 46
               }
             ]
           }
@@ -103,8 +103,8 @@ export const mockShowtimes = [
                 showtimeId: 15,
                 startTime: '2025-11-20T12:10:00',
                 endTime: '2025-11-20T14:45:00',
-                seatCount: 180,
-                leftSeatCount: 32
+                totalSeatCount: 180,
+                availableSeatCount: 32
               }
             ]
           }
@@ -121,8 +121,8 @@ export const mockShowtimes = [
                 showtimeId: 13,
                 startTime: '2025-11-19T16:10:00',
                 endTime: '2025-11-19T18:06:00',
-                seatCount: 120,
-                leftSeatCount: 59
+                totalSeatCount: 120,
+                availableSeatCount: 59
               }
             ]
           }
@@ -144,8 +144,8 @@ export const mockShowtimes = [
                 showtimeId: 2,
                 startTime: '2025-11-16T13:10:00',
                 endTime: '2025-11-16T15:02:00',
-                seatCount: 150,
-                leftSeatCount: 43
+                totalSeatCount: 150,
+                availableSeatCount: 43
               }
             ]
           }
@@ -162,8 +162,8 @@ export const mockShowtimes = [
                 showtimeId: 7,
                 startTime: '2025-11-17T19:10:00',
                 endTime: '2025-11-17T20:50:00',
-                seatCount: 200,
-                leftSeatCount: 39
+                totalSeatCount: 200,
+                availableSeatCount: 39
               }
             ]
           }
@@ -180,8 +180,8 @@ export const mockShowtimes = [
                 showtimeId: 10,
                 startTime: '2025-11-18T15:30:00',
                 endTime: '2025-11-18T17:20:00',
-                seatCount: 150,
-                leftSeatCount: 58
+                totalSeatCount: 150,
+                availableSeatCount: 58
               }
             ]
           }
@@ -198,8 +198,8 @@ export const mockShowtimes = [
                 showtimeId: 22,
                 startTime: '2025-11-22T15:50:00',
                 endTime: '2025-11-22T17:37:00',
-                seatCount: 150,
-                leftSeatCount: 27
+                totalSeatCount: 150,
+                availableSeatCount: 27
               }
             ]
           }
@@ -216,8 +216,8 @@ export const mockShowtimes = [
                 showtimeId: 14,
                 startTime: '2025-11-19T19:40:00',
                 endTime: '2025-11-19T21:36:00',
-                seatCount: 200,
-                leftSeatCount: 47
+                totalSeatCount: 200,
+                availableSeatCount: 47
               }
             ]
           }
@@ -239,8 +239,8 @@ export const mockShowtimes = [
                 showtimeId: 5,
                 startTime: '2025-11-17T10:00:00',
                 endTime: '2025-11-17T11:40:00',
-                seatCount: 110,
-                leftSeatCount: 88
+                totalSeatCount: 110,
+                availableSeatCount: 88
               }
             ]
           }
@@ -257,8 +257,8 @@ export const mockShowtimes = [
                 showtimeId: 19,
                 startTime: '2025-11-21T13:10:00',
                 endTime: '2025-11-21T15:50:00',
-                seatCount: 110,
-                leftSeatCount: 58
+                totalSeatCount: 110,
+                availableSeatCount: 58
               }
             ]
           }
@@ -280,8 +280,8 @@ export const mockShowtimes = [
                 showtimeId: 3,
                 startTime: '2025-11-16T18:20:00',
                 endTime: '2025-11-16T20:12:00',
-                seatCount: 130,
-                leftSeatCount: 29
+                totalSeatCount: 130,
+                availableSeatCount: 29
               }
             ]
           }
@@ -298,8 +298,8 @@ export const mockShowtimes = [
                 showtimeId: 9,
                 startTime: '2025-11-18T12:00:00',
                 endTime: '2025-11-18T13:50:00',
-                seatCount: 140,
-                leftSeatCount: 74
+                totalSeatCount: 140,
+                availableSeatCount: 74
               }
             ]
           }
@@ -316,8 +316,8 @@ export const mockShowtimes = [
                 showtimeId: 21,
                 startTime: '2025-11-22T11:40:00',
                 endTime: '2025-11-22T13:27:00',
-                seatCount: 140,
-                leftSeatCount: 53
+                totalSeatCount: 140,
+                availableSeatCount: 53
               }
             ]
           },
@@ -329,8 +329,8 @@ export const mockShowtimes = [
                 showtimeId: 24,
                 startTime: '2025-11-22T23:50:00',
                 endTime: '2025-11-23T01:37:00',
-                seatCount: 130,
-                leftSeatCount: 70
+                totalSeatCount: 130,
+                availableSeatCount: 70
               }
             ]
           }
@@ -347,8 +347,8 @@ export const mockShowtimes = [
                 showtimeId: 16,
                 startTime: '2025-11-20T16:30:00',
                 endTime: '2025-11-20T19:05:00',
-                seatCount: 130,
-                leftSeatCount: 20
+                totalSeatCount: 130,
+                availableSeatCount: 20
               }
             ]
           }
@@ -370,8 +370,8 @@ export const mockShowtimes = [
                 showtimeId: 6,
                 startTime: '2025-11-17T14:20:00',
                 endTime: '2025-11-17T16:00:00',
-                seatCount: 100,
-                leftSeatCount: 52
+                totalSeatCount: 100,
+                availableSeatCount: 52
               }
             ]
           }
@@ -388,8 +388,8 @@ export const mockShowtimes = [
                 showtimeId: 18,
                 startTime: '2025-11-21T09:00:00',
                 endTime: '2025-11-21T11:40:00',
-                seatCount: 100,
-                leftSeatCount: 66
+                totalSeatCount: 100,
+                availableSeatCount: 66
               }
             ]
           }
@@ -411,8 +411,8 @@ export const mockShowtimes = [
                 showtimeId: 12,
                 startTime: '2025-11-19T13:30:00',
                 endTime: '2025-11-19T15:26:00',
-                seatCount: 90,
-                leftSeatCount: 83
+                totalSeatCount: 90,
+                availableSeatCount: 83
               }
             ]
           }
@@ -429,8 +429,8 @@ export const mockShowtimes = [
                 showtimeId: 20,
                 startTime: '2025-11-21T18:30:00',
                 endTime: '2025-11-21T21:10:00',
-                seatCount: 90,
-                leftSeatCount: 42
+                totalSeatCount: 90,
+                availableSeatCount: 42
               }
             ]
           }
@@ -452,8 +452,8 @@ export const mockShowtimes = [
                 showtimeId: 8,
                 startTime: '2025-11-17T23:50:00',
                 endTime: '2025-11-18T01:30:00',
-                seatCount: 95,
-                leftSeatCount: 61
+                totalSeatCount: 95,
+                availableSeatCount: 61
               }
             ]
           }
@@ -470,8 +470,8 @@ export const mockShowtimes = [
                 showtimeId: 17,
                 startTime: '2025-11-20T21:10:00',
                 endTime: '2025-11-20T23:45:00',
-                seatCount: 95,
-                leftSeatCount: 71
+                totalSeatCount: 95,
+                availableSeatCount: 71
               }
             ]
           }

@@ -7,7 +7,7 @@ import Tooltip from '@components/tooltip/Tooltip';
 import { MOVIES } from '@constants/movies';
 import { cn } from '@/shared/utils/cn';
 import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
-import { type ShowtimeDetail } from '@pages/booking/types';
+import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
 import { Chip, Carousel, Showtime } from '@pages/booking/components/index';
 import { TIMES, CINEMAS } from '@pages/booking/constants/index';
 import { mockDates } from '@pages/booking/mock';
