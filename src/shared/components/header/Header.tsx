@@ -34,9 +34,9 @@ export default function Header({
     return (
       <header className={headerClassName}>
         <img
-          src="/assets/img/img-logo.png"
-          alt="MEGABOX"
-          className="h-[2.1rem] w-auto"
+          src='/public/assets/img-logo.png'
+          alt='MEGABOX'
+          className='h-[2.1rem] w-auto'
         />
       </header>
     );
@@ -45,31 +45,31 @@ export default function Header({
   return (
     <header className={headerClassName}>
       <IconSystemBack
-        aria-label="뒤로가기"
-        className="h-[2.4rem] w-[2.4rem] cursor-pointer"
+        aria-label='뒤로가기'
+        className='h-[2.4rem] w-[2.4rem] cursor-pointer'
         onClick={handleClickBack}
       />
 
-      <h1 className="flex-1 text-center font-title1">{title}</h1>
+      <h1 className='font-title1 flex-1 text-center'>{title}</h1>
 
-      <div className="flex items-center gap-[1.3rem]">
+      <div className='flex items-center gap-[1.3rem]'>
         {liked ? (
           <IconHeartFill
-            aria-label="하트 취소"
-            className="h-[2.4rem] w-[2.4rem] cursor-pointer"
+            aria-label='하트 취소'
+            className='h-[2.4rem] w-[2.4rem] cursor-pointer'
             onClick={() => setLiked(false)}
           />
         ) : (
           <IconHeart
-            aria-label="하트 클릭"
-            className="h-[2.4rem] w-[2.4rem] cursor-pointer"
+            aria-label='하트 클릭'
+            className='h-[2.4rem] w-[2.4rem] cursor-pointer'
             onClick={() => setLiked(true)}
           />
         )}
 
         <IconSystemShare
-          aria-label="공유하기"
-          className="h-[2.4rem] w-[2.4rem] cursor-pointer text-white"
+          aria-label='공유하기'
+          className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white'
         />
       </div>
     </header>
