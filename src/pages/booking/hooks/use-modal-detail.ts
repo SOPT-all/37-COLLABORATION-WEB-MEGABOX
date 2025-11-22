@@ -38,17 +38,14 @@ export function useModalDetail({
     navigate('/');
   };
 
-  // 모달에 전달할 날짜+시간 문자열 포맷팅 (ex. 2025.11.18(수) 19:00 ~ 21:00)
   const modalDateString = selectedShowtime
     ? `${formatDate(new Date(selectedFullDate!))} (${selectedWeekday}) ${formatTime(selectedShowtime.startTime)} ~ ${formatTime(selectedShowtime.endTime)}`
     : '';
 
-  // 모달에 전달할 영화관+상영관+상영타입 문자열 포맷팅 (ex. 강남/르 리클라이너 1관 2D(자막))
   const modalLocation = selectedShowtime
     ? `${selectedShowtime.cinemaName}/${selectedShowtime.theaterName} ${selectedShowtime.screenType}`
     : '';
 
-  // 모달에 전달할 영화 제목
   const modalMovieTitle = selectedShowtime?.movieTitle || '';
 
   return {

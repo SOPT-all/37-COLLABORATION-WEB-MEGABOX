@@ -33,17 +33,14 @@ export default function Booking() {
   const filteredShowtimes
     = useFilter(selectedTimeId);
 
-  // 영화캐러셀 목록
   const movies = Object.entries(MOVIES).map(([id, movie]) => ({
     id: Number(id),
     title: movie.title,
     image: movie.image,
   }));
 
-  // 날짜칩 목록
   const dates = mockDates.slice().map((date) => date.slice(8));
 
-  // useModalDetail prop 연산 및 정의
   const allDates = mockDates.slice();
   const selectedFullDate = selectedDateId !== -1 ? allDates[selectedDateId] : null;
   const weekdays = allDates.map(dateStr => {

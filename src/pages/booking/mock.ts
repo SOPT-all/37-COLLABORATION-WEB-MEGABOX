@@ -1,4 +1,3 @@
-// api/v1/recent-dates 가능한 응답 예시
 export const mockDates = [
   '2025-11-21',
   '2025-11-22',
@@ -9,7 +8,6 @@ export const mockDates = [
   '2025-11-27',
 ];
 
-// api/v1/cinemas 가능한 응답 모음 (파라미터에 따라 아래 중 일부 반환)
 export const mockCinema = [
   { cinemas: ['강남', '코엑스', '청담'] },
   { cinemas: ['코엑스', '센트럴', '성수', '신촌'] },
@@ -20,7 +18,6 @@ export const mockCinema = [
   { cinemas: ['강남', '코엑스', '청담'] },
 ];
 
-// api/v1/showtimes 가능한 응답 모음 (파라미터에 따라 아래 중 일부 반환)
 export const mockShowtimes = [
   {
     cinemaName: '강남',

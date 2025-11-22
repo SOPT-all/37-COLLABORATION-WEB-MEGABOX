@@ -44,7 +44,6 @@ export interface ShowtimeProps {
   handleClickShowtime: (_: ShowtimeDetail) => void;
 }
 
-// 특정 시간대의 상영 정보를 나타내는 컴포넌트
 function ShowtimeByTime({
   showtime,
   movieTitle,
@@ -56,7 +55,6 @@ function ShowtimeByTime({
   const startTime = formatTime(showtime.startTime ?? '');
   const endTime = formatTime(showtime.endTime ?? '');
 
-  // 모달 클릭 시 모달에 전달해줄 데이터
   const detail = {
     cinemaName,
     movieTitle,
@@ -87,7 +85,6 @@ function ShowtimeByTime({
   );
 }
 
-// 특정 상영관의 상영 정보를 나타내는 컴포넌트
 function ShowtimeByTheater({
   theater,
   movieTitle,
@@ -117,13 +114,11 @@ function ShowtimeByTheater({
   );
 }
 
-// 특정 영화의 상영 정보를 나타내는 컴포넌트
 function ShowtimeByMovie({
   movie,
   cinemaName,
   handleClickShowtime,
 }: ShowtimeByMovieProps) {
-  // 현재 상영 정보 API에서 나이 제한을 전달해주지 않아 일단 임의로 설정함 (개선 필요)
   const ageRating = 12;
   const movieTitle = movie.movieTitle;
 
@@ -159,7 +154,6 @@ function ShowtimeByMovie({
   );
 }
 
-// 특정 영화관의 상영 정보를 나타내는 컴포넌트
 export default function Showtime({
   cinema,
   handleClickShowtime

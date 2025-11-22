@@ -10,12 +10,10 @@ import { TIME_RANGES } from '@pages/booking/constants';
  */
 export function useFilter(selectedTimeId: number | null) {
   return useMemo(() => {
-    // 1. 아무것도 선택 안 한 경우 - 전체 반환
     if (selectedTimeId === null) {
       return mockShowtimes;
     }
 
-    // 2. 선택 한 경우 - 선택된 시간대에 따라 시간 범위 정의
     const range = TIME_RANGES[selectedTimeId];
 
     return mockShowtimes.map(cinema => {
@@ -32,21 +30,18 @@ export function useFilter(selectedTimeId: number | null) {
             }
           });
 
-          // 위에서 필터링되고 남은 결과가 없는 상영관은 제거
           if (filteredShowtimes.length > 0) {
             return { ...theater, showtimes: filteredShowtimes };
           }
           return null;
         }).filter((t) => t !== null);
 
-        // 위에서 필터링되고 남은 결과가 없는 영화는 제거
         if (filteredTheaters.length > 0) {
           return { ...movie, theaters: filteredTheaters };
         }
         return null;
       }).filter((m) => m !== null);
 
-      // 위에서 필터링 되고 남은 결과가 없는 영화관은 제거
       if (filteredMovies.length > 0) {
         return { ...cinema, movies: filteredMovies };
       }
