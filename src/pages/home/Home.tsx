@@ -1,9 +1,14 @@
 import { Divider, Movie, Header, Button } from '@components/index';
-import Carousel from '@pages/home/components/Carousel';
-import { useMovie } from '@pages/home/hooks';
+import Carousel from '@/pages/home/components/Carousel';
+import { useMovie } from '@/pages/home/hooks';
 
 export default function Home() {
-  const { selectedMovie, item, handleClickItem, handleClickCard } = useMovie();
+  const { selectedMovie, item, handleClickItem, handleClickCard, isPending } =
+    useMovie();
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -12,12 +17,12 @@ export default function Home() {
       {selectedMovie && (
         <Movie
           key={selectedMovie.id}
-          id={selectedMovie.id}
-          title={selectedMovie.title}
-          tag={selectedMovie.tag}
-          ageRating={selectedMovie.ageRating}
-          releaseDate={selectedMovie.releaseDate}
-          runningTimeMinutes={selectedMovie.runningTimeMinutes}
+          id={selectedMovie.id!}
+          title={selectedMovie.title!}
+          tag={selectedMovie.tag!}
+          ageRating={selectedMovie.ageRating!}
+          releaseDate={selectedMovie.releaseDate!}
+          runningTimeMinutes={selectedMovie.runningTimeMinutes ?? 0}
           className='mb-[0.9rem] cursor-pointer'
           handleClickCard={handleClickCard}
         />

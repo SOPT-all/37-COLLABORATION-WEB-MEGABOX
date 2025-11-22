@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { mock } from '@/pages/home/mock';
 import { MOVIES } from '@constants/movies';
+import { getMovieListQuery } from '../api/api-request';
 
 export function useMovie() {
   const navigate = useNavigate();
+  const { data: movieList, isPending } = getMovieListQuery();
   const [selectedMovieId, setSelectedMovieId] = useState<number>(1);
-  const selectedMovie = mock.find(item => item.id === selectedMovieId);
+  const selectedMovie = movieList?.data?.movies?.find(
+    item => item.id === selectedMovieId
+  );
   const item = Object.values(MOVIES).map(movie => ({
     id: movie.id,
     image: movie.image,
@@ -20,5 +23,5 @@ export function useMovie() {
     //TODO: 영화 상세 페이지로 이동
     navigate(`/movie/${selectedMovieId}`);
   };
-  return { selectedMovie, item, handleClickItem, handleClickCard };
+  return { selectedMovie, item, handleClickItem, handleClickCard, isPending };
 }

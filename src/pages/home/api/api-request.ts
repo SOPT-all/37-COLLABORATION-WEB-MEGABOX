@@ -11,8 +11,8 @@ const getMovies = async () => {
   return response;
 };
 
-export const movieQuery = () => {
-  return useQuery({
+export const getMovieListQuery = () => {
+  return useQuery<ApiResponseMovieListResponse>({
     queryKey: MOVIE_KEY.LIST(),
     queryFn: () => getMovies(),
   });
