@@ -1,46 +1,42 @@
-import { Divider, Movie, Header, Button, Spinner } from '@components/index';
-import Carousel from '@/pages/home/components/Carousel';
+import { useEffect } from 'react';
+import { Header, Button, Spinner } from '@components/index';
 import { useMovie } from '@/pages/home/hooks';
+import HomeClient from './Home.client';
+import { useToastStore } from '@/shared/store/toast';
 
 export default function Home() {
   const {
     selectedMovie,
-    item,
+    items,
     handleClickItem,
     handleClickCard,
     isPending,
     isError,
   } = useMovie();
-  if (isPending) {
-    return <Spinner />;
-  }
-  if (isError) {
-    //TODO:토스트 추가
-    return <div className='text-center text-gray-500'>Error</div>;
-  }
+  const showToast = useToastStore(state => state.showToast);
+
+  useEffect(() => {
+    if (isError) {
+      showToast('영화 정보를 불러오는 중 오류가 발생했습니다.');
+    }
+  }, [isError, showToast]);
+
   return (
     <div>
       <Header variant='main' />
-
-      {selectedMovie && (
-        <Movie
-          key={selectedMovie.id}
-          id={selectedMovie.id!}
-          title={selectedMovie.title!}
-          tag={selectedMovie.tag!}
-          ageRating={selectedMovie.ageRating!}
-          releaseDate={selectedMovie.releaseDate!}
-          runningTimeMinutes={selectedMovie.runningTimeMinutes ?? 0}
-          className='mb-[0.9rem] cursor-pointer'
+      {isPending ? (
+        <div className='mt-[20rem]'>
+          <Spinner />
+        </div>
+      ) : (
+        <HomeClient
+          isError={isError}
+          selectedMovie={selectedMovie}
+          items={items}
+          handleClickItem={handleClickItem}
           handleClickCard={handleClickCard}
         />
       )}
-
-      <div className='flex flex-col gap-[2rem] px-[1.7rem]'>
-        <Divider />
-        <Carousel items={item} handleClickItem={handleClickItem} />
-      </div>
-
       <footer className='fixed-center right-0 bottom-0 left-0 px-[1.7rem] pb-[4.9rem]'>
         <Button variant='primary' onClick={handleClickCard}>
           바로 예매 하기
