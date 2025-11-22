@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IconStarFill } from '@assets/index';
 import UpArrow from '@assets/components/IconSystemUparrow';
-import { formatTime } from '@utils/date-formate';
+import { formatTime, cn } from '@utils/index';
 import type {
   ShowtimeByTimeProps,
   ShowtimeByTheaterProps,
@@ -140,7 +140,7 @@ export default function Showtime({
     <div className='flex flex-col gap-[2.2rem] w-full'>
       <div className='flex items-center gap-[0.4rem] py-[0.5rem]'>
         <IconStarFill
-          className={`${isLiked ? 'text-violet-400' : 'text-gray-600'} cursor-pointer`}
+          className={cn('cursor-pointer', isLiked ? 'text-violet-400' : 'text-gray-600')}
           onClick={() => setIsLiked(prev => !prev)}
         />
         <span className='font-title2 text-gray-0'>
@@ -149,7 +149,7 @@ export default function Showtime({
         <UpArrow
           width={12}
           height={12}
-          className={`text-gray-300 cursor-pointer ${isOpen ? 'rotate-0' : 'rotate-180'}`}
+          className={cn('text-gray-300 cursor-pointer', isOpen ? 'rotate-0' : 'rotate-180')}
           onClick={handleClickUpArrow}
         />
       </div>
