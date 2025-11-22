@@ -2,19 +2,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { MOVIES } from '@constants/movies';
-import { getMovieListQuery } from '../api/api-request';
+import { useGetMovieListQuery } from '@/pages/home/api/use-api-request';
 
 export function useMovie() {
   const navigate = useNavigate();
-  const { data: movieList, isPending, isError } = getMovieListQuery();
+  const { data: movieList, isPending, isError } = useGetMovieListQuery();
   const [selectedMovieId, setSelectedMovieId] = useState<number>(1);
   const selectedMovie = movieList?.data?.movies?.find(
     item => item.id === selectedMovieId
   );
+
   const item = Object.values(MOVIES).map(movie => ({
     id: movie.id,
     image: movie.image,
   }));
+
   const handleClickItem = (id: number) => {
     setSelectedMovieId(id);
   };

@@ -16,6 +16,6 @@ const getQuery = {
   queryFn: () => getMovies(),
 };
 
-export const getMovieListQuery = () => {
+export const useGetMovieListQuery = () => {
   return useQuery<ApiResponseMovieListResponse>(getQuery);
 };
