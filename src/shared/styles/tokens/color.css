@@ -63,6 +63,10 @@
   .gradient-4 {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 82.95%, #131313 100%);
   }
+  
+  .border-gradient-1 {
+    border-image: linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%) 1;
+  }
 
   .gradient-5 {
     background: linear-gradient(

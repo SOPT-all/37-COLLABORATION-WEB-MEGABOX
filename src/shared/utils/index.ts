@@ -1,3 +1,3 @@
 export * from './rating';
-export * from './date-formate';
+export * from './date-format';
 export * from './cn';
