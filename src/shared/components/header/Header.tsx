@@ -23,8 +23,7 @@ export default function Header({
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
   const isMain = variant === 'main';
-
-  const onBackClick = handleClickBack ?? (() => navigate(-1));
+  handleClickBack = handleClickBack ?? (() => navigate(-1));
 
   const headerClassName = `
     sticky top-0 z-10
@@ -51,7 +50,7 @@ export default function Header({
       <IconSystemBack
         aria-label='뒤로가기'
         className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-        onClick={onBackClick}
+        onClick={handleClickBack} 
       />
 
       <h1 className='font-title1 flex-1 text-center'>{title}</h1>
