@@ -7,7 +7,7 @@ interface HomeClientProps {
   isError: boolean;
   selectedMovie: MovieSummaryResponse | undefined;
   items: Item[];
-  handleClickItem: (id: number) => void;
+  handleClickItem: (_id: number) => void;
   handleClickCard: () => void;
 }
 export default function HomeClient({
