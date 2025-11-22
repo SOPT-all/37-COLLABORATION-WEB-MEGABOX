@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@/shared/components/@modal/hooks/use-modal';
 import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
-import { formatTime, formatDate } from '@utils/date-formate';
+import { formatTime, formatDate } from '@/shared/utils/date-format';
 
 interface useModalDetailProps {
   selectedWeekday: string;
