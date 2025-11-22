@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IconStarFill } from '@assets/index';
 import UpArrow from '@assets/components/IconSystemUparrow';
-import { formatTime } from '@/pages/booking/utils/time-utils';
+import { formatTime } from '@utils/date-formate';
 import type {
   ShowtimeByTimeProps,
   ShowtimeByTheaterProps,

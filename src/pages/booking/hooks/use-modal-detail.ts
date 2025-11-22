@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@/shared/components/@modal/hooks/use-modal';
 import { type ShowtimeDetail } from '@pages/booking/types';
-import { formatTime, formatDate } from '@pages/booking/utils/time-utils';
+import { formatTime, formatDate } from '@utils/date-formate';
 
 interface useModalDetailProps {
   selectedWeekday: string;
@@ -41,7 +41,7 @@ export function useModalDetail({
 
   // 모달에 전달할 날짜+시간 문자열 포맷팅 (ex. 2025.11.18(수) 19:00 ~ 21:00)
   const modalDateString = selectedShowtime
-    ? `${formatDate(selectedFullDate!)} (${selectedWeekday}) ${formatTime(selectedShowtime.startTime)} ~ ${formatTime(selectedShowtime.endTime)}`
+    ? `${formatDate(new Date(selectedFullDate!))} (${selectedWeekday}) ${formatTime(selectedShowtime.startTime)} ~ ${formatTime(selectedShowtime.endTime)}`
     : '';
 
   // 모달에 전달할 영화관+상영관+상영타입 문자열 포맷팅 (ex. 강남/르 리클라이너 1관 2D(자막))
