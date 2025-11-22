@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Header from '@components/header/Header';
 import Movie from '@components/movie/Movie';
 import Button from '@components/button/Button';
@@ -6,53 +5,63 @@ import Button from '@components/button/Button';
 import MovieDetailTabs from './MovieDetailTabs';
 import InfoSection from './InfoSection';
 import ReviewSection from './ReviewSection';
+import { useMovieDetail } from './useMovieDetail';
+import {
+  MOVIE_DETAIL_META,
+  MOVIE_DETAIL_STATS,
+} from './mock';
 
 import ImgBanner from '@/../public/assets/img-Banner1.png';
 
-type MovieDetailTab = 'info' | 'review';
-
-// 설명 문구(나중에 지울 예정)
-const FULL_DESCRIPTION =
-  "인기 애니메이션 '체인소 맨' 첫 공식 극장판 국내 상륙! 압도적 배틀 액션이 스크린에서 폭발한다! 압도적 배틀 액션이 스크린에서 폭발한다! 압도적 배틀 액션이 스크린에서 폭발한다!";
-const SHORT_DESCRIPTION =
-  "인기 애니메이션 '체인소 맨' 첫 공식 극장판 국내 상륙! 압도적 배틀 액션이 스크린에서 폭발한다!…";
-
 export default function MovieDetail() {
-  const [activeTab, setActiveTab] = useState<MovieDetailTab>('info');
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const {
+    activeTab,
+    descriptionText,
+    handleClickTab,
+    isDescriptionExpanded,
+    handleToggleDescription,
+  } = useMovieDetail();
 
-  const movieId = 1;
-  const descriptionText = isDescriptionExpanded
-    ? FULL_DESCRIPTION
-    : SHORT_DESCRIPTION;
+  const movie = MOVIE_DETAIL_META;
+  const stats = MOVIE_DETAIL_STATS;
+
+  const handleClickBannerBadge = () => {
+  };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-0">
-      <Header variant="movie" title="극장판 체인소 맨: 레제편" />
+    <div className="min-h-screen bg-gray-900">
+      <Header variant="movie" title={movie.title} />
 
       <main className="bg-gray-900 pb-[4rem]">
-        <section>
-          <Movie
-            id={movieId}
-            title="극장판 체인소 맨: 레제편"
-            tag="#애니메이션 #액션"
-            ageRating={15}
-            releaseDate="2025.09.24"
-            runningTimeMinutes={100}
-          />
-        </section>
+        <Movie
+          id={movie.id}
+          title={movie.title}
+          tag={movie.tag}
+          ageRating={movie.ageRating}
+          releaseDate={movie.releaseDate}
+          runningTimeMinutes={movie.runningTimeMinutes}
+        />
 
         <section className="bg-gray-900 px-6 pt-4 pb-3">
           <p className="text-center">
             <span className="font-body1 text-gray-0">예매 </span>
-            <span className="font-body3 text-violet-200">2위</span>
-            <span className="font-body1 text-gray-100"> (13.2%)</span>
+            <span className="font-body3 text-violet-200">
+              {stats.reservationRank}위
+            </span>
+            <span className="font-body1 text-gray-100">
+              {' '}
+              ({stats.reservationSharePercent}%)
+            </span>
 
             <span className="font-body1 text-gray-0"> | 관람 </span>
-            <span className="font-body3 text-gray-0">285.0만</span>
+            <span className="font-body3 text-gray-0">
+              {stats.totalAudienceText}
+            </span>
 
             <span className="font-body1 text-gray-0"> | 별점 </span>
-            <span className="font-body3 text-violet-200">9.5</span>
+            <span className="font-body3 text-violet-200">
+              {stats.averageScore}
+            </span>
           </p>
         </section>
 
@@ -69,9 +78,7 @@ export default function MovieDetail() {
             <button
               type="button"
               className="self-end font-button2 text-gray-400"
-              onClick={() =>
-                setIsDescriptionExpanded((prev) => !prev)
-              }
+              onClick={handleToggleDescription}
             >
               {isDescriptionExpanded ? '접기' : '더보기'}
             </button>
@@ -83,29 +90,31 @@ export default function MovieDetail() {
             <img
               src={ImgBanner}
               alt="체인소 맨: 레제편 개봉 이벤트 배너"
-              className="h-[76px] w-full object-cover"
+              className="h-[7.6rem] w-full object-cover"
             />
 
-            <span
+            <button
+              type="button"
+              onClick={handleClickBannerBadge}
               className="
                 absolute left-0 top-0 inline-flex
                 items-center justify-center
-                px-3 py-[3px]
-                // rounded-br-[0.6rem]
+                rounded-br-[0.6rem]
+                px-[1.2rem] py-[0.3rem]
                 bg-blueGreen-500
                 font-label2 text-gray-0
               "
             >
               이벤트
-            </span>
+            </button>
           </div>
         </section>
 
         <section>
           <MovieDetailTabs
             activeTab={activeTab}
-            onChange={setActiveTab}
-            reviewCount={13298}
+            onChange={handleClickTab}
+            reviewCount={stats.totalReviewCount}
           />
           {activeTab === 'info' ? <InfoSection /> : <ReviewSection />}
         </section>

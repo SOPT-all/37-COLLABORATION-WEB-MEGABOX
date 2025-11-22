@@ -51,8 +51,8 @@ export default function MovieDetailTabs({
         </button>
       </div>
 
-      <div className="relative mt-1 h-[12px] w-full">
-        <div className="absolute inset-x-0 top-[5px] h-[1px] bg-[linear-gradient(90deg,#131313_0%,#DEB5FC_50%,#131313_100%)]" />
+      <div className="relative mt-1 h-[1.2rem] w-full">
+        <div className="absolute inset-x-0 top-[0.5rem] h-px bg-[linear-gradient(90deg,var(--color-gray-900)_0%,var(--color-violet-200)_50%,var(--color-gray-900)_100%)]" />
 
         <div
           className={cn(
