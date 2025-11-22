@@ -1,5 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "./reset.css";
-@import "./sharedStyles.css";
-@import "./animations.css"
+@import './reset.css';
+@import './sharedStyles.css';
+@import './animations.css';
