@@ -1,10 +1,12 @@
 import { useToastStore } from '@store/toast';
 
-const Toast = () => {
+export default function Toast() {
   const toast = useToastStore(state => state.toast);
   const hideToast = useToastStore(state => state.hideToast);
 
-  if(!toast) return null;
+  if (!toast) {
+    return null;
+  }
 
   return (
     <div className='animate-fade-in fixed right-[1rem] bottom-[2rem] left-[1rem] z-10'>
@@ -16,6 +18,4 @@ const Toast = () => {
       </div>
     </div>
   );
-};
-
-export default Toast;
+}
