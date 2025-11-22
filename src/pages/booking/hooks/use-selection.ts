@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { mockCinema } from '@pages/booking/mock';
 
 // 영화, 영화관, 날짜, 시간대를 선택하는 훅
@@ -9,9 +9,7 @@ export function useSelection() {
   const [selectedTimeId, setSelectedTimeId] = useState<number | null>(null);
 
   // 영화 선택에 따라 자동으로 선택되는 영화관 배열
-  const selectedCinemas = useMemo(() =>
-    Array.from(new Set(selectedMovieIds.flatMap(id => mockCinema[id]?.cinemas || [])))
-  , [selectedMovieIds]);
+  const selectedCinemas = Array.from(new Set(selectedMovieIds.flatMap(id => mockCinema[id]?.cinemas || [])));
 
   // 영화 선택 핸들러 (1개 이상 필수 선택, 재선택 시 선택 해제)
   const handleClickMovie = (id: number) => {
