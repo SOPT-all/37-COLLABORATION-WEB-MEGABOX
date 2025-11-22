@@ -20,6 +20,56 @@ export interface ApiResponseVoid {
   errorName?: string;
 }
 
+export interface ShowtimeReadRequest {
+  movieIds?: number[];
+  /** @format date */
+  date?: string;
+  timeSlot?: "MORNING" | "AFTERNOON" | "EVENING" | "NIGHT";
+}
+
+export interface ApiResponseShowtimeHierarchyResponse {
+  status?: "SUCCESS" | "FAIL" | "ERROR";
+  /** @format int32 */
+  statusCode?: number;
+  data?: ShowtimeHierarchyResponse;
+  message?: string;
+  errorCode?: string;
+  errorName?: string;
+}
+
+export interface CinemaResponse {
+  cinemaName?: string;
+  movies?: MovieResponse[];
+}
+
+export interface MovieResponse {
+  movieTitle?: string;
+  theaters?: TheaterResponse[];
+}
+
+export interface ShowtimeHierarchyResponse {
+  cinemas?: CinemaResponse[];
+}
+
+export interface ShowtimeResponse {
+  /** @format int64 */
+  showtimeId?: number;
+  /** @format date-time */
+  startTime?: string;
+  /** @format date-time */
+  endTime?: string;
+  /** @format int32 */
+  totalSeatCount?: number;
+  /** @format int32 */
+  availableSeatCount?: number;
+}
+
+export interface TheaterResponse {
+  theaterName?: string;
+  screenType?: string;
+  showtimes?: ShowtimeResponse[];
+}
+
 export interface ApiResponseShowtimeBeforeReservationResponse {
   status?: "SUCCESS" | "FAIL" | "ERROR";
   /** @format int32 */
@@ -76,6 +126,12 @@ export interface MovieSummaryResponse {
   id?: number;
   title?: string;
   tag?: string;
+  /** @format int32 */
+  ageRating?: number;
+  /** @format date */
+  releaseDate?: string;
+  /** @format int32 */
+  runningTimeMinutes?: number;
 }
 
 export interface ApiResponseMovieDetailResponse {
@@ -155,6 +211,8 @@ export interface CinemaListResponse {
 }
 
 export type CreateReservationData = ApiResponseVoid;
+
+export type GetShowtimesData = ApiResponseShowtimeHierarchyResponse;
 
 export type GetShowtimeBeforeReservationData =
   ApiResponseShowtimeBeforeReservationResponse;

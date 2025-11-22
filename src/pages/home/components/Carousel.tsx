@@ -1,10 +1,15 @@
 import { useCallback, useEffect } from 'react';
 
-import { useScroll, useSlide, handleScroll } from '@/pages/home/hooks';
+import {
+  useScroll,
+  useSlide,
+  handleScroll,
+  type Item,
+} from '@/pages/home/hooks';
 import { cn } from '@utils/index';
 
 interface CarouselProps {
-  items: { id: number; image: string }[];
+  items: Item[];
   handleClickItem: (_id: number) => void;
 }
 

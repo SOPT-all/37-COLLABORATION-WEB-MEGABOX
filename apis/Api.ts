@@ -18,6 +18,8 @@ import {
   GetRecent7DaysData,
   GetReviewsData,
   GetShowtimeBeforeReservationData,
+  GetShowtimesData,
+  ShowtimeReadRequest,
 } from "./data-contracts";
 import { HttpClient, RequestParams } from "./http-client";
 
@@ -44,6 +46,27 @@ export class Api<
     this.request<CreateReservationData, any>({
       path: `/api/v1/showtimes/${showtimeId}/reservations`,
       method: "POST",
+      query: query,
+      ...params,
+    });
+  /**
+   * @description 선택한 영화들의 상영정보를 조회하는 API입니다. - RequestParam으로 movieIds(선택한 영화 Id들), date(선택한 날짜), timeslot(시간대)를 전달합니다.
+   *
+   * @tags 상영정보 API
+   * @name GetShowtimes
+   * @summary 상영정보 조회
+   * @request GET:/api/v1/showtimes
+   * @response `200` `GetShowtimesData` OK
+   */
+  getShowtimes = (
+    query: {
+      request: ShowtimeReadRequest;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<GetShowtimesData, any>({
+      path: `/api/v1/showtimes`,
+      method: "GET",
       query: query,
       ...params,
     });
