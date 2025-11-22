@@ -64,6 +64,14 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 82.95%, #131313 100%);
   }
 
+  .gradient-5 {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
   /* Shadow */
   .shadow-modal {
     box-shadow: var(--shadow-modal);
