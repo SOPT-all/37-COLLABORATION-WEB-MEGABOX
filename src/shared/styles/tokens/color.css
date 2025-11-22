@@ -35,11 +35,7 @@
   --gradient-1: linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%);
   --gradient-2: linear-gradient(90deg, #0a0533 0%, #480051 100%);
   --gradient-3: linear-gradient(103deg, #2e285e 6.95%, #41266c 65.1%);
-  --gradient-4: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  --gradient-4: linear-gradient(180deg, rgba(0, 0, 0, 0) 82.95%, #131313 100%);
 
   /* Sub Color */
   --color-red-500: #ff5251;
@@ -62,6 +58,18 @@
 
   .gradient-3 {
     background: linear-gradient(103deg, #2e285e 6.95%, #41266c 65.1%);
+  }
+
+  .gradient-4 {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 82.95%, #131313 100%);
+  }
+
+  .gradient-5 {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
   }
 
   /* Shadow */
