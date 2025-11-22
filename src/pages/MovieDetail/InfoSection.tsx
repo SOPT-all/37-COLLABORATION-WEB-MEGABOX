@@ -23,7 +23,6 @@ export default function InfoSection() {
   const [viewerImages, setViewerImages] = useState<string[]>([]);
   const [viewerIndex, setViewerIndex] = useState(0);
 
-  // 🔒 뷰어 열릴 때 body 스크롤 잠금
   useEffect(() => {
     if (isViewerOpen) {
       document.body.style.overflow = 'hidden';
