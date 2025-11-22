@@ -11,9 +11,11 @@ const getMovies = async () => {
   return response;
 };
 
+const getQuery = {
+  queryKey: MOVIE_KEY.LIST(),
+  queryFn: () => getMovies(),
+};
+
 export const getMovieListQuery = () => {
-  return useQuery<ApiResponseMovieListResponse>({
-    queryKey: MOVIE_KEY.LIST(),
-    queryFn: () => getMovies(),
-  });
+  return useQuery<ApiResponseMovieListResponse>(getQuery);
 };
