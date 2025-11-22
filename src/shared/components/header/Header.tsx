@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   IconSystemBack,
   IconHeart,
@@ -20,7 +21,10 @@ export default function Header({
   handleClickBack,
 }: HeaderProps) {
   const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
   const isMain = variant === 'main';
+
+  const onBackClick = handleClickBack ?? (() => navigate(-1));
 
   const headerClassName = `
     sticky top-0 z-10
@@ -47,7 +51,7 @@ export default function Header({
       <IconSystemBack
         aria-label='뒤로가기'
         className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-        onClick={handleClickBack}
+        onClick={onBackClick}
       />
 
       <h1 className='font-title1 flex-1 text-center'>{title}</h1>
