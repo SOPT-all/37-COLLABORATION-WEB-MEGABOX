@@ -132,6 +132,10 @@ export default function Showtime({
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
+  const handleClickUpArrow = () => {
+    setIsOpen(prev => !prev);
+  };
+
   return (
     <div className='flex flex-col gap-[2.2rem] w-full'>
       <div className='flex items-center gap-[0.4rem] py-[0.5rem]'>
@@ -146,7 +150,7 @@ export default function Showtime({
           width={12}
           height={12}
           className={`text-gray-300 cursor-pointer ${isOpen ? 'rotate-0' : 'rotate-180'}`}
-          onClick={() => setIsOpen(prev => !prev)}
+          onClick={handleClickUpArrow}
         />
       </div>
       {isOpen && cinema.movies.map((movie, idx) => (
