@@ -4,8 +4,8 @@ import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
 import { formatTime, formatDate } from '@/shared/utils/date-format';
 
 interface useModalDetailProps {
+  selectedDate: string | null
   selectedWeekday: string;
-  selectedDate: string | null;
   selectedShowtime: ShowtimeDetail | null;
 }
 
@@ -16,13 +16,12 @@ interface useModalDetailProps {
  * @returns 모달에 전달할 세부사항
  */
 export function useModalDetail({
-  selectedWeekday,
   selectedDate,
+  selectedWeekday,
   selectedShowtime
 }: useModalDetailProps) {
   const navigate = useNavigate();
 
-  // [TODO] 동적으로 전달하도록 개선 필요
   const maxQuantity = 10;
   const {
     isOpen,
