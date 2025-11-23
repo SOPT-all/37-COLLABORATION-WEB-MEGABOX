@@ -98,7 +98,7 @@ function ShowtimeByTheater({
         <span className='font-label2 text-gray-500'>{theater.screenType}</span>
       </div>
       <div className='flex gap-[0.9rem] flex-wrap'>
-        {(theater.showtimes || []).map((showtime) => (
+        {theater.showtimes?.map((showtime) => (
           <ShowtimeByTime
             key={showtime.showtimeId}
             showtime={showtime}
@@ -141,7 +141,7 @@ function ShowtimeByMovie({
           </div>
         </div>
       </div>
-      {(movie.theaters || []).map((theater, idx) => (
+      {movie.theaters?.map((theater, idx) => (
         <ShowtimeByTheater
           key={`${theater.theaterName}-${idx}`}
           theater={theater}
@@ -182,7 +182,7 @@ export default function Showtime({
           onClick={handleClickUpArrow}
         />
       </div>
-      {isOpen && (cinema.movies || []).map((movie, idx) => (
+      {isOpen && cinema.movies?.map((movie, idx) => (
         <ShowtimeByMovie
           key={`${movie.movieTitle}-${idx}`}
           movie={movie}
