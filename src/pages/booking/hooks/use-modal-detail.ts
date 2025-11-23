@@ -5,19 +5,19 @@ import { formatTime, formatDate } from '@/shared/utils/date-format';
 
 interface useModalDetailProps {
   selectedWeekday: string;
-  selectedFullDate: string | null;
+  selectedDate: string | null;
   selectedShowtime: ShowtimeDetail | null;
 }
 
 /**
  * 모달 컴포넌트 prop과 모달에 전달할 세부사항을 반환하는 훅
  * @param selectedWeekday
- * @param selectedFulldate
+ * @param selecteddate
  * @returns 모달에 전달할 세부사항
  */
 export function useModalDetail({
   selectedWeekday,
-  selectedFullDate,
+  selectedDate,
   selectedShowtime
 }: useModalDetailProps) {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export function useModalDetail({
   };
 
   const modalDateString = selectedShowtime
-    ? `${formatDate(new Date(selectedFullDate!))} (${selectedWeekday}) ${formatTime(selectedShowtime.startTime)} ~ ${formatTime(selectedShowtime.endTime)}`
+    ? `${formatDate(new Date(selectedDate!))} (${selectedWeekday}) ${formatTime(selectedShowtime.startTime)} ~ ${formatTime(selectedShowtime.endTime)}`
     : '';
 
   const modalLocation = selectedShowtime

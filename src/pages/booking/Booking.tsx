@@ -9,6 +9,7 @@ import { cn, mappingMoviePosters } from '@/shared/utils/index';
 import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
 import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
 import { Chip, Carousel, Showtime } from '@pages/booking/components/index';
+import { getDateAndWeekday } from '@pages/booking/utils/get-date-info';
 import { TIMES, CINEMAS } from '@pages/booking/constants/index';
 import { mockDates } from '@pages/booking/mock';
 
@@ -38,15 +39,10 @@ export default function Booking() {
     title: MOVIES[movie.id].title,
   }));
 
-  const dates = mockDates.slice().map((date) => date.slice(8));
+  const dates = [...mockDates].map((date) => date.slice(8));
 
-  const allDates = mockDates.slice();
-  const selectedFullDate = selectedDateId !== -1 ? allDates[selectedDateId] : null;
-  const weekdays = allDates.map(dateStr => {
-    const date = new Date(dateStr);
-    return ['일','월','화','수','목','금','토'][date.getDay()];
-  });
-  const selectedWeekday = selectedDateId !== -1 ? weekdays[selectedDateId] : ''
+  const { selectedDate, selectedWeekday, weekdays } = getDateAndWeekday(mockDates, selectedDateId);
+
   const handleClickShowtime = (detail: ShowtimeDetail) => {
     setSelectedShowtime(detail);
     handleOpenChange(true);
@@ -62,7 +58,7 @@ export default function Booking() {
     modalMovieTitle,
     modalDateString,
     modalLocation,
-  } = useModalDetail({selectedWeekday, selectedFullDate, selectedShowtime});
+  } = useModalDetail({selectedWeekday, selectedDate, selectedShowtime});
 
   return (
     <div className='select-none'>
