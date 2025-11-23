@@ -7,7 +7,7 @@ import type {
   CinemaResponse,
   TheaterResponse,
   ShowtimeResponse
-} from '../../../../apis/data-contracts';
+} from '@/../../apis/data-contracts';
 
 export interface ShowtimeDetail {
   cinemaName: string;
