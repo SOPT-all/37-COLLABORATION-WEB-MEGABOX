@@ -2,9 +2,10 @@ import { useCallback, useEffect } from 'react';
 
 import { useScroll, useSlide, handleScroll } from '@/pages/home/hooks';
 import { cn } from '@utils/index';
+import type { MoviePoster } from '@constants/movies';
 
 interface CarouselProps {
-  items: { id: number; image: string }[];
+  items: MoviePoster[];
   handleClickItem: (_id: number) => void;
 }
 

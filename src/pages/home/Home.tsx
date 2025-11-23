@@ -1,33 +1,31 @@
-import { Divider, Movie, Header, Button } from '@components/index';
-import Carousel from '@/pages/home/components/Carousel';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Header, Button, Spinner } from '@components/index';
 import { useMovie } from '@/pages/home/hooks';
+import HomeClient from '@pages/home/Home.client';
 
 export default function Home() {
-  const { selectedMovie, item, handleClickItem, handleClickCard } = useMovie();
+  const { selectedMovie, items, handleClickItem, handleClickCard } = useMovie();
 
   return (
     <div>
       <Header variant='main' />
-
-      {selectedMovie && (
-        <Movie
-          key={selectedMovie.id}
-          id={selectedMovie.id}
-          title={selectedMovie.title}
-          tag={selectedMovie.tag}
-          ageRating={selectedMovie.ageRating}
-          releaseDate={selectedMovie.releaseDate}
-          runningTimeMinutes={selectedMovie.runningTimeMinutes}
-          className='mb-[0.9rem] cursor-pointer'
-          handleClickCard={handleClickCard}
-        />
-      )}
-
-      <div className='flex flex-col gap-[2rem] px-[1.7rem]'>
-        <Divider />
-        <Carousel items={item} handleClickItem={handleClickItem} />
-      </div>
-
+      <ErrorBoundary
+        fallbackRender={() => (
+          <div className='flex min-h-[60vh] items-center justify-center text-center text-gray-500'>
+            영화 정보가 없습니다.
+          </div>
+        )}
+      >
+        <Suspense fallback={<Spinner />}>
+          <HomeClient
+            selectedMovie={selectedMovie}
+            items={items}
+            handleClickItem={handleClickItem}
+            handleClickCard={handleClickCard}
+          />
+        </Suspense>
+      </ErrorBoundary>
       <footer className='fixed-center right-0 bottom-0 left-0 px-[1.7rem] pb-[4.9rem]'>
         <Button variant='primary' onClick={handleClickCard}>
           바로 예매 하기
