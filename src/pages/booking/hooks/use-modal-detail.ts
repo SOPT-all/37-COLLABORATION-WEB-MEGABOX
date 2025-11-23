@@ -22,7 +22,7 @@ export function useModalDetail({
 }: useModalDetailProps) {
   const navigate = useNavigate();
 
-  const maxQuantity = 10;
+  const maxQuantity = selectedShowtime?.totalSeatCount ?? 0;
   const {
     isOpen,
     handleOpenChange,
