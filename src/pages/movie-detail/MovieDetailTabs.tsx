@@ -21,7 +21,7 @@ export default function MovieDetailTabs({
 
   return (
     <div className="bg-gray-900">
-      <div className="flex px-6 pt-4 pb-1">
+      <div className="flex px-[1.5rem] pt-[1rem] pb-[0.25rem]">
         <button
           type="button"
           className={cn(
@@ -51,8 +51,8 @@ export default function MovieDetailTabs({
         </button>
       </div>
 
-      <div className="relative mt-1 h-[1.2rem] w-full">
-        <div className="absolute inset-x-0 top-[0.5rem] h-px bg-[linear-gradient(90deg,var(--color-gray-900)_0%,var(--color-violet-200)_50%,var(--color-gray-900)_100%)]" />
+      <div className="relative mt-[0.25rem] h-[1.2rem] w-full">
+        <div className="absolute inset-x-0 top-[0.5rem] h-[0.0625rem] bg-[linear-gradient(90deg,var(--color-gray-900)_0%,var(--color-violet-200)_50%,var(--color-gray-900)_100%)]" />
 
         <div
           className={cn(

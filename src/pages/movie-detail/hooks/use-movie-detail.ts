@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { MovieDetailTab } from './MovieDetailTabs';
-import { MOVIE_DETAIL_DESCRIPTION } from './mock';
+import type { MovieDetailTab } from '../MovieDetailTabs';
+import { MOVIE_DETAIL_DESCRIPTION } from '../mock';
 
 export function useMovieDetail() {
   const [activeTab, setActiveTab] = useState<MovieDetailTab>('info');

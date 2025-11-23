@@ -29,6 +29,7 @@ export default function InfoSection() {
     } else {
       document.body.style.overflow = '';
     }
+
     return () => {
       document.body.style.overflow = '';
     };
@@ -42,26 +43,33 @@ export default function InfoSection() {
 
   const closeViewer = () => setIsViewerOpen(false);
 
+  const handleOpenTrailerViewer = (index: number) => () => {
+    openViewer(TRAILERS, index);
+  };
+
+  const handleOpenPosterViewer = (index: number) => () => {
+    openViewer(POSTERS, index);
+  };
+
   return (
-    <div className="bg-gray-900 px-6 pb-[4rem] pt-2">
-      <section className="mb-8">
-        <h2 className="mb-4 font-title3 text-gray-0">누적관람</h2>
+    <div className="bg-gray-900 px-[1.5rem] pb-[4rem] pt-[0.5rem]">
+      <section className="mb-[2rem]">
+        <h2 className="mb-[1rem] font-title3 text-gray-0">누적관람</h2>
 
         <div
           className="
-            relative flex items-stretch
+            relative flex h-[10.5rem] items-stretch
             overflow-hidden rounded-[0.8rem]
             border border-violet-400
             bg-gray-800
-            px-4 py-4
+            px-[1rem] py-[1rem]
           "
-          style={{ height: '10.5rem' }}
         >
           <div
             aria-hidden
             className="
               pointer-events-none
-              absolute -right-6 bottom-0
+              absolute -right-[1.5rem] bottom-0
               h-[4.4rem] w-[4.4rem]
               rounded-full bg-violet-400
               blur-[3.8rem]
@@ -70,50 +78,47 @@ export default function InfoSection() {
 
           <div className="flex-1">
             <p className="font-body1 text-gray-400">누적 관객 수</p>
-            <p className="mt-1 font-body4 text-gray-0">
+            <p className="mt-[0.25rem] font-body4 text-gray-0">
               {MOVIE_DETAIL_AUDIENCE_CARD.cumulativeAudienceText}
             </p>
-            <p className="mt-1 font-caption1 text-gray-400">
+            <p className="mt-[0.25rem] font-caption1 text-gray-400">
               {MOVIE_DETAIL_AUDIENCE_CARD.openDayText}
             </p>
           </div>
 
-          <div className="mx-3 h-[5.8rem] w-px self-center bg-gray-700" />
+          <div className="mx-[0.75rem] h-[5.8rem] w-[0.0625rem] self-center bg-gray-700" />
 
           <div className="flex-1">
             <p className="font-body1 text-gray-400">일별 관객 수</p>
-            <p className="mt-1 font-body4 text-gray-0">
+            <p className="mt-[0.25rem] font-body4 text-gray-0">
               {MOVIE_DETAIL_AUDIENCE_CARD.dailyAudienceText}
             </p>
-            <p className="mt-1 font-caption1 text-violet-300">
+            <p className="mt-[0.25rem] font-caption1 text-violet-300">
               {MOVIE_DETAIL_AUDIENCE_CARD.dailyCompareText}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="mb-8">
-        <div className="mb-2 flex items-baseline gap-[0.15rem]">
+      <section className="mb-[2rem]">
+        <div className="mb-[0.5rem] flex items-center gap-[0.15rem]">
           <h2 className="font-title3 text-gray-0">예고편 / 트레일러</h2>
           <span className="font-title3 text-violet-500">{TRAILERS.length}</span>
         </div>
 
-        <div className="overflow-x-auto pb-1 scrollbar-hide">
+        <div className="w-full overflow-x-auto pb-[0.25rem] scrollbar-hide">
           <div className="flex w-max gap-[0.75rem]">
             {TRAILERS.map((src, index) => (
               <button
                 type="button"
                 key={index}
                 className="
-                  flex shrink-0 items-center justify-center
+                  flex h-[16.3rem] w-[29.1rem]
+                  shrink-0 items-center justify-center
                   overflow-hidden rounded-[0.8rem] bg-gray-800
                   cursor-pointer
                 "
-                style={{
-                  width: '29.1rem',
-                  height: '16.3rem',
-                }}
-                onClick={() => openViewer(TRAILERS, index)}
+                onClick={handleOpenTrailerViewer(index)}
               >
                 <img
                   src={src}
@@ -125,31 +130,28 @@ export default function InfoSection() {
           </div>
         </div>
 
-        <p className="mt-2 font-body1 text-gray-0">메인 예고편</p>
+        <p className="mt-[0.5rem] font-body1 text-gray-0">메인 예고편</p>
       </section>
 
-      <section className="mb-8">
-        <div className="mb-2 flex items-baseline gap-[0.15rem]">
+      <section className="mb-[2rem]">
+        <div className="mb-[0.5rem] flex items-center gap-[0.15rem]">
           <h2 className="font-title3 text-gray-0">포스터 / 스틸컷</h2>
           <span className="font-title3 text-violet-500">{POSTERS.length}</span>
         </div>
 
-        <div className="overflow-x-auto pb-1 scrollbar-hide">
+        <div className="w-full overflow-x-auto pb-[0.25rem] scrollbar-hide">
           <div className="flex w-max gap-[0.75rem]">
             {POSTERS.map((src, index) => (
               <button
                 type="button"
                 key={index}
                 className="
-                  flex shrink-0 items-center justify-center
+                  flex h-[19.9rem] w-[47.5rem]
+                  shrink-0 items-center justify-center
                   overflow-hidden rounded-[0.8rem] bg-gray-800
                   cursor-pointer
                 "
-                style={{
-                  width: '47.5rem',
-                  height: '19.9rem',
-                }}
-                onClick={() => openViewer(POSTERS, index)}
+                onClick={handleOpenPosterViewer(index)}
               >
                 <img
                   src={src}
@@ -163,8 +165,8 @@ export default function InfoSection() {
       </section>
 
       <section>
-        <div className="mb-3 flex items-center justify-between">
-          <div className="flex items-baseline gap-[0.15rem]">
+        <div className="mb-[0.75rem] flex items-center justify-between">
+          <div className="flex items-center gap-[0.15rem]">
             <h2 className="font-title3 text-gray-0">오리지널 굿즈</h2>
             <span className="font-title3 text-violet-500">{GOODS.length}</span>
           </div>
@@ -188,17 +190,12 @@ export default function InfoSection() {
             <div key={goods.id} className="flex flex-col gap-[0.875rem]">
               <div
                 className="
-                  flex items-center justify-center
+                  flex h-[14rem] items-center justify-center
                   rounded-[0.375rem]
                   bg-[#647392]
+                  px-[1.4rem]
+                  pt-[3.1rem] pb-[3rem]
                 "
-                style={{
-                  height: '14rem',
-                  paddingTop: '3.1rem',
-                  paddingBottom: '3rem',
-                  paddingLeft: '1.4rem',
-                  paddingRight: '1.4rem',
-                }}
               >
                 <img
                   src={goods.image}
@@ -216,12 +213,12 @@ export default function InfoSection() {
       {isViewerOpen && viewerImages.length > 0 && (
         <div
           className="
-          fixed-center top-0 bottom-0 z-50
-        bg-black
+            fixed-center top-0 bottom-0 z-50
+            bg-black
           "
           onClick={closeViewer}
         >
-          <div className="absolute right-4 top-4 flex flex-col items-end gap-1 text-gray-0">
+          <div className="absolute right-[1rem] top-[1rem] flex flex-col items-end gap-[0.25rem] text-gray-0">
             <button
               type="button"
               onClick={(e) => {

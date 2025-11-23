@@ -5,7 +5,8 @@ import Button from '@components/button/Button';
 import MovieDetailTabs from './MovieDetailTabs';
 import InfoSection from './InfoSection';
 import ReviewSection from './ReviewSection';
-import { useMovieDetail } from './useMovieDetail';
+import { useMovieDetail } from './hooks/use-movie-detail';
+
 import {
   MOVIE_DETAIL_META,
   MOVIE_DETAIL_STATS,
@@ -25,8 +26,7 @@ export default function MovieDetail() {
   const movie = MOVIE_DETAIL_META;
   const stats = MOVIE_DETAIL_STATS;
 
-  const handleClickBannerBadge = () => {
-  };
+  const handleClickBannerBadge = () => {};
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -42,14 +42,13 @@ export default function MovieDetail() {
           runningTimeMinutes={movie.runningTimeMinutes}
         />
 
-        <section className="bg-gray-900 px-6 pt-4 pb-3">
+        <section className="bg-gray-900 px-[1.5rem] pt-[1rem] pb-[0.75rem]">
           <p className="text-center">
             <span className="font-body1 text-gray-0">예매 </span>
             <span className="font-body3 text-violet-200">
               {stats.reservationRank}위
             </span>
             <span className="font-body1 text-gray-100">
-              {' '}
               ({stats.reservationSharePercent}%)
             </span>
 
@@ -65,12 +64,12 @@ export default function MovieDetail() {
           </p>
         </section>
 
-        <section className="bg-gray-900 px-6 pb-5">
+        <section className="bg-gray-900 px-[1.5rem] pb-[1.25rem]">
           <Button variant="primary">바로예매</Button>
         </section>
 
-        <section className="bg-gray-900 px-6 pb-[2.875rem]">
-          <div className="flex gap-3">
+        <section className="bg-gray-900 px-[1.5rem] pb-[2.875rem]">
+          <div className="flex gap-[0.75rem]">
             <p className="flex-1 font-body1 text-gray-0">
               {descriptionText}
             </p>
@@ -85,7 +84,7 @@ export default function MovieDetail() {
           </div>
         </section>
 
-        <section className="bg-gray-900 pb-3">
+        <section className="bg-gray-900 pb-[0.75rem]">
           <div className="relative overflow-hidden">
             <img
               src={ImgBanner}
