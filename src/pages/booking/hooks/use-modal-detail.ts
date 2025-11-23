@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@/shared/components/@modal/hooks/use-modal';
-import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
+import { type ShowtimeDetail } from '../store/showtimeStore';
 import { formatTime, formatDate } from '@/shared/utils/date-format';
 
 interface useModalDetailProps {
