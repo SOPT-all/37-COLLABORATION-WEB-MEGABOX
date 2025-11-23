@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
  */
 export function formatDate(date: Date) {
   return dayjs(date).format('YYYY.MM.DD');
+
 }
 /**
  * ISO 문자열에서 시간만 'HH:MM' 형태로 추출합니다.
