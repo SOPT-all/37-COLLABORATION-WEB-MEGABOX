@@ -72,7 +72,7 @@ export default function Booking() {
         handleClickBack={() => navigate(-1)}
       />
 
-      <div className='p-8'>
+      <div className='p-[2rem]'>
         <div className='flex flex-col items-start gap-[1.2rem] w-full'>
           <Carousel
             movies={movies}
