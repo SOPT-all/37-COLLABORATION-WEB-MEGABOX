@@ -1,42 +1,31 @@
-import { useEffect } from 'react';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Header, Button, Spinner } from '@components/index';
 import { useMovie } from '@/pages/home/hooks';
-import HomeClient from './Home.client';
-import { useToastStore } from '@/shared/store/toast';
+import HomeClient from '@pages/home/Home.client';
 
 export default function Home() {
-  const {
-    selectedMovie,
-    items,
-    handleClickItem,
-    handleClickCard,
-    isPending,
-    isError,
-  } = useMovie();
-  const showToast = useToastStore(state => state.showToast);
-
-  useEffect(() => {
-    if (isError) {
-      showToast('영화 정보를 불러오는 중 오류가 발생했습니다.');
-    }
-  }, [isError, showToast]);
+  const { selectedMovie, items, handleClickItem, handleClickCard } = useMovie();
 
   return (
     <div>
       <Header variant='main' />
-      {isPending ? (
-        <div className='mt-[20rem]'>
-          <Spinner />
-        </div>
-      ) : (
-        <HomeClient
-          isError={isError}
-          selectedMovie={selectedMovie}
-          items={items}
-          handleClickItem={handleClickItem}
-          handleClickCard={handleClickCard}
-        />
-      )}
+      <ErrorBoundary
+        fallbackRender={() => (
+          <div className='flex min-h-[60vh] items-center justify-center text-center text-gray-500'>
+            영화 정보가 없습니다.
+          </div>
+        )}
+      >
+        <Suspense fallback={<Spinner />}>
+          <HomeClient
+            selectedMovie={selectedMovie}
+            items={items}
+            handleClickItem={handleClickItem}
+            handleClickCard={handleClickCard}
+          />
+        </Suspense>
+      </ErrorBoundary>
       <footer className='fixed-center right-0 bottom-0 left-0 px-[1.7rem] pb-[4.9rem]'>
         <Button variant='primary' onClick={handleClickCard}>
           바로 예매 하기

@@ -1,30 +1,21 @@
-import { Divider, Movie } from '@/shared/components';
-import Carousel from './components/Carousel';
-import type { Item } from './hooks/use-movie';
+import { Divider, Movie } from '@components/index';
+import Carousel from '@pages/home/components/Carousel';
+import type { MoviePoster } from '@constants/movies';
 import type { MovieSummaryResponse } from '@/../apis/data-contracts';
 
 interface HomeClientProps {
-  isError: boolean;
   selectedMovie: MovieSummaryResponse | undefined;
-  items: Item[];
+  items: MoviePoster[];
   handleClickItem: (_id: number) => void;
   handleClickCard: () => void;
 }
+
 export default function HomeClient({
-  isError,
   selectedMovie,
   items,
   handleClickItem,
   handleClickCard,
 }: HomeClientProps) {
-  if (isError) {
-    return (
-      <div className='mt-[20rem] text-center text-gray-500'>
-        영화 정보가 없습니다.
-      </div>
-    );
-  }
-
   return (
     <div>
       {selectedMovie && (
