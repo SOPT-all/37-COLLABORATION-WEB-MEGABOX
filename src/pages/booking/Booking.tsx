@@ -5,7 +5,7 @@ import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
 import Tooltip from '@components/tooltip/Tooltip';
 import { MOVIES } from '@constants/movies';
-import { cn } from '@/shared/utils/cn';
+import { cn, mappingMoviePosters } from '@/shared/utils/index';
 import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
 import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
 import { Chip, Carousel, Showtime } from '@pages/booking/components/index';
@@ -33,10 +33,9 @@ export default function Booking() {
   const filteredShowtimes
     = useFilter(selectedTimeId);
 
-  const movies = Object.entries(MOVIES).map(([id, movie]) => ({
-    id: Number(id),
-    title: movie.title,
-    image: movie.image,
+  const movies = mappingMoviePosters().map((movie) => ({
+    ...movie,
+    title: MOVIES[movie.id].title,
   }));
 
   const dates = mockDates.slice().map((date) => date.slice(8));
