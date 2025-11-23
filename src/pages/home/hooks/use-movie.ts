@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { MOVIES } from '@constants/movies';
+import { type MoviePoster } from '@constants/movies';
 import { useGetMovieListQuery } from '@/pages/home/api/use-api-request';
 import type { MovieSummaryResponse } from 'apis/data-contracts';
-
-export type Item = {
-  id: number;
-  image: string;
-};
+import { mappingMoviePosters } from '@/shared/utils/mapping-movie';
 
 export function useMovie() {
   const navigate = useNavigate();
@@ -17,10 +13,7 @@ export function useMovie() {
   const selectedMovie: MovieSummaryResponse | undefined =
     movieList?.data?.movies?.find(item => item.id === selectedMovieId);
 
-  const items: Item[] = Object.values(MOVIES).map(movie => ({
-    id: movie.id,
-    image: movie.image,
-  }));
+  const items: MoviePoster[] = mappingMoviePosters();
 
   const handleClickItem = (id: number) => {
     setSelectedMovieId(id);
@@ -30,6 +23,7 @@ export function useMovie() {
     //TODO: 영화 상세 페이지로 이동
     navigate(`/movie/${selectedMovieId}`);
   };
+
   return {
     selectedMovie,
     items,

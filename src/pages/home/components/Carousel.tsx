@@ -1,15 +1,11 @@
 import { useCallback, useEffect } from 'react';
 
-import {
-  useScroll,
-  useSlide,
-  handleScroll,
-  type Item,
-} from '@/pages/home/hooks';
+import { useScroll, useSlide, handleScroll } from '@/pages/home/hooks';
 import { cn } from '@utils/index';
+import type { MoviePoster } from '@constants/movies';
 
 interface CarouselProps {
-  items: Item[];
+  items: MoviePoster[];
   handleClickItem: (_id: number) => void;
 }
 
