@@ -68,6 +68,14 @@
     border-image: linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%) 1;
   }
 
+  .gradient-5 {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+  }
+
   /* Shadow */
   .shadow-modal {
     box-shadow: var(--shadow-modal);
