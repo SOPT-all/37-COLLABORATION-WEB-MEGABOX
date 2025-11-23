@@ -7,16 +7,16 @@ import Tooltip from '@components/tooltip/Tooltip';
 import { MOVIES } from '@constants/movies';
 import { cn, mappingMoviePosters } from '@/shared/utils/index';
 import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
-import { type ShowtimeDetail } from '@pages/booking/components/Showtime';
-import { Chip, Carousel, Showtime } from '@pages/booking/components/index';
+import { Chip, Carousel, Cinema, Movie, Theater } from '@pages/booking/components/index';
 import { getDateAndWeekday } from '@pages/booking/utils/get-date-info';
 import { TIMES, CINEMAS } from '@pages/booking/constants/index';
 import { mockDates } from '@pages/booking/mock';
+import { useShowtimeStore } from '@pages/booking/store/showtimeStore';
 
 export default function Booking() {
-  const [selectedShowtime, setSelectedShowtime] = useState<ShowtimeDetail | null>(null);
-
   const navigate = useNavigate();
+
+  const selectedShowtime = useShowtimeStore((state) => state.selectedShowtime);
 
   const {
     isTooltipOpen,
@@ -34,6 +34,11 @@ export default function Booking() {
   const filteredShowtimes
     = useFilter(selectedTimeId);
 
+  const initialOpenMap = Object.fromEntries(
+    filteredShowtimes.map(cinema => [cinema.cinemaName, true])
+  );
+  const [showtimeOpenMap, setShowtimeOpenMap] = useState<Record<string, boolean>>(initialOpenMap);
+
   const movies = mappingMoviePosters().map((movie) => ({
     ...movie,
     title: MOVIES[movie.id].title,
@@ -42,11 +47,6 @@ export default function Booking() {
   const dates = [...mockDates].map((date) => date.slice(8));
 
   const { selectedDate, selectedWeekday, weekdays } = getDateAndWeekday(mockDates, selectedDateId);
-
-  const handleClickShowtime = (detail: ShowtimeDetail) => {
-    setSelectedShowtime(detail);
-    handleOpenChange(true);
-  };
 
   const {
     isOpen,
@@ -58,7 +58,14 @@ export default function Booking() {
     modalMovieTitle,
     modalDateString,
     modalLocation,
-  } = useModalDetail({selectedWeekday, selectedDate, selectedShowtime});
+  } = useModalDetail({selectedDate, selectedWeekday, selectedShowtime});
+
+  const handleOpenShowtime = (cinemaName: string, isOpen: boolean) => {
+    setShowtimeOpenMap(prev => ({
+      ...prev,
+      [cinemaName]: isOpen,
+    }));
+  };
 
   return (
     <div className='select-none'>
@@ -120,32 +127,46 @@ export default function Booking() {
             ))}
           </div>
 
-          { isTooltipOpen && (
+          {isTooltipOpen && (
               <Tooltip
                 message='최근 이용극장을 선호극장에 추가해보세요'
                 handleClose={handleCloseTooltip}
               />
-            )
-          }
+          )}
 
           <div className='flex flex-col gap-[2.2rem] w-full'>
-            {filteredShowtimes.length > 0 ? (
-              filteredShowtimes.map((cinema, idx) => (
-                <div key={cinema.cinemaName} className='w-full'>
-                  <Showtime
-                    cinema={cinema}
-                    handleClickShowtime={handleClickShowtime}
-                  />
-                  { idx !== filteredShowtimes.length - 1 && (
-                    <div className="w-full h-[0.8rem] mt-[2.2rem] bg-gray-800" />
-                  )}
-                </div>
-              ))
-            ) : (
-              <div className='flex justify-center w-full pt-[4rem] text-gray-400 font-label1'>
-                선택한 조건에 맞는 상영 시간이 없습니다.
+            {filteredShowtimes.map((cinema) => (
+              <div className='flex flex-col gap-[2.2rem] w-full'>
+                <Cinema
+                  key={cinema.cinemaName}
+                  cinemaName={cinema.cinemaName}
+                  isShowtimeOpen={showtimeOpenMap[cinema.cinemaName] ?? true}
+                  handleOpenShowtime={(isOpen) => handleOpenShowtime(cinema.cinemaName, isOpen)}
+                />
+                {showtimeOpenMap[cinema.cinemaName] && (
+                  cinema.movies.map((movie) => (
+                    <>
+                      <Movie
+                        key={`${cinema.cinemaName} - ${movie.movieTitle}`}
+                        movieTitle={movie.movieTitle}
+                        ageRating={12}
+                      />
+                      {movie.theaters.map((theater) => (
+                        <Theater
+                          key={`${cinema.cinemaName} - ${movie.movieTitle} - ${theater.theaterName}`}
+                          theaterName={theater.theaterName}
+                          screenType={theater.screenType}
+                          showtimes={theater.showtimes}
+                          cinemaName={cinema.cinemaName}
+                          movieTitle={movie.movieTitle}
+                          handleOpenModal={handleOpenChange}
+                        />
+                      ))}
+                    </>
+                  ))
+                )}
               </div>
-            )}
+            ))}
           </div>
         </div>
 
