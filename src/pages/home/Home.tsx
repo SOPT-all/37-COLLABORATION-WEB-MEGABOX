@@ -20,6 +20,7 @@ export default function Home() {
           runningTimeMinutes={selectedMovie.runningTimeMinutes}
           className='mb-[0.9rem] cursor-pointer'
           handleClickCard={handleClickCard}
+          isDetail={false}
         />
       )}
 
