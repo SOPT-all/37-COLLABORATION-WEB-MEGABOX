@@ -82,11 +82,25 @@ export default function MovieDetail() {
         </section>
       </div>
 
-      <img
-        src={ImgBanner}
-        alt='이벤트 배너'
-        className='mt-[3.9rem] h-[7.6rem] w-full object-cover'
-      />
+      <div className="relative overflow-hidden">
+        <img
+          src={ImgBanner}
+          alt="이벤트 배너"
+          className="h-[7.6rem] w-full object-cover"
+        />
+        <span
+          className="
+            absolute left-0 top-0 inline-flex
+            items-center justify-center
+            px-3 py-[3px]
+            rounded-br-[0.6rem]
+            bg-blueGreen-500
+            font-label2 text-gray-0
+          "
+        >
+          이벤트
+        </span>
+      </div>
 
       <section className='mt-[3.9rem] flex flex-col gap-[2.8rem]'>
         <TabContainer activeTab={activeTab}>

@@ -12,8 +12,11 @@ export default function ReviewSection() {
   const starStates = getRoundedStarStates(starRating);
 
   return (
-    <div className='flex flex-col gap-[2.8rem] p-[1.7rem]'>
-      <section className='flex flex-col items-center pt-[2.2rem] pb-[1.1rem]'>
+    <div className="relative flex flex-col gap-[2.8rem]">
+      <div className="pointer-events-none absolute -left-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80"/>
+      <div className="pointer-events-none absolute -right-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80"/>
+
+      <section className="flex flex-col items-center pt-[2.2rem] pb-[1.1rem] bg-[#181818]">
         <p className='font-body4 text-violet-600'>
           {averageScore}
           <span className='font-body5 text-gray-0'> / 10</span>

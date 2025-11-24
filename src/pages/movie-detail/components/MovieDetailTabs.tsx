@@ -1,6 +1,7 @@
 import { cn } from '@utils/cn';
 import Divider from '@components/divider/Divider';
 import type { MovieDetailMenu } from '@pages/movie-detail/types/menu';
+import type { PropsWithChildren } from 'react';
 
 interface TabProps {
   text: string;
@@ -8,7 +9,8 @@ interface TabProps {
   isActive?: boolean;
   handleClickTab: (_tab: MovieDetailMenu) => void;
 }
-interface TabContainerProps extends React.PropsWithChildren {
+
+interface TabContainerProps extends PropsWithChildren {
   activeTab: MovieDetailMenu;
 }
 
