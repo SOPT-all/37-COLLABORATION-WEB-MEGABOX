@@ -16,19 +16,19 @@ export const usePaymentForm = () => {
     // 필요 메소드 및 상태 추출
     const {
         trigger,
-        watch,
+        // watch,
         formState: { errors, isValid },
         setValue,
     } = form;
 
     // 전체 폼 구독
-    const formData = watch();
+    // const formData = watch();
 
-    const fields = {
-        activeTab: formData.activeTab,
-        selectedDiscountId: formData.selectedDiscountId,
-        isChecked: formData.isChecked,
-    };
+    // const fields = {
+    //     activeTab: formData.activeTab,
+    //     selectedDiscountId: formData.selectedDiscountId,
+    //     isChecked: formData.isChecked,
+    // };
 
     // 토스트 메시지
     const fieldErrors = {
@@ -63,13 +63,13 @@ export const usePaymentForm = () => {
 
     return {
         form,
-        formData,
+        // formData,
         fieldErrors,
         isValid,
         onSubmit,
         handleActiveTab,
         handleSelectedDiscountId,
         handleIsChecked,
-        fields
+        // fields
     }
 }

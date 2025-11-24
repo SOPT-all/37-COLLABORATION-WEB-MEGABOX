@@ -11,13 +11,13 @@ interface DiscountGridProps {
   children?: ReactNode;
 };
 
-const DiscountGrid = ({
+export default function DiscountGrid({
   items,
   selectedId,
   handleSelect,
   firstItem = false,
   children,
-}: DiscountGridProps) => {
+}: DiscountGridProps){
   return (
     <div className='rounded-[0.4rem] bg-gray-100 px-[1.5rem] py-[1.2rem]' role='group' aria-label='할인 수단 목록'>
       <div className='grid grid-cols-2 gap-[0.8rem]'>
@@ -42,4 +42,3 @@ const DiscountGrid = ({
   );
 };
 
-export default DiscountGrid;
