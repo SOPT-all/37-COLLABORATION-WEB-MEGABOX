@@ -22,7 +22,10 @@ export default function MovieDetail() {
 
   const movie = MOVIE_DETAIL_META;
   const stats = MOVIE_DETAIL_STATS;
-
+  const totalReviewCountCompact = new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(stats.totalReviewCount);  
   return (
     <div className='min-h-screen'>
       <Header variant='movie' title={movie.title} />
@@ -111,7 +114,7 @@ export default function MovieDetail() {
             handleClickTab={handleClickTab}
           />
           <Tab
-            text='실관람평'
+            text={`실관람평 (${totalReviewCountCompact})`}
             value='review'
             isActive={activeTab === 'review'}
             handleClickTab={handleClickTab}
