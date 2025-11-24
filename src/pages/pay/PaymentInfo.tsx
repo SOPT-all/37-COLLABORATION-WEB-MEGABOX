@@ -5,10 +5,10 @@ import {
   paymentMethodDefaultValues,
   type PaymentMethodFormData,
 } from './schema/pay.schema';
-import MovieInfo from './components/MovieInfo';
-import PaymentBtn from './components/PaymentBtn';
-import PaymentMethodSection from './section/Index';
-import PaymentAmountSection from './components/PaymentAmountSection';
+import MovieInfo from '../payment/components/MovieInfo';
+import PaymentBtn from '../payment/components/PaymentBtn';
+import PaymentMethodSection from './section';
+import PaymentAmountSection from '../payment/components/PaymentAmountSection';
 
 const PaymentInfo = () => {
   const form = useForm<PaymentMethodFormData>({
