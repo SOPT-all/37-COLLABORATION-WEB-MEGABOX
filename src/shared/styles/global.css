@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-
 @import './reset.css';
 @import './sharedStyles.css';
 @import '../../pages/movie-detail/styles/styles.css';
+@import './animations.css';
