@@ -25,7 +25,7 @@ export default function MovieDetail() {
   const totalReviewCountCompact = new Intl.NumberFormat('en-US', {
     notation: 'compact',
     maximumFractionDigits: 1,
-  }).format(stats.totalReviewCount);  
+  }).format(stats.totalReviewCount);
   return (
     <div className='min-h-screen'>
       <Header variant='movie' title={movie.title} />
