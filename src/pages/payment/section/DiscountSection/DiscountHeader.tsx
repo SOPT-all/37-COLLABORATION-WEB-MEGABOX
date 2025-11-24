@@ -1,8 +1,9 @@
 import { cn } from '@utils/cn';
 import UppArrow from '@assets/components/IconSystemUparrow';
+import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountHeaderProps {
-  activeTab: 'coupon' | 'point' | null;
+  activeTab: DiscountFormData['activeTab'];
   onToggle: () => void;
 }
 

@@ -1,8 +1,9 @@
 import { cn } from '@utils/cn';
+import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountTabsProps {
-  activeTab: 'coupon' | 'point' | null;
-  onTabChange: (_tab: 'coupon' | 'point' | null) => void;
+  activeTab: DiscountFormData['activeTab'];
+  onTabChange: (_tab: DiscountFormData['activeTab']) => void;
 }
 
 export const DiscountTabs = ({ activeTab, onTabChange }: DiscountTabsProps) => {

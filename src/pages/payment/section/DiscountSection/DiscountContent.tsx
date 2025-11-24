@@ -1,12 +1,13 @@
 import DiscountGrid from './DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
 import IconCheckFill from '@assets/components/IconCheckFill';
+import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountContentProps {
-  activeTab: 'coupon' | 'point' | null;
-  selectedDiscountId: number | null;
-  onDiscountChange: (_id: number | null) => void;
-  isChecked: boolean;
+  activeTab: DiscountFormData['activeTab'];
+  selectedDiscountId: DiscountFormData['selectedDiscountId'];
+  isChecked: DiscountFormData['isChecked'];
+  onDiscountChange: (_id: DiscountFormData['selectedDiscountId']) => void;
   onCheckedChange: (_checked: boolean) => void;
 }
 
