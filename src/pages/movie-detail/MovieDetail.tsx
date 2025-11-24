@@ -88,7 +88,7 @@ export default function MovieDetail() {
         className='mt-[3.9rem] h-[7.6rem] w-full object-cover'
       />
 
-      <section className='mt-[3.9rem]'>
+      <section className='mt-[3.9rem] flex flex-col gap-[2.8rem]'>
         <TabContainer activeTab={activeTab}>
           <Tab
             text='상세정보'
