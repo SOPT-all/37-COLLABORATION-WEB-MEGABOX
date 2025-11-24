@@ -15,7 +15,6 @@ export const usePaymentForm = () => {
     })
     // 필요 메소드 및 상태 추출
     const {
-        handleSubmit, 
         setValue, 
         trigger, 
         watch, 
