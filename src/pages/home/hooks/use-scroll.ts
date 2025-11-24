@@ -39,6 +39,7 @@ export function handleScroll(
   slideLength: number
 ) {
   const container = containerRef.current;
+
   if (!container) return;
 
   const children = Array.from(container.children).slice(

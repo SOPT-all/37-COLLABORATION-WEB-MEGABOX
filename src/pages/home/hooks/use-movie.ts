@@ -8,7 +8,7 @@ import { mappingMoviePosters } from '@/shared/utils/mapping-movie';
 
 export function useMovie() {
   const navigate = useNavigate();
-  const { data: movieList, isPending, isError } = useGetMovieListQuery();
+  const { data: movieList } = useGetMovieListQuery();
   const [selectedMovieId, setSelectedMovieId] = useState<number>(1);
   const selectedMovie: MovieSummaryResponse | undefined =
     movieList?.data?.movies?.find(item => item.id === selectedMovieId);
@@ -29,7 +29,5 @@ export function useMovie() {
     items,
     handleClickItem,
     handleClickCard,
-    isPending,
-    isError,
   };
 }

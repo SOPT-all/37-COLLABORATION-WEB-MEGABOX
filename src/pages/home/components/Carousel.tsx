@@ -20,6 +20,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
     setSelectedSlideIndex,
   } = useSlide();
   const { containerRef, scrollToIndex } = useScroll();
+
   const handleScrollCallback = useCallback(
     () => handleScroll(containerRef, setSelectedSlideIndex, SLIDE_LENGTH),
     [containerRef, setSelectedSlideIndex, SLIDE_LENGTH]
