@@ -3,7 +3,7 @@ import { DiscountSection } from '@pages/payment/section/DiscountSection'
 
 
 export default function Payment() {
-  const { form, fields, handleActiveTab, handleSelectedDiscountId, handleIsChecked, onSubmit} = usePaymentForm();
+  const { form, handleActiveTab, handleSelectedDiscountId, handleIsChecked, onSubmit} = usePaymentForm();
 
   return (
     <>

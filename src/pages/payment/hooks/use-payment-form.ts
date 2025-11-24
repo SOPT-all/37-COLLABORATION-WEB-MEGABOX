@@ -30,6 +30,12 @@ export const usePaymentForm = () => {
         isChecked: formData.isChecked,
     };
 
+    // 토스트 메시지
+    const fieldErrors = {
+        selectedDiscountId: errors.selectedDiscountId?.message,
+        isChecked: errors.isChecked?.message,
+    }
+
     // 탭
     const handleActiveTab = (tab: DiscountFormData['activeTab']) => {
         setValue('activeTab', tab, {shouldValidate: true});
@@ -58,7 +64,7 @@ export const usePaymentForm = () => {
     return {
         form,
         formData,
-        errors,
+        fieldErrors,
         isValid,
         onSubmit,
         handleActiveTab,
