@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '@components/@modal/hooks/use-modal';
-import { type ShowtimeDetail } from '../store/showtimeStore';
 import { formatTime, formatDate } from '@utils/date-format';
+import type { ShowtimeDetail } from '../store/showtimeStore';
 
 interface useModalDetailProps {
   selectedDate: string | null;

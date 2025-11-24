@@ -1,5 +1,4 @@
 import { MOVIES } from '@constants/movies';
-import { getIdByTitle } from '@pages/movie-reservation/utils/index';
 
 interface MovieProps {
   movieTitle: string;
@@ -7,7 +6,9 @@ interface MovieProps {
 }
 
 export default function Movie({ movieTitle, ageRating }: MovieProps) {
-  const movieId = getIdByTitle(movieTitle);
+  const movieId = Object.values(MOVIES).find(
+    movie => movie.title === movieTitle
+  )?.id;
   if (!movieId) return null;
 
   return (

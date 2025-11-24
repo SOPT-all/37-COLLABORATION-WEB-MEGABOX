@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
 import Tooltip from '@components/tooltip/Tooltip';
-import { MOVIES } from '@constants/movies';
-import { cn, mappingMoviePosters } from '@utils/index';
+
+import { cn } from '@utils/index';
 import {
   useFilter,
   useTooltip,
   useSelection,
   useModalDetail,
+  useDate,
 } from '@pages/movie-reservation/hooks/index';
 import {
   Chip,
@@ -19,16 +21,15 @@ import {
   Movie,
   Theater,
 } from '@pages/movie-reservation/components/index';
-import { getDateAndWeekday } from '@pages/movie-reservation/utils/get-date-info';
 import { TIMES, CINEMAS } from '@pages/movie-reservation/constants/index';
-import { mockDates } from '@pages/movie-reservation/mock';
+
 import { useShowtimeStore } from '@pages/movie-reservation/store/showtimeStore';
 
 export default function Reservation() {
   const navigate = useNavigate();
 
   const selectedShowtime = useShowtimeStore(state => state.selectedShowtime);
-
+  const dates = useDate();
   const { isTooltipOpen, handleCloseTooltip } = useTooltip();
   const {
     selectedMovieIds,
@@ -36,28 +37,17 @@ export default function Reservation() {
     handleClickMovie,
     handleClickDate,
     handleClickTime,
-    selectedDateId,
+    selectedDate,
     selectedTimeId,
-  } = useSelection();
-  const filteredShowtimes = useFilter(selectedTimeId);
+  } = useSelection(dates[0]);
+
+  const filteredShowtimes = useFilter(selectedDate.date);
 
   const initialOpenMap = Object.fromEntries(
     filteredShowtimes.map(cinema => [cinema.cinemaName, true])
   );
   const [showtimeOpenMap, setShowtimeOpenMap] =
     useState<Record<string, boolean>>(initialOpenMap);
-
-  const movies = mappingMoviePosters().map(movie => ({
-    ...movie,
-    title: MOVIES[movie.id].title,
-  }));
-
-  const dates = [...mockDates].map(date => date.slice(8));
-
-  const { selectedDate, selectedWeekday, weekdays } = getDateAndWeekday(
-    mockDates,
-    selectedDateId
-  );
 
   const {
     isOpen,
@@ -69,7 +59,11 @@ export default function Reservation() {
     modalMovieTitle,
     modalDateString,
     modalLocation,
-  } = useModalDetail({ selectedDate, selectedWeekday, selectedShowtime });
+  } = useModalDetail({
+    selectedDate: selectedDate.date,
+    selectedWeekday: selectedDate.day,
+    selectedShowtime,
+  });
 
   const handleOpenShowtime = (cinemaName: string, isOpen: boolean) => {
     setShowtimeOpenMap(prev => ({
@@ -79,7 +73,7 @@ export default function Reservation() {
   };
 
   return (
-    <div className='select-none'>
+    <div>
       <Header
         variant='movie'
         title='영화 예매하기'
@@ -89,7 +83,6 @@ export default function Reservation() {
       <div className='p-[2rem]'>
         <div className='scroll-fade flex w-full flex-col items-start gap-[1.2rem]'>
           <Carousel
-            movies={movies}
             selectedMovieIds={selectedMovieIds}
             handleClick={id => handleClickMovie(id)}
           />
@@ -106,33 +99,29 @@ export default function Reservation() {
           </div>
 
           <div className='scrollbar-hide flex w-full gap-[0.7rem] overflow-x-scroll px-[0.5rem]'>
-            {dates.map((day, idx) => (
-              <Chip
-                key={idx}
-                variant='date'
-                isSelected={selectedDateId === idx}
-                onClick={() => handleClickDate(idx)}
-              >
-                <span
-                  className={cn(
-                    'font-title3',
-                    weekdays[idx] === '토' && 'text-blue-500',
-                    weekdays[idx] === '일' && 'text-red-500'
-                  )}
+            {dates.map((dateInfo, idx) => {
+              const dayColorClass = cn(
+                dateInfo.day === '토' && 'text-blue-500',
+                dateInfo.day === '일' && 'text-red-500'
+              );
+              const dateString = dayjs(dateInfo.date).format('M/D');
+
+              return (
+                <Chip
+                  key={idx}
+                  variant='date'
+                  isSelected={selectedDate.date === dateInfo.date}
+                  onClick={() => handleClickDate(dateInfo)}
                 >
-                  {day}
-                </span>
-                <span
-                  className={cn(
-                    'font-label1',
-                    weekdays[idx] === '토' && 'text-blue-500',
-                    weekdays[idx] === '일' && 'text-red-500'
-                  )}
-                >
-                  {weekdays[idx]}
-                </span>
-              </Chip>
-            ))}
+                  <span className={cn('font-title3', dayColorClass)}>
+                    {dateInfo.day}
+                  </span>
+                  <span className={cn('font-label1', dayColorClass)}>
+                    {dateString}
+                  </span>
+                </Chip>
+              );
+            })}
           </div>
         </div>
 
@@ -142,16 +131,18 @@ export default function Reservation() {
 
         <div className='flex w-full flex-col items-start gap-[1.1rem]'>
           <div className='scrollbar-hide flex w-full items-start gap-[0.8rem] overflow-x-scroll py-[1rem] opacity-70'>
-            {TIMES.map((time, idx) => (
-              <Chip
-                key={idx}
-                variant='time'
-                isSelected={selectedTimeId === idx}
-                onClick={() => handleClickTime(idx)}
-              >
-                {time}
-              </Chip>
-            ))}
+            {TIMES.map((_, idx) => {
+              return (
+                <Chip
+                  key={idx}
+                  variant='time'
+                  isSelected={selectedTimeId === idx}
+                  onClick={() => handleClickTime(idx)}
+                >
+                  {TIMES[idx].label}
+                </Chip>
+              );
+            })}
           </div>
 
           {isTooltipOpen && (

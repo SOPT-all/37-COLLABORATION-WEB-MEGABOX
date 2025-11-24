@@ -1,23 +1,3 @@
-export const mockDates = [
-  '2025-11-21',
-  '2025-11-22',
-  '2025-11-23',
-  '2025-11-24',
-  '2025-11-25',
-  '2025-11-26',
-  '2025-11-27',
-];
-
-export const mockCinema = [
-  { cinemas: ['강남', '코엑스', '청담'] },
-  { cinemas: ['코엑스', '센트럴', '성수', '신촌'] },
-  { cinemas: ['강남', '코엑스', '청담'] },
-  { cinemas: ['강남', '코엑스', '동대문'] },
-  { cinemas: ['강남', '청담', '신촌'] },
-  { cinemas: ['센트럴', '성수', '동대문'] },
-  { cinemas: ['강남', '코엑스', '청담'] },
-];
-
 export const mockShowtimes = [
   {
     cinemaName: '강남',
@@ -34,9 +14,9 @@ export const mockShowtimes = [
                 startTime: '2025-11-16T09:30:00',
                 endTime: '2025-11-16T11:22:00',
                 totalSeatCount: 120,
-                availableSeatCount: 65
-              }
-            ]
+                availableSeatCount: 65,
+              },
+            ],
           },
           {
             theaterName: '2관',
@@ -47,11 +27,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-16T22:40:00',
                 endTime: '2025-11-17T00:32:00',
                 totalSeatCount: 180,
-                availableSeatCount: 77
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 77,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 주술회전: 회옥·옥절',
@@ -65,11 +45,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-18T20:40:00',
                 endTime: '2025-11-18T22:30:00',
                 totalSeatCount: 120,
-                availableSeatCount: 37
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 37,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '프레데터: 죽음의 땅',
@@ -83,11 +63,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-22T19:30:00',
                 endTime: '2025-11-22T21:17:00',
                 totalSeatCount: 180,
-                availableSeatCount: 46
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 46,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 귀멸의 칼날: 무한성편',
@@ -101,11 +81,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-20T12:10:00',
                 endTime: '2025-11-20T14:45:00',
                 totalSeatCount: 180,
-                availableSeatCount: 32
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 32,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '퍼스트 라이드',
@@ -119,13 +99,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-19T16:10:00',
                 endTime: '2025-11-19T18:06:00',
                 totalSeatCount: 120,
-                availableSeatCount: 59
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 59,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '코엑스',
@@ -142,11 +122,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-16T13:10:00',
                 endTime: '2025-11-16T15:02:00',
                 totalSeatCount: 150,
-                availableSeatCount: 43
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 43,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 체인소 맨: 레제편',
@@ -160,11 +140,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-17T19:10:00',
                 endTime: '2025-11-17T20:50:00',
                 totalSeatCount: 200,
-                availableSeatCount: 39
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 39,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 주술회전: 회옥·옥절',
@@ -178,11 +158,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-18T15:30:00',
                 endTime: '2025-11-18T17:20:00',
                 totalSeatCount: 150,
-                availableSeatCount: 58
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 58,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '프레데터: 죽음의 땅',
@@ -196,11 +176,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-22T15:50:00',
                 endTime: '2025-11-22T17:37:00',
                 totalSeatCount: 150,
-                availableSeatCount: 27
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 27,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '퍼스트 라이드',
@@ -214,13 +194,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-19T19:40:00',
                 endTime: '2025-11-19T21:36:00',
                 totalSeatCount: 200,
-                availableSeatCount: 47
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 47,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '센트럴',
@@ -237,11 +217,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-17T10:00:00',
                 endTime: '2025-11-17T11:40:00',
                 totalSeatCount: 110,
-                availableSeatCount: 88
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 88,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '위키드',
@@ -255,13 +235,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-21T13:10:00',
                 endTime: '2025-11-21T15:50:00',
                 totalSeatCount: 110,
-                availableSeatCount: 58
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 58,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '청담',
@@ -278,11 +258,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-16T18:20:00',
                 endTime: '2025-11-16T20:12:00',
                 totalSeatCount: 130,
-                availableSeatCount: 29
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 29,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 주술회전: 회옥·옥절',
@@ -296,11 +276,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-18T12:00:00',
                 endTime: '2025-11-18T13:50:00',
                 totalSeatCount: 140,
-                availableSeatCount: 74
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 74,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '프레데터: 죽음의 땅',
@@ -314,9 +294,9 @@ export const mockShowtimes = [
                 startTime: '2025-11-22T11:40:00',
                 endTime: '2025-11-22T13:27:00',
                 totalSeatCount: 140,
-                availableSeatCount: 53
-              }
-            ]
+                availableSeatCount: 53,
+              },
+            ],
           },
           {
             theaterName: '1관',
@@ -327,11 +307,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-22T23:50:00',
                 endTime: '2025-11-23T01:37:00',
                 totalSeatCount: 130,
-                availableSeatCount: 70
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 70,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 귀멸의 칼날: 무한성편',
@@ -345,13 +325,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-20T16:30:00',
                 endTime: '2025-11-20T19:05:00',
                 totalSeatCount: 130,
-                availableSeatCount: 20
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 20,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '성수',
@@ -368,11 +348,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-17T14:20:00',
                 endTime: '2025-11-17T16:00:00',
                 totalSeatCount: 100,
-                availableSeatCount: 52
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 52,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '위키드',
@@ -386,13 +366,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-21T09:00:00',
                 endTime: '2025-11-21T11:40:00',
                 totalSeatCount: 100,
-                availableSeatCount: 66
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 66,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '동대문',
@@ -409,11 +389,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-19T13:30:00',
                 endTime: '2025-11-19T15:26:00',
                 totalSeatCount: 90,
-                availableSeatCount: 83
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 83,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '위키드',
@@ -427,13 +407,13 @@ export const mockShowtimes = [
                 startTime: '2025-11-21T18:30:00',
                 endTime: '2025-11-21T21:10:00',
                 totalSeatCount: 90,
-                availableSeatCount: 42
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                availableSeatCount: 42,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     cinemaName: '신촌',
@@ -450,11 +430,11 @@ export const mockShowtimes = [
                 startTime: '2025-11-17T23:50:00',
                 endTime: '2025-11-18T01:30:00',
                 totalSeatCount: 95,
-                availableSeatCount: 61
-              }
-            ]
-          }
-        ]
+                availableSeatCount: 61,
+              },
+            ],
+          },
+        ],
       },
       {
         movieTitle: '극장판 귀멸의 칼날: 무한성편',
@@ -468,12 +448,12 @@ export const mockShowtimes = [
                 startTime: '2025-11-20T21:10:00',
                 endTime: '2025-11-20T23:45:00',
                 totalSeatCount: 95,
-                availableSeatCount: 71
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+                availableSeatCount: 71,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
