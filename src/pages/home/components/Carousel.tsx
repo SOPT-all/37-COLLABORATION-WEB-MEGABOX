@@ -41,7 +41,7 @@ export default function Carousel({ items, handleClickItem }: CarouselProps) {
           <div
             onClick={() => handleClickItem(movie.id)}
             key={movie.id}
-            className='h-[7.9rem] w-[5.6rem] flex-shrink-0'
+            className='h-[7.9rem] w-[5.6rem] flex-shrink-0 cursor-pointer'
           >
             <img
               src={movie.image}

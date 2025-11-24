@@ -13,8 +13,8 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 1,
     title: '나우 유 씨 미 3',
     tag: '#애니메이션 #액션',
-    image: '/assets/@movie/img-moviePoster.png',
-    backgroundImage: '/assets/@movie/img-stillcut1.png',
+    image: '/assets/@movie/img-movieposter-nowyou.svg',
+    backgroundImage: '/assets/@movie/img-stillcut-nowyou.svg',
   },
   2: {
     id: 2,
@@ -27,8 +27,8 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 3,
     title: '극장판 주술회전: 회옥·옥절',
     tag: '#애니메이션 #액션',
-    image: '/assets/@movie/img-movieposter-jujutsuKaisen.svg',
-    backgroundImage: '/assets/@movie/img-stillcut-jujutsuKaisen.svg',
+    image: '/assets/@movie/img-movieposter-magic.svg',
+    backgroundImage: '/assets/@movie/img-stillcut-magic.svg',
   },
   4: {
     id: 4,
@@ -41,8 +41,8 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 5,
     title: '극장판 귀멸의 칼날: 무한성편',
     tag: '#애니메이션 #액션',
-    image: '/assets/@movie/img-movieposter-kimetsu.svg',
-    backgroundImage: '/assets/@movie/img-stillcut-kimetsu.svg',
+    image: '/assets/@movie/img-movieposter-knife.svg',
+    backgroundImage: '/assets/@movie/img-stillcut-knife.svg',
   },
   6: {
     id: 6,
