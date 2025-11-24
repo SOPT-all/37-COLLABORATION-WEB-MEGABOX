@@ -1,9 +1,9 @@
 import { MOVIES } from '@constants/movies';
 import { cn } from '@utils/cn';
 
-import ImgBtBolby from '@/../public/assets/img-bt-bolby.png';
-import ImgBtPlay from '@/../public/assets/img-bt-4d.png';
-import Button from '../button/Button';
+import ImgBtBolby from '@/../public/assets/img-bt-bolby.svg';
+import ImgBtPlay from '@/../public/assets/img-bt-4d.svg';
+import { Button } from '@components/index';
 
 interface MovieProps {
   id: number;
