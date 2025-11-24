@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES } from '@router/constant/routes';
 import Layout from '@router/Layout';
-import Home from '@/pages/home/Home';
-import Booking from '@/pages/booking/Booking';
+import Home from '@pages/home/Home';
+import Reservation from '@pages/movie-reservation/Reservation';
 
 export const router = createBrowserRouter([
   {
@@ -14,8 +14,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ROUTES.BOOKING,
-        element: <Booking />,
+        path: ROUTES.MOVIE_RESERVATION,
+        element: <Reservation />,
       },
     ],
   },

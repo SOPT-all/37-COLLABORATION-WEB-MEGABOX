@@ -1,5 +1,8 @@
-import { formatTime } from "@/shared/utils";
-import { useShowtimeStore, type ShowtimeDetail } from '@/pages/booking/store/showtimeStore';
+import { formatTime } from '@/shared/utils';
+import {
+  useShowtimeStore,
+  type ShowtimeDetail,
+} from '@pages/movie-reservation/store/showtimeStore';
 
 interface TimeProps {
   cinemaName: string;
@@ -24,9 +27,11 @@ export default function Time({
   endTime,
   totalSeatCount,
   availableSeatCount,
-  handleOpenModal
+  handleOpenModal,
 }: TimeProps) {
-  const setSelectedShowtime = useShowtimeStore((state) => state.setSelectedShowtime);
+  const setSelectedShowtime = useShowtimeStore(
+    state => state.setSelectedShowtime
+  );
 
   const handleClick = () => {
     setSelectedShowtime({
@@ -46,15 +51,19 @@ export default function Time({
 
   return (
     <div
-      className='flex flex-col gap-[0.4rem] w-[7.9rem] border rounded-[0.4rem] border-gray-600 cursor-pointer'
+      className='flex w-[7.9rem] cursor-pointer flex-col gap-[0.4rem] rounded-[0.4rem] border border-gray-600'
       onClick={handleClick}
     >
-      <div className='flex flex-col items-center w-full pt-[1.4rem]'>
+      <div className='flex w-full flex-col items-center pt-[1.4rem]'>
         <span className='font-title3 text-gray-0'>{formatTime(startTime)}</span>
-        <span className='font-label1 text-gray-400'>~{formatTime(endTime)}</span>
+        <span className='font-label1 text-gray-400'>
+          ~{formatTime(endTime)}
+        </span>
       </div>
-      <div className='flex justify-center gap-[0.3rem] w-full py-[0.2rem] rounded-b-[0.4rem] bg-gray-800'>
-        <span className='font-subtitle1 text-violet-400'>{availableSeatCount}</span>
+      <div className='flex w-full justify-center gap-[0.3rem] rounded-b-[0.4rem] bg-gray-800 py-[0.2rem]'>
+        <span className='font-subtitle1 text-violet-400'>
+          {availableSeatCount}
+        </span>
         <span className='font-subtitle1 text-gray-600'>|</span>
         <span className='font-subtitle1 text-gray-400'>{totalSeatCount}</span>
       </div>

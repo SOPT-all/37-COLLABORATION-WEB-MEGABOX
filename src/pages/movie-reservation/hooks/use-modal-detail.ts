@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useModal } from '@/shared/components/@modal/hooks/use-modal';
+import { useModal } from '@components/@modal/hooks/use-modal';
 import { type ShowtimeDetail } from '../store/showtimeStore';
-import { formatTime, formatDate } from '@/shared/utils/date-format';
+import { formatTime, formatDate } from '@utils/date-format';
 
 interface useModalDetailProps {
-  selectedDate: string | null
+  selectedDate: string | null;
   selectedWeekday: string;
   selectedShowtime: ShowtimeDetail | null;
 }
@@ -18,18 +18,13 @@ interface useModalDetailProps {
 export function useModalDetail({
   selectedDate,
   selectedWeekday,
-  selectedShowtime
+  selectedShowtime,
 }: useModalDetailProps) {
   const navigate = useNavigate();
 
   const maxQuantity = selectedShowtime?.totalSeatCount ?? 0;
-  const {
-    isOpen,
-    handleOpenChange,
-    quantity,
-    handleDecrease,
-    handleIncrease
-  } = useModal(maxQuantity);
+  const { isOpen, handleOpenChange, quantity, handleDecrease, handleIncrease } =
+    useModal(maxQuantity);
 
   const handleClickPayment = () => {
     handleOpenChange(false);

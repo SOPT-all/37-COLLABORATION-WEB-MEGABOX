@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { mockCinema } from '@pages/booking/mock';
+import { mockCinema } from '@pages/movie-reservation/mock';
 
 export function useSelection() {
   const [selectedMovieIds, setSelectedMovieIds] = useState<number[]>([1]);
   const [selectedDateId, setSelectedDateId] = useState<number>(0);
   const [selectedTimeId, setSelectedTimeId] = useState<number | null>(null);
 
-  const selectedCinemas = Array.from(new Set(selectedMovieIds.flatMap(id => mockCinema[id]?.cinemas || [])));
+  const selectedCinemas = Array.from(
+    new Set(selectedMovieIds.flatMap(id => mockCinema[id]?.cinemas || []))
+  );
 
   const handleClickMovie = (id: number) => {
     setSelectedMovieIds(prev => {
@@ -16,11 +18,11 @@ export function useSelection() {
   };
 
   const handleClickDate = (id: number) => {
-    setSelectedDateId(id)
+    setSelectedDateId(id);
   };
 
   const handleClickTime = (id: number) => {
-    setSelectedTimeId(prev => prev === id ? null : id)
+    setSelectedTimeId(prev => (prev === id ? null : id));
   };
 
   return {

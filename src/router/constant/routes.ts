@@ -1,4 +1,4 @@
 export const ROUTES = {
   HOME: '/',
-  BOOKING: '/movie-reservation',
+  MOVIE_RESERVATION: '/movie-reservation',
 };

@@ -1,5 +1,5 @@
-import type { ShowtimeResponse } from "apis/data-contracts";
-import { Time } from '@pages/booking/components/index';
+import type { ShowtimeResponse } from 'apis/data-contracts';
+import { Time } from '@pages/movie-reservation/components/index';
 
 interface TheaterProps {
   cinemaName: string;
@@ -16,7 +16,7 @@ export default function Theater({
   theaterName,
   screenType,
   showtimes,
-  handleOpenModal
+  handleOpenModal,
 }: TheaterProps) {
   return (
     <>
@@ -24,8 +24,8 @@ export default function Theater({
         <span className='font-label2 text-gray-0'>{theaterName}</span>
         <span className='font-label2 text-gray-500'>{screenType}</span>
       </div>
-      <div className='flex gap-[0.9rem] flex-wrap'>
-        {showtimes?.map((showtime) => (
+      <div className='flex flex-wrap gap-[0.9rem]'>
+        {showtimes?.map(showtime => (
           <Time
             key={showtime.showtimeId}
             cinemaName={cinemaName}

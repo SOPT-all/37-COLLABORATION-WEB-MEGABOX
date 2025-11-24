@@ -5,23 +5,31 @@ import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
 import Tooltip from '@components/tooltip/Tooltip';
 import { MOVIES } from '@constants/movies';
-import { cn, mappingMoviePosters } from '@/shared/utils/index';
-import { useFilter, useTooltip, useSelection, useModalDetail } from '@pages/booking/hooks/index';
-import { Chip, Carousel, Cinema, Movie, Theater } from '@pages/booking/components/index';
-import { getDateAndWeekday } from '@pages/booking/utils/get-date-info';
-import { TIMES, CINEMAS } from '@pages/booking/constants/index';
-import { mockDates } from '@pages/booking/mock';
-import { useShowtimeStore } from '@pages/booking/store/showtimeStore';
+import { cn, mappingMoviePosters } from '@utils/index';
+import {
+  useFilter,
+  useTooltip,
+  useSelection,
+  useModalDetail,
+} from '@pages/movie-reservation/hooks/index';
+import {
+  Chip,
+  Carousel,
+  Cinema,
+  Movie,
+  Theater,
+} from '@pages/movie-reservation/components/index';
+import { getDateAndWeekday } from '@pages/movie-reservation/utils/get-date-info';
+import { TIMES, CINEMAS } from '@pages/movie-reservation/constants/index';
+import { mockDates } from '@pages/movie-reservation/mock';
+import { useShowtimeStore } from '@pages/movie-reservation/store/showtimeStore';
 
-export default function Booking() {
+export default function Reservation() {
   const navigate = useNavigate();
 
-  const selectedShowtime = useShowtimeStore((state) => state.selectedShowtime);
+  const selectedShowtime = useShowtimeStore(state => state.selectedShowtime);
 
-  const {
-    isTooltipOpen,
-    handleCloseTooltip,
-  } = useTooltip();
+  const { isTooltipOpen, handleCloseTooltip } = useTooltip();
   const {
     selectedMovieIds,
     selectedCinemas,
@@ -31,22 +39,25 @@ export default function Booking() {
     selectedDateId,
     selectedTimeId,
   } = useSelection();
-  const filteredShowtimes
-    = useFilter(selectedTimeId);
+  const filteredShowtimes = useFilter(selectedTimeId);
 
   const initialOpenMap = Object.fromEntries(
     filteredShowtimes.map(cinema => [cinema.cinemaName, true])
   );
-  const [showtimeOpenMap, setShowtimeOpenMap] = useState<Record<string, boolean>>(initialOpenMap);
+  const [showtimeOpenMap, setShowtimeOpenMap] =
+    useState<Record<string, boolean>>(initialOpenMap);
 
-  const movies = mappingMoviePosters().map((movie) => ({
+  const movies = mappingMoviePosters().map(movie => ({
     ...movie,
     title: MOVIES[movie.id].title,
   }));
 
-  const dates = [...mockDates].map((date) => date.slice(8));
+  const dates = [...mockDates].map(date => date.slice(8));
 
-  const { selectedDate, selectedWeekday, weekdays } = getDateAndWeekday(mockDates, selectedDateId);
+  const { selectedDate, selectedWeekday, weekdays } = getDateAndWeekday(
+    mockDates,
+    selectedDateId
+  );
 
   const {
     isOpen,
@@ -58,7 +69,7 @@ export default function Booking() {
     modalMovieTitle,
     modalDateString,
     modalLocation,
-  } = useModalDetail({selectedDate, selectedWeekday, selectedShowtime});
+  } = useModalDetail({ selectedDate, selectedWeekday, selectedShowtime });
 
   const handleOpenShowtime = (cinemaName: string, isOpen: boolean) => {
     setShowtimeOpenMap(prev => ({
@@ -76,14 +87,14 @@ export default function Booking() {
       />
 
       <div className='p-[2rem]'>
-        <div className='scroll-fade flex flex-col items-start gap-[1.2rem] w-full'>
+        <div className='scroll-fade flex w-full flex-col items-start gap-[1.2rem]'>
           <Carousel
             movies={movies}
             selectedMovieIds={selectedMovieIds}
-            handleClick={(id) => handleClickMovie(id)}
+            handleClick={id => handleClickMovie(id)}
           />
-          <div className='flex gap-[0.7rem] w-full px-[0.5rem] overflow-x-scroll scrollbar-hide'>
-            {CINEMAS.map((cinema) => (
+          <div className='scrollbar-hide flex w-full gap-[0.7rem] overflow-x-scroll px-[0.5rem]'>
+            {CINEMAS.map(cinema => (
               <Chip
                 key={cinema}
                 variant='cinema'
@@ -94,7 +105,7 @@ export default function Booking() {
             ))}
           </div>
 
-          <div className='flex gap-[0.7rem] w-full px-[0.5rem] overflow-x-scroll scrollbar-hide'>
+          <div className='scrollbar-hide flex w-full gap-[0.7rem] overflow-x-scroll px-[0.5rem]'>
             {dates.map((day, idx) => (
               <Chip
                 key={idx}
@@ -102,8 +113,24 @@ export default function Booking() {
                 isSelected={selectedDateId === idx}
                 onClick={() => handleClickDate(idx)}
               >
-                <span className={cn('font-title3', weekdays[idx] === '토' && 'text-blue-500', weekdays[idx] === '일' && 'text-red-500')}>{day}</span>
-                <span className={cn('font-label1', weekdays[idx] === '토' && 'text-blue-500', weekdays[idx] === '일' && 'text-red-500')}>{weekdays[idx]}</span>
+                <span
+                  className={cn(
+                    'font-title3',
+                    weekdays[idx] === '토' && 'text-blue-500',
+                    weekdays[idx] === '일' && 'text-red-500'
+                  )}
+                >
+                  {day}
+                </span>
+                <span
+                  className={cn(
+                    'font-label1',
+                    weekdays[idx] === '토' && 'text-blue-500',
+                    weekdays[idx] === '일' && 'text-red-500'
+                  )}
+                >
+                  {weekdays[idx]}
+                </span>
               </Chip>
             ))}
           </div>
@@ -113,8 +140,8 @@ export default function Booking() {
           <Divider />
         </div>
 
-        <div className='flex flex-col items-start gap-[1.1rem] w-full'>
-          <div className='flex items-start gap-[0.8rem] w-full py-[1rem] opacity-70 overflow-x-scroll scrollbar-hide'>
+        <div className='flex w-full flex-col items-start gap-[1.1rem]'>
+          <div className='scrollbar-hide flex w-full items-start gap-[0.8rem] overflow-x-scroll py-[1rem] opacity-70'>
             {TIMES.map((time, idx) => (
               <Chip
                 key={idx}
@@ -128,30 +155,32 @@ export default function Booking() {
           </div>
 
           {isTooltipOpen && (
-              <Tooltip
-                message='최근 이용극장을 선호극장에 추가해보세요'
-                handleClose={handleCloseTooltip}
-              />
+            <Tooltip
+              message='최근 이용극장을 선호극장에 추가해보세요'
+              handleClose={handleCloseTooltip}
+            />
           )}
 
-          <div className='flex flex-col gap-[2.2rem] w-full'>
-            {filteredShowtimes.map((cinema) => (
-              <div className='flex flex-col gap-[2.2rem] w-full'>
+          <div className='flex w-full flex-col gap-[2.2rem]'>
+            {filteredShowtimes.map(cinema => (
+              <div className='flex w-full flex-col gap-[2.2rem]'>
                 <Cinema
                   key={cinema.cinemaName}
                   cinemaName={cinema.cinemaName}
                   isShowtimeOpen={showtimeOpenMap[cinema.cinemaName] ?? true}
-                  handleOpenShowtime={(isOpen) => handleOpenShowtime(cinema.cinemaName, isOpen)}
+                  handleOpenShowtime={isOpen =>
+                    handleOpenShowtime(cinema.cinemaName, isOpen)
+                  }
                 />
-                {showtimeOpenMap[cinema.cinemaName] && (
-                  cinema.movies.map((movie) => (
+                {showtimeOpenMap[cinema.cinemaName] &&
+                  cinema.movies.map(movie => (
                     <>
                       <Movie
                         key={`${cinema.cinemaName} - ${movie.movieTitle}`}
                         movieTitle={movie.movieTitle}
                         ageRating={12}
                       />
-                      {movie.theaters.map((theater) => (
+                      {movie.theaters.map(theater => (
                         <Theater
                           key={`${cinema.cinemaName} - ${movie.movieTitle} - ${theater.theaterName}`}
                           theaterName={theater.theaterName}
@@ -163,8 +192,7 @@ export default function Booking() {
                         />
                       ))}
                     </>
-                  ))
-                )}
+                  ))}
               </div>
             ))}
           </div>
