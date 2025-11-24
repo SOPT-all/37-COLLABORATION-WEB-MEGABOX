@@ -1,17 +1,17 @@
 import DiscountGrid from '@pages/payment/section/DiscountSection/DiscountGrid';
-import { COUPON_ITEMS, POINT_ITEMS } from '@/pages/payment/constants/discount';
+import { COUPON_ITEMS, POINT_ITEMS } from '@pages/payment/constants/discount';
 import IconCheckFill from '@assets/components/IconCheckFill';
-import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountContentProps {
-  activeTab: DiscountFormData['activeTab'];
-  selectedDiscountId: DiscountFormData['selectedDiscountId'];
-  isChecked: DiscountFormData['isChecked'];
-  handleDiscountChange: (_id: DiscountFormData['selectedDiscountId']) => void;
+  activeTab: PaymentFormData['activeTab'];
+  selectedDiscountId: PaymentFormData['selectedDiscountId'];
+  isChecked: PaymentFormData['isChecked'];
+  handleDiscountChange: (_id: PaymentFormData['selectedDiscountId']) => void;
   handleCheckedChange: (_checked: boolean) => void;
 }
 
-export const DiscountContent = ({
+const DiscountContent = ({
   activeTab,
   selectedDiscountId,
   handleDiscountChange,

@@ -3,7 +3,7 @@ const EventBanner = () => {
     <div className='rounded-[0.4rem] bg-gray-100 px-[1rem] py-[1.3rem]'>
       <div className='flex items-center gap-[0.2rem]'>
         <img
-          src='/assets/img-toss-logo.png'
+          src='/assets/img-toss-logo.svg'
           alt='toss-payments'
           className='h-[2.9rem]'
         />
@@ -13,7 +13,7 @@ const EventBanner = () => {
       </div>
       <div className='flex items-center gap-[3.3rem]'>
         <img
-          src='/assets/img-010Pay-logo.png'
+          src='/assets/img-010Pay-logo.svg'
           alt='010Pay'
           className='h-[1.9rem]'
         />
@@ -23,6 +23,6 @@ const EventBanner = () => {
       </div>
     </div>
   );
-}
+};
 
-export default EventBanner
+export default EventBanner;

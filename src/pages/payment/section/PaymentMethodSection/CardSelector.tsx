@@ -3,10 +3,11 @@ import * as React from 'react';
 import { cn } from '@utils/cn';
 import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface CardSelectorProps {
-  selectedCard: string | null;
-  onChange: (_card: string) => void;
+  selectedCard: PaymentFormData['selectedCard'];
+  handleSelect: (_card: PaymentFormData['selectedCard']) => void;
 }
 
 const CARD_OPTIONS = [
@@ -39,10 +40,10 @@ const SelectItem = forwardRef<
 
 SelectItem.displayName = 'SelectItem';
 
-const CardSelector = ({ selectedCard, onChange }: CardSelectorProps) => {
+const CardSelector = ({ selectedCard, handleSelect }: CardSelectorProps) => {
   return (
     <div className='mb-[1rem]'>
-      <Select.Root value={selectedCard || ''} onValueChange={onChange}>
+      <Select.Root value={selectedCard} onValueChange={handleSelect}>
         <Select.Trigger className='font-button2 flex w-full items-center justify-between rounded-[0.4rem] border border-gray-300 px-[1rem] py-[1.2rem]'>
           <Select.Value placeholder='카드 선택하기' />
           <Select.Icon>
@@ -50,7 +51,7 @@ const CardSelector = ({ selectedCard, onChange }: CardSelectorProps) => {
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className='overflow-hidden rounded-[0.8rem] border border-gray-300 bg-white shadow-lg'>
+          <Select.Content className='overflow-hidden rounded-[0.8rem] border border-gray-300 bg-gray-0 shadow-lg'>
             <Select.Viewport className='p-[0.8rem]'>
               {CARD_OPTIONS.map(option => (
                 <SelectItem key={option.value} value={option.value}>

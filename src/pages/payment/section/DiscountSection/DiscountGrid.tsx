@@ -1,33 +1,33 @@
 import { cn } from "@utils/cn";
-import type { DiscountItem } from '@/pages/payment/constants/discount';
-import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
+import type { DiscountItem } from '@pages/payment/constants/discount';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 import type { ReactNode } from 'react';
 
 interface DiscountGridProps {
   items: DiscountItem[];
-  selectedId: DiscountFormData['selectedDiscountId'];
-  handleSelect: (_id: DiscountFormData['selectedDiscountId']) => void;
+  selectedId: PaymentFormData['selectedDiscountId'];
+  handleSelect: (_id: PaymentFormData['selectedDiscountId']) => void;
   firstItem?: boolean;
   children?: ReactNode;
 };
 
-export default function DiscountGrid({
+const DiscountGrid = ({
   items,
   selectedId,
   handleSelect,
   firstItem = false,
   children,
-}: DiscountGridProps){
+}: DiscountGridProps) => {
   return (
     <div className='rounded-[0.4rem] bg-gray-100 px-[1.5rem] py-[1.2rem]' role='group' aria-label='할인 수단 목록'>
       <div className='grid grid-cols-2 gap-[0.8rem]'>
-        {items.map((item, index) => (
+        {items.map(item => (
           <button
             key={item.id}
             onClick={() => handleSelect(selectedId === item.id ? null : item.id)}
             className={cn(
-              'font-button1 rounded-[0.4rem] border-[0.1rem] bg-white px-[1rem] py-[1.2rem]',
-              index === 0 && firstItem && 'col-span-2',
+              'font-button1 rounded-[0.4rem] border-[0.1rem] bg-gray-0 px-[1rem] py-[1.2rem]',
+              item.id === items[0].id && firstItem && 'col-span-2',
               selectedId === item.id
                 ? 'border-violet-600 text-violet-600'
                 : 'border-gray-200 text-gray-500'
@@ -42,3 +42,4 @@ export default function DiscountGrid({
   );
 };
 
+export default DiscountGrid;

@@ -3,7 +3,7 @@ interface PaymentBtnProps {
   disabled?: boolean;
 }
 
-export const PaymentBtn = ({ totalAmount, disabled = false }: PaymentBtnProps) => {
+const PaymentBtn = ({ totalAmount, disabled = false }: PaymentBtnProps) => {
   const formatAmount = (amount: number) => {
     return amount.toLocaleString('ko-KR');
   };
@@ -12,9 +12,9 @@ export const PaymentBtn = ({ totalAmount, disabled = false }: PaymentBtnProps) =
     <button
       type='submit'
       disabled={disabled}
-      className='font-button4 w-full bg-violet-600 px-[3.2rem] py-[1.6rem] text-white disabled:bg-gray-600'
+      className='font-button4 w-full bg-violet-600 px-[3.2rem] py-[1.6rem] text-white disabled:bg-gray-800'
     >
-      {formatAmount(totalAmount)}원 결제하기
+      {`${formatAmount(totalAmount)}원 결제하기`}
     </button>
   );
 };

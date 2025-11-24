@@ -12,7 +12,7 @@ interface MovieInfoProps {
 const MovieInfo = ({ movie }: MovieInfoProps) => {
   return (
     <>
-      <section className='bg-white p-[1.6rem]'>
+      <section className='bg-gray-0 p-[1.6rem]'>
         <div className='py-[0.6rem]'>
           <h2 className='font-title2 mb-[2.5rem]'>예매 정보</h2>
           <div className='flex gap-[1.3rem]'>
@@ -26,7 +26,7 @@ const MovieInfo = ({ movie }: MovieInfoProps) => {
               <h3 className='font-body3 text-gray-900'>{movie.title}</h3>
               <p className='font-caption1 text-gray-500'>{movie.showTime}</p>
               <p className='font-caption1 text-gray-500'>{movie.theater}</p>
-              <p className='font-label2 text-violet-600'>성인 {movie.seats}</p>
+              <p className='font-label2 text-violet-600'>{`성인 ${movie.seats}`}</p>
             </div>
           </div>
         </div>
@@ -36,4 +36,4 @@ const MovieInfo = ({ movie }: MovieInfoProps) => {
   );
 };
 
-export default MovieInfo
+export default MovieInfo;

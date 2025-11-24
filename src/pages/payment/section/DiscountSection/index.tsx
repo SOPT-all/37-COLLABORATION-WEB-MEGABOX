@@ -1,19 +1,19 @@
 import DiscountHeader from '@pages/payment/section/DiscountSection/DiscountHeader';
 import DiscountTabs from '@pages/payment/section/DiscountSection/DiscountTabs';
 import DiscountContent from '@pages/payment/section/DiscountSection/DiscountContent';
-import type { DiscountFormData } from '@/pages/payment/schemas/payment.schema';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 import { useWatch, type UseFormReturn } from 'react-hook-form';
 
 interface DiscountSectionProps {
-  form: UseFormReturn<DiscountFormData>;
-  handleActiveTab: (_tab: DiscountFormData['activeTab']) => void;
+  form: UseFormReturn<PaymentFormData>;
+  handleActiveTab: (_tab: PaymentFormData['activeTab']) => void;
   handleSelectedDiscountId: (
-    _id: DiscountFormData['selectedDiscountId']
+    _id: PaymentFormData['selectedDiscountId']
   ) => void;
-  handleIsChecked: (_checked: DiscountFormData['isChecked']) => void;
+  handleIsChecked: (_checked: PaymentFormData['isChecked']) => void;
 }
 
-export const DiscountSection = ({
+const DiscountSection = ({
   form,
   handleActiveTab,
   handleSelectedDiscountId,
@@ -34,13 +34,11 @@ export const DiscountSection = ({
 
   // 토글 핸들러
   const handleToggle = () => {
-    if (activeTab) {
-      handleActiveTab(null);
-    }
+    activeTab ? handleActiveTab(null) : null;
   };
 
   return (
-    <section className='bg-white p-[1.6rem]' aria-labelledby='할인 세션'>
+    <section className='bg-gray-0 p-[1.6rem]' aria-labelledby='할인 세션'>
       <DiscountHeader activeTab={activeTab} handleToggle={handleToggle} />
       <DiscountTabs activeTab={activeTab} handleTabChange={handleActiveTab} />
       <DiscountContent

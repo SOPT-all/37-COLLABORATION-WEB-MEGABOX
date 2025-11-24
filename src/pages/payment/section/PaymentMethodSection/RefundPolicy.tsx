@@ -1,16 +1,18 @@
 import { cn } from '@utils/cn';
 import IconCheckFill from '@assets/components/IconCheckFill';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface RefundPolicyProps {
-  isAgreed: boolean;
-  onChange: (_agreed: boolean) => void;
+  isAgreed: PaymentFormData['isAgreed'];
+  handleChange: (_agreed: PaymentFormData['isAgreed']) => void;
 }
 
-const RefundPolicy = ({ isAgreed, onChange }: RefundPolicyProps) => {
+const RefundPolicy = ({ isAgreed, handleChange }: RefundPolicyProps) => {
   return (
     <div className='mt-[2.2rem]'>
       <button
-        onClick={() => onChange(!isAgreed)}
+        type='button'
+        onClick={() => handleChange(!isAgreed)}
         className='flex items-center gap-[0.6rem]'
       >
         <IconCheckFill

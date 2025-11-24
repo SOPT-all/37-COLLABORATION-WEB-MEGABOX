@@ -1,13 +1,13 @@
 import { cn } from '@utils/cn';
 import UppArrow from '@assets/components/IconSystemUparrow';
-import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountHeaderProps {
-  activeTab: DiscountFormData['activeTab'];
+  activeTab: PaymentFormData['activeTab'];
   handleToggle: () => void;
 }
 
-export const DiscountHeader = ({
+const DiscountHeader = ({
   activeTab,
   handleToggle,
 }: DiscountHeaderProps) => {

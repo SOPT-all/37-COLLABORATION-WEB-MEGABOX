@@ -3,16 +3,13 @@ import IconCard from '@assets/components/IconCard';
 import IconSimpleCard from '@assets/components/IconSimpleCard';
 import Phone from '@assets/components/IconPhone';
 import MyCard from '@assets/components/IconMyCard';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
-type PaymentMethodType =
-  | 'credit-card'
-  | 'simple-pay'
-  | 'phone-pay'
-  | 'account-pay';
+type PaymentMethodType = NonNullable<PaymentFormData['selectedPaymentMethod']>;
 
 interface PaymentGridProps {
-  selectedMethod: PaymentMethodType | null;
-  onChange: (_method: PaymentMethodType) => void;
+  selectedMethod: PaymentFormData['selectedPaymentMethod'];
+  handleSelect: (_method: PaymentMethodType) => void;
 }
 
 const PAYMENT_METHODS = [
@@ -22,10 +19,10 @@ const PAYMENT_METHODS = [
   { id: 'account-pay' as const, label: '내통장결제', icon: MyCard },
 ];
 
-const PaymentGrid = ({ selectedMethod, onChange }: PaymentGridProps) => {
+const PaymentGrid = ({ selectedMethod, handleSelect }: PaymentGridProps) => {
   const handleClick = (method: PaymentMethodType) => {
-    onChange(method);
-  }
+    handleSelect(method);
+  };
   return (
     <div className='mb-[2rem] grid grid-cols-2 gap-[1.2rem]'>
       {PAYMENT_METHODS.map(method => {
@@ -33,6 +30,7 @@ const PaymentGrid = ({ selectedMethod, onChange }: PaymentGridProps) => {
         return (
           <button
             key={method.id}
+            type='button'
             onClick={() => handleClick(method.id)}
             className={cn(
               'relative z-10 flex flex-col items-center gap-[1.2rem] overflow-hidden rounded-[0.4rem] border px-[1rem] py-[1.2rem]',
@@ -73,4 +71,4 @@ const PaymentGrid = ({ selectedMethod, onChange }: PaymentGridProps) => {
   );
 };
 
-export default PaymentGrid
+export default PaymentGrid;

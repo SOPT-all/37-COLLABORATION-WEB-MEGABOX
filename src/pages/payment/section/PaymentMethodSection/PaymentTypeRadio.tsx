@@ -1,17 +1,19 @@
 import IconRadio from '@assets/components/IconChooseFill';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
-type PaymentType = 'isp' | 'general';
+type PaymentType = PaymentFormData['paymentType'];
 
 interface PaymentTypeRadioProps {
   paymentType: PaymentType;
-  onChange: (_type: PaymentType) => void;
+  handleChange: (_type: PaymentType) => void;
 }
 
-const PaymentTypeRadio = ({ paymentType, onChange }: PaymentTypeRadioProps) => {
+const PaymentTypeRadio = ({ paymentType, handleChange }: PaymentTypeRadioProps) => {
   return (
     <div className='mb-[2.2rem] flex gap-[0.8rem]'>
       <button
-        onClick={() => onChange('isp')}
+        type='button'
+        onClick={() => handleChange('isp')}
         className='flex items-center gap-[0.5rem]'
       >
         <IconRadio
@@ -24,7 +26,8 @@ const PaymentTypeRadio = ({ paymentType, onChange }: PaymentTypeRadioProps) => {
         <span className='font-button2 text-gray800'>ISP</span>
       </button>
       <button
-        onClick={() => onChange('general')}
+        type='button'
+        onClick={() => handleChange('general')}
         className='flex items-center gap-[0.5rem]'
       >
         <IconRadio
