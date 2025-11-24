@@ -1,8 +1,8 @@
 import { MOVIES } from '@constants/movies';
 import { cn } from '@utils/cn';
 
-import ImgBtBolby from '@/../public/assets/img-bt-bolby.png';
-import ImgBtPlay from '@/../public/assets/img-bt-4d.png';
+import ImgBtBolby from '@/../public/assets/img-bt-bolby.svg';
+import ImgBtPlay from '@/../public/assets/img-bt-4d.svg';
 
 interface MovieProps {
   id: number;
