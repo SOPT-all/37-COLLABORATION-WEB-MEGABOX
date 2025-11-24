@@ -1,22 +1,10 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  discountFormDefaultValues,
-  discountFormSchema,
-  type DiscountFormData,
-} from '@pages/payment/schemas/payment.schema'
+import { usePaymentForm } from './hooks/use-payment-form'; 
 import { DiscountSection } from './section/DiscountSection'
 
 
 const Payment = () => {
-  const form = useForm({
-    resolver: zodResolver(discountFormSchema),
-    defaultValues: discountFormDefaultValues,
-  });
-
-  const onSubmit = (data: DiscountFormData) => {
-    console.info('폼 데이터', data);
-  }
+  // 제출 버튼 비활성화, 토스트 메시지(에러 문구)를 위해 formData, errors 냅둠
+  const { form, formData, errors, onSubmit} = usePaymentForm();
 
   return (
     <>
