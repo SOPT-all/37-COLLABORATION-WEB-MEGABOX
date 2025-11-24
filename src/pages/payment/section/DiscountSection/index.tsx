@@ -11,7 +11,7 @@ interface DiscountSectionProps {
 export const DiscountSection = ({ form }: DiscountSectionProps) => {
   // 탭 컨트롤러
   const {
-    field: { value: activeTab, onChange: onTabChange },
+    field: { value: activeTab, onChange: handleTabChange },
   } = useController({
     name: 'activeTab',
     control: form.control,
@@ -19,7 +19,7 @@ export const DiscountSection = ({ form }: DiscountSectionProps) => {
 
   // 그리드 아이템 컨트롤러
   const {
-    field: { value: selectedDiscountId, onChange: onDiscountChange },
+    field: { value: selectedDiscountId, onChange: handleDiscountChange },
   } = useController({
     name: 'selectedDiscountId',
     control: form.control,
@@ -27,7 +27,7 @@ export const DiscountSection = ({ form }: DiscountSectionProps) => {
 
   // 체크박스 컨트롤러
   const {
-    field: { value: isChecked, onChange: onCheckedChange },
+    field: { value: isChecked, onChange: handleCheckedChange },
   } = useController({
     name: 'isChecked',
     control: form.control,
@@ -36,20 +36,20 @@ export const DiscountSection = ({ form }: DiscountSectionProps) => {
   // 토글 핸들러
   const handleToggle = () => {
     if (activeTab) {
-      onTabChange(null);
+      handleTabChange(null);
     }
   };
 
   return (
     <section className='bg-white p-[1.6rem]' aria-labelledby='할인 세션'>
-      <DiscountHeader activeTab={activeTab} onToggle={handleToggle} />
-      <DiscountTabs activeTab={activeTab} onTabChange={onTabChange} />
+      <DiscountHeader activeTab={activeTab} handleToggle={handleToggle} />
+      <DiscountTabs activeTab={activeTab} handleTabChange={handleTabChange} />
       <DiscountContent
         activeTab={activeTab}
         selectedDiscountId={selectedDiscountId}
-        onDiscountChange={onDiscountChange}
+        handleDiscountChange={handleDiscountChange}
         isChecked={isChecked}
-        onCheckedChange={onCheckedChange}
+        handleCheckedChange={handleCheckedChange}
       />
     </section>
   );

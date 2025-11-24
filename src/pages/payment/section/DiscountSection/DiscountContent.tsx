@@ -1,5 +1,5 @@
 import DiscountGrid from '@pages/payment/section/DiscountSection/DiscountGrid';
-import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
+import { COUPON_ITEMS, POINT_ITEMS } from '@/pages/payment/contants/discount';
 import IconCheckFill from '@assets/components/IconCheckFill';
 import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 
@@ -7,16 +7,16 @@ interface DiscountContentProps {
   activeTab: DiscountFormData['activeTab'];
   selectedDiscountId: DiscountFormData['selectedDiscountId'];
   isChecked: DiscountFormData['isChecked'];
-  onDiscountChange: (_id: DiscountFormData['selectedDiscountId']) => void;
-  onCheckedChange: (_checked: boolean) => void;
+  handleDiscountChange: (_id: DiscountFormData['selectedDiscountId']) => void;
+  handleCheckedChange: (_checked: boolean) => void;
 }
 
 export const DiscountContent = ({
   activeTab,
   selectedDiscountId,
-  onDiscountChange,
+  handleDiscountChange,
   isChecked,
-  onCheckedChange,
+  handleCheckedChange,
 }: DiscountContentProps) => {
   return (
     <div role='tabpanel' aria-labelledby='coupon-tab'>
@@ -24,7 +24,7 @@ export const DiscountContent = ({
         <DiscountGrid
           items={COUPON_ITEMS}
           selectedId={selectedDiscountId}
-          onSelect={onDiscountChange}
+          handleSelect={handleDiscountChange}
           firstItem={false}
         >
           <div className='mt-[0.8rem] flex items-center justify-between py-[0.5rem]'>
@@ -32,7 +32,7 @@ export const DiscountContent = ({
               <button
                 type='button'
                 onClick={() => {
-                  onCheckedChange(!isChecked);
+                  handleCheckedChange(!isChecked);
                 }}
                 className='flex items-center gap-[0.6rem]'
                 role='checkbox'
@@ -75,7 +75,7 @@ export const DiscountContent = ({
         <DiscountGrid
           items={POINT_ITEMS}
           selectedId={selectedDiscountId}
-          onSelect={onDiscountChange}
+          handleSelect={handleDiscountChange}
           firstItem={true}
         />
       )}

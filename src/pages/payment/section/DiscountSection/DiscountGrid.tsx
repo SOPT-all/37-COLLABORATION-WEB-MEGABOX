@@ -1,12 +1,12 @@
 import { cn } from "@utils/cn";
-import type { DiscountItem } from '@constants/discount';
+import type { DiscountItem } from '@/pages/payment/contants/discount';
 import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 import type { ReactNode } from 'react';
 
 interface DiscountGridProps {
   items: DiscountItem[];
   selectedId: DiscountFormData['selectedDiscountId'];
-  onSelect: (_id: DiscountFormData['selectedDiscountId']) => void;
+  handleSelect: (_id: DiscountFormData['selectedDiscountId']) => void;
   firstItem?: boolean;
   children?: ReactNode;
 };
@@ -14,7 +14,7 @@ interface DiscountGridProps {
 const DiscountGrid = ({
   items,
   selectedId,
-  onSelect,
+  handleSelect,
   firstItem = false,
   children,
 }: DiscountGridProps) => {
@@ -24,7 +24,7 @@ const DiscountGrid = ({
         {items.map((item, index) => (
           <button
             key={item.id}
-            onClick={() => onSelect(selectedId === item.id ? null : item.id)}
+            onClick={() => handleSelect(selectedId === item.id ? null : item.id)}
             className={cn(
               'font-button1 rounded-[0.4rem] border-[0.1rem] bg-white px-[1rem] py-[1.2rem]',
               index === 0 && firstItem && 'col-span-2',

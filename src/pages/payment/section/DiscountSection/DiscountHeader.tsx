@@ -4,12 +4,12 @@ import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountHeaderProps {
   activeTab: DiscountFormData['activeTab'];
-  onToggle: () => void;
+  handleToggle: () => void;
 }
 
 export const DiscountHeader = ({
   activeTab,
-  onToggle,
+  handleToggle,
 }: DiscountHeaderProps) => {
   return (
     <div className='mb-[2.5rem] flex items-center justify-between'>
@@ -19,7 +19,7 @@ export const DiscountHeader = ({
       <div>
         <button
           type='button'
-          onClick={onToggle}
+          onClick={handleToggle}
           className='flex items-center gap-[0.9rem]'
           aria-label={activeTab ? '할인 수단 선택 닫기' : '할인 수단 선택 열기'}
         >
