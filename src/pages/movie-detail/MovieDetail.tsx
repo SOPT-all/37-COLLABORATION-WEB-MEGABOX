@@ -9,7 +9,6 @@ import {
   Tab,
   TabContainer,
 } from '@pages/movie-detail/components/MovieDetailTabs';
-import ImgBanner from '@/../public/assets/img-Banner1.png';
 
 export default function MovieDetail() {
   const {
@@ -87,7 +86,7 @@ export default function MovieDetail() {
 
       <div className="relative overflow-hidden">
         <img
-          src={ImgBanner}
+          src="/assets/img-Banner1.png"
           alt="이벤트 배너"
           className="h-[7.6rem] w-full object-cover"
         />
