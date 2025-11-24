@@ -1,6 +1,9 @@
 import { IconStarFill } from '@assets/index';
 import { getRoundedStarStates } from '@utils/index';
-import { MOVIE_DETAIL_STATS, MOVIE_DETAIL_REVIEWS } from './mock';
+import {
+  MOVIE_DETAIL_STATS,
+  MOVIE_DETAIL_REVIEWS,
+} from '@pages/movie-detail/mock';
 import { Button, Review } from '@components/index';
 
 export default function ReviewSection() {

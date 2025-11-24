@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import type { MovieDetailTab } from '../MovieDetailTabs';
-import { MOVIE_DETAIL_DESCRIPTION } from '../mock';
+import { MOVIE_DETAIL_DESCRIPTION } from '@pages/movie-detail/mock';
+import type { MovieDetailMenu } from '@pages/movie-detail/types/menu';
 
 export function useMovieDetail() {
-  const [activeTab, setActiveTab] = useState<MovieDetailTab>('info');
+  const [activeTab, setActiveTab] = useState<MovieDetailMenu>('info');
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
-  const handleClickTab = (tab: MovieDetailTab) => {
+  const handleClickTab = (tab: MovieDetailMenu) => {
     setActiveTab(tab);
   };
 
   const handleToggleDescription = () => {
-    setIsDescriptionExpanded((prev) => !prev);
+    setIsDescriptionExpanded(prev => !prev);
   };
 
   const descriptionText = isDescriptionExpanded

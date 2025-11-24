@@ -1,4 +1,4 @@
-import { MOVIE_DETAIL_AUDIENCE_CARD } from './mock';
+import { MOVIE_DETAIL_AUDIENCE_CARD } from '@pages/movie-detail/mock';
 import { IconUparrow } from '@assets/index';
 import { Button } from '@components/index';
 import {
