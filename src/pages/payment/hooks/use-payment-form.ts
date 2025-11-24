@@ -18,10 +18,32 @@ export const usePaymentForm = () => {
         trigger,
         watch,
         formState: { errors, isValid },
+        setValue,
     } = form;
 
     // 전체 폼 구독
     const formData = watch();
+
+    const fields = {
+        activeTab: formData.activeTab,
+        selectedDiscountId: formData.selectedDiscountId,
+        isChecked: formData.isChecked,
+    };
+
+    // 탭
+    const handleActiveTab = (tab: DiscountFormData['activeTab']) => {
+        setValue('activeTab', tab, {shouldValidate: true});
+    }
+
+    // 그리드 아이템
+    const handleSelectedDiscountId = (id: DiscountFormData['selectedDiscountId']) => {
+        setValue('selectedDiscountId', id, {shouldValidate: true})
+    }
+
+    // 체크박스
+    const handleIsChecked = (id: DiscountFormData['isChecked']) => {
+        setValue('isChecked', id, {shouldValidate: true})
+    }
 
     const onSubmit = async(data: DiscountFormData) => {
         // 모든 필드 검증
@@ -39,5 +61,9 @@ export const usePaymentForm = () => {
         errors,
         isValid,
         onSubmit,
+        handleActiveTab,
+        handleSelectedDiscountId,
+        handleIsChecked,
+        fields
     }
 }

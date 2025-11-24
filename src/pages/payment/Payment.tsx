@@ -3,12 +3,17 @@ import { DiscountSection } from '@pages/payment/section/DiscountSection'
 
 
 export default function Payment() {
-  const { form, onSubmit} = usePaymentForm();
+  const { form, fields, handleActiveTab, handleSelectedDiscountId, handleIsChecked, onSubmit} = usePaymentForm();
 
   return (
     <>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <DiscountSection form={form} />
+        <DiscountSection
+          form={form}
+          handleActiveTab={handleActiveTab}
+          handleSelectedDiscountId={handleSelectedDiscountId}
+          handleIsChecked={handleIsChecked}
+        />
 
         {/* 버튼 (테스트용) */}
         <button
