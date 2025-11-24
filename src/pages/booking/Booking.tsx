@@ -76,13 +76,13 @@ export default function Booking() {
       />
 
       <div className='p-[2rem]'>
-        <div className='flex flex-col items-start gap-[1.2rem] w-full'>
+        <div className='scroll-fade flex flex-col items-start gap-[1.2rem] w-full'>
           <Carousel
             movies={movies}
             selectedMovieIds={selectedMovieIds}
             handleClick={(id) => handleClickMovie(id)}
           />
-          <div className='flex gap-[0.7rem] w-full overflow-x-scroll scrollbar-hide'>
+          <div className='flex gap-[0.7rem] w-full px-[0.5rem] overflow-x-scroll scrollbar-hide'>
             {CINEMAS.map((cinema) => (
               <Chip
                 key={cinema}
@@ -94,7 +94,7 @@ export default function Booking() {
             ))}
           </div>
 
-          <div className='flex gap-[0.7rem] w-full overflow-x-scroll scrollbar-hide'>
+          <div className='flex gap-[0.7rem] w-full px-[0.5rem] overflow-x-scroll scrollbar-hide'>
             {dates.map((day, idx) => (
               <Chip
                 key={idx}

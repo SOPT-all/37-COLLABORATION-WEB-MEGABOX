@@ -18,7 +18,7 @@ export default function Carousel({
   handleClick
 }: CarouselProps) {
   return (
-    <ul className='flex items-center gap-[0.9rem] w-full overflow-x-scroll scrollbar-hide'>
+    <ul className='flex items-center gap-[0.9rem] w-full px-[0.5rem] overflow-x-scroll scrollbar-hide'>
       {movies.map((movie) => {
         return (
           <li key={movie.id}>
