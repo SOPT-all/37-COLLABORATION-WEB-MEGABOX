@@ -25,7 +25,7 @@ export const MOVIE_DETAIL_AUDIENCE_CARD = {
   cumulativeAudienceText: '285.0만',
   openDayText: '개봉 43일차',
   dailyAudienceText: '24,611',
-  dailyCompareText: '전일대비 67.9% ▲',
+  dailyCompareText: '전일대비 67.9%',
 };
 
 export const MOVIE_DETAIL_REVIEWS = [

@@ -1,252 +1,99 @@
-import { useState, useEffect } from 'react';
-
-import ImgTrailer1 from '@/../public/assets/@movies/img-trailer.png';
-import ImgTrailer2 from '@/../public/assets/@movies/img-trailer2.png';
-import ImgTrailer3 from '@/../public/assets/@movies/img-trailer3.png';
-import ImgStillCut from '@/../public/assets/@movies/img-stillcut1.png';
-import ImgGoods from '@/../public/assets/@movies/img-goods.png';
 import { MOVIE_DETAIL_AUDIENCE_CARD } from './mock';
-
-// 테스트용 더미 데이터
-const TRAILERS = [ImgTrailer1, ImgTrailer2, ImgTrailer3, ImgTrailer1, ImgTrailer2];
-const POSTERS = [ImgStillCut, ImgStillCut, ImgStillCut];
-const GOODS = [
-  {
-    id: 1,
-    title: '<체인소 맨> 특별 포스터',
-    image: ImgGoods,
-  },
-];
+import { IconUparrow } from '@assets/index';
+import { Button } from '@components/index';
+import {
+  TRAILERS,
+  POSTERS,
+  GOODS,
+} from '@pages/movie-detail/constants/info-mock';
 
 export default function InfoSection() {
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [viewerImages, setViewerImages] = useState<string[]>([]);
-  const [viewerIndex, setViewerIndex] = useState(0);
-
-  useEffect(() => {
-    if (isViewerOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isViewerOpen]);
-
-  const openViewer = (images: string[], index: number) => {
-    setViewerImages(images);
-    setViewerIndex(index);
-    setIsViewerOpen(true);
-  };
-
-  const closeViewer = () => setIsViewerOpen(false);
-
-  const handleOpenTrailerViewer = (index: number) => () => {
-    openViewer(TRAILERS, index);
-  };
-
-  const handleOpenPosterViewer = (index: number) => () => {
-    openViewer(POSTERS, index);
-  };
-
   return (
-    <div className="bg-gray-900 px-[1.5rem] pb-[4rem] pt-[0.5rem]">
-      <section className="mb-[2rem]">
-        <h2 className="mb-[1rem] font-title3 text-gray-0">누적관람</h2>
-
-        <div
-          className="
-            relative flex h-[10.5rem] items-stretch
-            overflow-hidden rounded-[0.8rem]
-            border border-violet-400
-            bg-gray-800
-            px-[1rem] py-[1rem]
-          "
-        >
-          <div
-            aria-hidden
-            className="
-              pointer-events-none
-              absolute -right-[1.5rem] bottom-0
-              h-[4.4rem] w-[4.4rem]
-              rounded-full bg-violet-400
-              blur-[3.8rem]
-            "
-          />
-
-          <div className="flex-1">
-            <p className="font-body1 text-gray-400">누적 관객 수</p>
-            <p className="mt-[0.25rem] font-body4 text-gray-0">
+    <div className='flex flex-col gap-[2.8rem] p-[1.7rem]'>
+      <section className='flex flex-col gap-[1.4rem]'>
+        <h2 className='font-title3 text-gray-0 mb-[1rem]'>누적관람</h2>
+        <div className='border-gradient-1 flex justify-center gap-[2rem] p-[2rem]'>
+          <div className='flex w-full flex-col gap-[1.3rem]'>
+            <p className='font-body1 text-gray-0'>누적 관객 수</p>
+            <p className='font-body4 text-gray-0'>
               {MOVIE_DETAIL_AUDIENCE_CARD.cumulativeAudienceText}
             </p>
-            <p className="mt-[0.25rem] font-caption1 text-gray-400">
+            <p className='font-caption1 text-gray-400'>
               {MOVIE_DETAIL_AUDIENCE_CARD.openDayText}
             </p>
           </div>
-
-          <div className="mx-[0.75rem] h-[5.8rem] w-[0.0625rem] self-center bg-gray-700" />
-
-          <div className="flex-1">
-            <p className="font-body1 text-gray-400">일별 관객 수</p>
-            <p className="mt-[0.25rem] font-body4 text-gray-0">
+          <div className='h-[9.3rem] w-[0.1rem] bg-gray-200' />
+          <div className='flex w-full flex-col gap-[1.3rem]'>
+            <p className='font-body1 text-gray-0'>일별 관객 수</p>
+            <p className='font-body4 text-gray-0'>
               {MOVIE_DETAIL_AUDIENCE_CARD.dailyAudienceText}
             </p>
-            <p className="mt-[0.25rem] font-caption1 text-violet-300">
+            <p className='font-caption1 flex items-center gap-[0.2rem] text-violet-300'>
               {MOVIE_DETAIL_AUDIENCE_CARD.dailyCompareText}
+              <IconUparrow className='h-[1.2rem] w-[1.2rem] text-violet-300' />
             </p>
           </div>
         </div>
       </section>
 
-      <section className="mb-[2rem]">
-        <div className="mb-[0.5rem] flex items-center gap-[0.15rem]">
-          <h2 className="font-title3 text-gray-0">예고편 / 트레일러</h2>
-          <span className="font-title3 text-violet-500">{TRAILERS.length}</span>
+      <section className='flex flex-col gap-[1.4rem]'>
+        <div className='flex items-center gap-[0.6rem]'>
+          <h2 className='font-title3 text-gray-0'>예고편 / 트레일러</h2>
+          <span className='font-title3 text-violet-500'>{TRAILERS.length}</span>
         </div>
-
-        <div className="w-full overflow-x-auto pb-[0.25rem] scrollbar-hide">
-          <div className="flex w-max gap-[0.75rem]">
+        <div className='scrollbar-hide w-full overflow-x-auto'>
+          <div className='flex gap-[0.7rem]'>
             {TRAILERS.map((src, index) => (
-              <button
-                type="button"
+              <img
                 key={index}
-                className="
-                  flex h-[16.3rem] w-[29.1rem]
-                  shrink-0 items-center justify-center
-                  overflow-hidden rounded-[0.8rem] bg-gray-800
-                  cursor-pointer
-                "
-                onClick={handleOpenTrailerViewer(index)}
-              >
-                <img
-                  src={src}
-                  alt={`예고편 ${index + 1}`}
-                  className="h-full w-full object-cover"
-                />
-              </button>
+                src={src}
+                alt={`예고편 ${index + 1}`}
+                className='h-[16.3rem] object-cover'
+              />
             ))}
           </div>
         </div>
-
-        <p className="mt-[0.5rem] font-body1 text-gray-0">메인 예고편</p>
+        <p className='font-body1 text-gray-0 mt-[0.9rem]'>메인 예고편</p>
       </section>
 
-      <section className="mb-[2rem]">
-        <div className="mb-[0.5rem] flex items-center gap-[0.15rem]">
-          <h2 className="font-title3 text-gray-0">포스터 / 스틸컷</h2>
-          <span className="font-title3 text-violet-500">{POSTERS.length}</span>
+      <section className='flex flex-col gap-[1.4rem]'>
+        <div className='flex items-center gap-[0.6rem]'>
+          <h2 className='font-title3 text-gray-0'>포스터 / 스틸컷</h2>
+          <span className='font-title3 text-violet-500'>{POSTERS.length}</span>
         </div>
-
-        <div className="w-full overflow-x-auto pb-[0.25rem] scrollbar-hide">
-          <div className="flex w-max gap-[0.75rem]">
+        <div className='scrollbar-hide w-full overflow-x-auto'>
+          <div className='flex gap-[0.7rem]'>
             {POSTERS.map((src, index) => (
-              <button
-                type="button"
+              <img
                 key={index}
-                className="
-                  flex h-[19.9rem] w-[47.5rem]
-                  shrink-0 items-center justify-center
-                  overflow-hidden rounded-[0.8rem] bg-gray-800
-                  cursor-pointer
-                "
-                onClick={handleOpenPosterViewer(index)}
-              >
-                <img
-                  src={src}
-                  alt={`포스터 / 스틸컷 ${index + 1}`}
-                  className="h-full w-full object-cover"
-                />
-              </button>
+                src={src}
+                alt={`포스터 / 스틸컷 ${index + 1}`}
+                className='h-[19.9rem] object-cover'
+              />
             ))}
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="mb-[0.75rem] flex items-center justify-between">
-          <div className="flex items-center gap-[0.15rem]">
-            <h2 className="font-title3 text-gray-0">오리지널 굿즈</h2>
-            <span className="font-title3 text-violet-500">{GOODS.length}</span>
+      <section className='flex flex-col gap-[1.4rem]'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-[0.6rem]'>
+            <h2 className='font-title3 text-gray-0'>오리지널 굿즈</h2>
+            <span className='font-title3 text-violet-500'>{1}</span>
           </div>
 
-          <button
-            type="button"
-            className="
-              inline-flex items-center justify-center
-              rounded-[0.25rem]
-              border border-gray-300
-              px-[1.2rem] py-[0.3rem]
-              font-button1 text-gray-400
-            "
-          >
-            소진현황
-          </button>
+          <Button variant='sub'>소진현황</Button>
         </div>
 
-        <div className="grid grid-cols-3 gap-[0.875rem]">
-          {GOODS.map((goods) => (
-            <div key={goods.id} className="flex flex-col gap-[0.875rem]">
-              <div
-                className="
-                  flex h-[14rem] items-center justify-center
-                  rounded-[0.375rem]
-                  bg-[#647392]
-                  px-[1.4rem]
-                  pt-[3.1rem] pb-[3rem]
-                "
-              >
-                <img
-                  src={goods.image}
-                  alt={goods.title}
-                  className="h-[4.9375rem] w-[7rem] object-cover"
-                />
-              </div>
-
-              <p className="font-body1 text-gray-0">{goods.title}</p>
-            </div>
-          ))}
+        <div className='flex flex-col gap-[0.8rem]'>
+          <img
+            src={GOODS.image}
+            alt='오리지널 굿즈'
+            className='h-[14em] w-[14rem] object-cover'
+          />
+          <p className='font-body1 text-gray-0 mt-[0.9rem]'>{GOODS.title}</p>
         </div>
       </section>
-
-      {isViewerOpen && viewerImages.length > 0 && (
-        <div
-          className="
-            fixed-center top-0 bottom-0 z-50
-            bg-black
-          "
-          onClick={closeViewer}
-        >
-          <div className="absolute right-[1rem] top-[1rem] flex flex-col items-end gap-[0.25rem] text-gray-0">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                closeViewer();
-              }}
-              className="text-2xl leading-none"
-            >
-              ✕
-            </button>
-
-            <span className="text-xs">
-              {viewerIndex + 1} / {viewerImages.length}
-            </span>
-          </div>
-
-          <div
-            className="flex h-full items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={viewerImages[viewerIndex]}
-              alt=""
-              className="max-h-[80%] w-full object-contain"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
