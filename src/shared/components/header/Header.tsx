@@ -26,7 +26,7 @@ export default function Header({
   const handleBackClick = handleClickBack ?? (() => navigate(-1));
 
   const headerClassName = `
-    sticky top-0 z-10
+    sticky top-0 z-100
     gradient-2
     flex h-[5.2rem] w-full items-center
     px-[1.5rem] text-white
