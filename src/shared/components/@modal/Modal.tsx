@@ -29,7 +29,7 @@ export default function Modal({
     <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className='fixed inset-0 bg-black/50' />
-        <Dialog.Content className='fixed-center shadow-modal flex flex-col items-center rounded-t-[1.2rem] bg-gray-800 px-[1.5rem] py-[2rem]'>
+        <Dialog.Content className='fixed-center shadow-modal z-100 flex flex-col items-center rounded-t-[1.2rem] bg-gray-800 px-[1.5rem] py-[2rem]'>
           <Dialog.Close className='mb-[2rem] flex w-full justify-end'>
             <IconSystemClose className='text-gray-300' />
           </Dialog.Close>

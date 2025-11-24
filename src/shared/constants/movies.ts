@@ -6,6 +6,8 @@ interface Movie {
   backgroundImage: string;
 }
 
+export type MoviePoster = Pick<Movie, 'id' | 'image'>;
+
 export const MOVIES: Record<number, Movie> = Object.freeze({
   1: {
     id: 1,
