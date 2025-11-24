@@ -93,7 +93,9 @@ export const paymentMethodDefaultValues: PaymentMethodFormData = {
 /**
  * 최종 결제 폼 스키마 (할인 + 결제수단)
  */
-export const paymentFormSchema = discountFormSchema.merge(paymentMethodSchema);
+export const paymentFormSchema = discountFormSchema.extend(
+  paymentMethodSchema.shape
+);
 
 // 타입 자동 생성
 export type PaymentFormData = z.infer<typeof paymentFormSchema>;

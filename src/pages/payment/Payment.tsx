@@ -34,7 +34,7 @@ const Payment = () => {
 
   return (
     <>
-      <form 
+      <form
       onSubmit={form.handleSubmit(onSubmit)}
       className='flex min-h-screen flex-col'
       >

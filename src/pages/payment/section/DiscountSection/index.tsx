@@ -34,7 +34,9 @@ const DiscountSection = ({
 
   // 토글 핸들러
   const handleToggle = () => {
-    activeTab ? handleActiveTab(null) : null;
+    if (activeTab) {
+      handleActiveTab(null);
+    }
   };
 
   return (
