@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { PAYMENT_MESSAGES } from '@pages/payment/constants/payment-messages';
 
 /**
  * 할인 적용 폼 스키마
@@ -8,7 +9,7 @@ export const discountFormSchema = z.object({
   activeTab: z.enum(['coupon', 'point']).nullable(),
 
   // 선택된 할인 수단 ID
-  selectedDiscountId: z.number().positive('할인 수단을 선택하세요').nullable(),
+  selectedDiscountId: z.number().positive(PAYMENT_MESSAGES.SELECT_DISCOUNT).nullable(),
 
   // 자동 적용 체크 여부
   isChecked: z.boolean(),
