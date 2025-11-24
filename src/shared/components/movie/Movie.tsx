@@ -3,6 +3,7 @@ import { cn } from '@utils/cn';
 
 import ImgBtBolby from '@/../public/assets/img-bt-bolby.svg';
 import ImgBtPlay from '@/../public/assets/img-bt-4d.svg';
+import { Button } from '@components/index';
 
 interface MovieProps {
   id: number;
@@ -13,6 +14,7 @@ interface MovieProps {
   runningTimeMinutes: number;
   className?: string;
   handleClickCard?: () => void;
+  isDetail?: boolean;
 }
 export default function Movie({
   id,
@@ -23,6 +25,7 @@ export default function Movie({
   runningTimeMinutes,
   className,
   handleClickCard,
+  isDetail = true,
 }: MovieProps) {
   const movie = MOVIES[id];
 
@@ -36,7 +39,6 @@ export default function Movie({
         backgroundImage: `url(${movie.backgroundImage})`,
       }}
       aria-label={`${title} 영화 정보`}
-      onClick={handleClickCard ?? undefined}
     >
       <div className='gradient-4 absolute inset-0 h-full w-full' />
       <div className='absolute inset-0 h-full w-full bg-gray-900/70' />
@@ -47,19 +49,30 @@ export default function Movie({
             alt={`${title} 포스터 이미지`}
             className='h-[17.4rem] w-[12.4rem]'
           />
-          <div className='flex flex-col gap-[1.9rem]'>
+          <div className='flex w-full flex-col gap-[1.9rem]'>
             <div className='flex flex-col gap-[0.5rem]'>
               <h1 className='font-headline1 text-gray-0'>{title}</h1>
               <p className='font-label1 text-violet-200'>{tag}</p>
             </div>
-            <div className='font-caption2 text-gray-0 flex flex-col gap-[0.3rem]'>
-              <span>{ageRating}세이상관람가</span>
-              <div className='flex gap-[0.4rem]'>
-                <span>{releaseDate} 개봉</span>
-                <span>·</span>
-                <span>{runningTimeMinutes}분</span>
+            {isDetail && (
+              <div className='font-caption2 text-gray-0 flex flex-col gap-[0.3rem]'>
+                <span>{ageRating}세이상관람가</span>
+                <div className='flex gap-[0.4rem]'>
+                  <span>{releaseDate} 개봉</span>
+                  <span>·</span>
+                  <span>{runningTimeMinutes}분</span>
+                </div>
               </div>
-            </div>
+            )}
+            {!isDetail && handleClickCard && (
+              <Button
+                variant='secondary'
+                className='font-button3 w-full text-gray-400'
+                onClick={handleClickCard}
+              >
+                상세 정보
+              </Button>
+            )}
           </div>
         </div>
         <div className='flex gap-[0.5rem]'>
