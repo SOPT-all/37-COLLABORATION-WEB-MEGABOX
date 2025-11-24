@@ -13,16 +13,18 @@ export const discountFormSchema = z.object({
 
   // 자동 적용 체크 여부
   isChecked: z.boolean(),
-}).refine((data) => {
-  if(data.activeTab !== null && data.selectedDiscountId === null) {
-    return false;
+}).refine(
+  (data) => {
+    // activeTab이 선택되었으면 selectedDiscountId도 필수
+    if (data.activeTab !== null && data.selectedDiscountId === null) {
+      return false;
+    }
+    return true;
+  },
+  {
+    message: PAYMENT_MESSAGES.SELECT_DISCOUNT,
+    path: ['selectedDiscountId'],
   }
-  return true;
-},{
-  message: PAYMENT_MESSAGES.SELECT_DISCOUNT,
-  path: ['selectedDiscountId'],
-}
-
 )
 
 // 타입 자동 생성

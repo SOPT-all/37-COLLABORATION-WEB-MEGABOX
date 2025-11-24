@@ -1,10 +1,9 @@
-import { usePaymentForm } from './hooks/use-payment-form'; 
+import { usePaymentForm } from './hooks/use-payment-form';
 import { DiscountSection } from './section/DiscountSection'
 
 
 export default function Payment() {
-  // 제출 버튼 비활성화, 토스트 메시지(에러 문구)를 위해 formData, errors 냅둠
-  const { form, formData, errors, onSubmit} = usePaymentForm();
+  const { form, onSubmit} = usePaymentForm();
 
   return (
     <>
