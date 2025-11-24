@@ -1,5 +1,5 @@
-import { usePaymentForm } from './hooks/use-payment-form';
-import { DiscountSection } from './section/DiscountSection'
+import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
+import { DiscountSection } from '@pages/payment/section/DiscountSection'
 
 
 export default function Payment() {

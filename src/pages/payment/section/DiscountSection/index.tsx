@@ -1,8 +1,8 @@
 import { useController, type UseFormReturn } from 'react-hook-form';
 import type { DiscountFormData } from '@/pages/payment/schemas/payment.schema';
-import DiscountHeader from './DiscountHeader';
-import DiscountTabs from './DiscountTabs';
-import DiscountContent from './DiscountContent';
+import DiscountHeader from '@pages/payment/section/DiscountSection/DiscountHeader';
+import DiscountTabs from '@pages/payment/section/DiscountSection/DiscountTabs';
+import DiscountContent from '@pages/payment/section/DiscountSection/DiscountContent';
 
 interface DiscountSectionProps {
   form: UseFormReturn<DiscountFormData>;

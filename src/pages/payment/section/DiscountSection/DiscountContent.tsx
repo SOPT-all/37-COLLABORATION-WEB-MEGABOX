@@ -1,4 +1,4 @@
-import DiscountGrid from './DiscountGrid';
+import DiscountGrid from '@pages/payment/section/DiscountSection/DiscountGrid';
 import { COUPON_ITEMS, POINT_ITEMS } from '@constants/discount';
 import IconCheckFill from '@assets/components/IconCheckFill';
 import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
