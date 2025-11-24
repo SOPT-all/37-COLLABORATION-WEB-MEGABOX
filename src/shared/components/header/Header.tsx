@@ -5,8 +5,8 @@ import {
   IconHeartFill,
   IconSystemShare,
 } from '@assets/index';
-
 import ImgLogo from '@/../public/assets/img-logo.svg';
+
 type HeaderVariant = 'main' | 'movie';
 
 interface HeaderProps {
