@@ -39,6 +39,7 @@
       "@components/*": ["./src/shared/components/*"],
       "@api/*": ["./src/shared/api/*"],
       "@query-keys/*": ["./src/shared/query-keys/*"],
+      "@store/*": ["./src/shared/store/*"]
     }
   },
   "include": ["src"]
