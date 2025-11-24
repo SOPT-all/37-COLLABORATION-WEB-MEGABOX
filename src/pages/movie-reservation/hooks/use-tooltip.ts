@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 export function useTooltip() {
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
 
-  const handleCloseTooltip = useCallback(() => {
+  const handleCloseTooltip = () => {
     setIsTooltipOpen(false);
-  }, []);
+  };
 
   return {
     isTooltipOpen,
