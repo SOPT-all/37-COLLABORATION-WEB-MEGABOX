@@ -1,16 +1,17 @@
 import { cn } from "@utils/cn";
 import type { DiscountItem } from '@constants/discount';
+import type { DiscountFormData } from '@pages/payment/schemas/payment.schema';
 import type { ReactNode } from 'react';
 
 interface DiscountGridProps {
   items: DiscountItem[];
-  selectedId: number | null;
-  onSelect: (_id: number | null) => void;
+  selectedId: DiscountFormData['selectedDiscountId'];
+  onSelect: (_id: DiscountFormData['selectedDiscountId']) => void;
   firstItem?: boolean;
   children?: ReactNode;
 };
 
-export const DiscountGrid = ({
+const DiscountGrid = ({
   items,
   selectedId,
   onSelect,
