@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Date } from '@pages/movie-reservation/types/date';
+import { useCinemas } from '@pages/movie-reservation/hooks/index';
 
 export function useSelection(initialSelectedDate: Date) {
   const [selectedMovieIds, setSelectedMovieIds] = useState<number[]>([1]);
@@ -7,7 +8,7 @@ export function useSelection(initialSelectedDate: Date) {
   const [selectedDate, setSelectedDate] = useState<Date>(initialSelectedDate);
   const [selectedTimeId, setSelectedTimeId] = useState<number | null>(null);
 
-  const selectedCinemas: string[] = [];
+  const { data: selectedCinemas = [] } = useCinemas(selectedMovieIds);
 
   const handleClickMovie = (id: number) => {
     setSelectedMovieIds(prev => {
