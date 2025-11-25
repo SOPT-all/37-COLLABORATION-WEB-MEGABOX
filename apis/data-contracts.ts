@@ -27,11 +27,11 @@ export interface ShowtimeReadRequest {
   timeSlot?: "MORNING" | "AFTERNOON" | "EVENING" | "NIGHT";
 }
 
-export interface ApiResponseShowtimeHierarchyResponse {
+export interface ApiResponseShowtimeReadResponse {
   status?: "SUCCESS" | "FAIL" | "ERROR";
   /** @format int32 */
   statusCode?: number;
-  data?: ShowtimeHierarchyResponse;
+  data?: ShowtimeReadResponse;
   message?: string;
   errorCode?: string;
   errorName?: string;
@@ -44,10 +44,12 @@ export interface CinemaResponse {
 
 export interface MovieResponse {
   movieTitle?: string;
+  /** @format int32 */
+  ageRating?: number;
   theaters?: TheaterResponse[];
 }
 
-export interface ShowtimeHierarchyResponse {
+export interface ShowtimeReadResponse {
   cinemas?: CinemaResponse[];
 }
 
@@ -212,7 +214,7 @@ export interface CinemaListResponse {
 
 export type CreateReservationData = ApiResponseVoid;
 
-export type GetShowtimesData = ApiResponseShowtimeHierarchyResponse;
+export type GetShowtimesData = ApiResponseShowtimeReadResponse;
 
 export type GetShowtimeBeforeReservationData =
   ApiResponseShowtimeBeforeReservationResponse;
