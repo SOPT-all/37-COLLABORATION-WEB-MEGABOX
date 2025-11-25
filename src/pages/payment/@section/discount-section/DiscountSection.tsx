@@ -37,7 +37,7 @@ export default function DiscountSection({
     <section className='bg-gray-0 p-[1.6rem]' aria-labelledby='할인 세션'>
       <SectionHeader
         title='할인적용'
-        subtitle='할인 수단을 선택하세요'
+        subtitle='할인 수단을 선택하세요!'
         isOpen={showDiscount}
         handleShow={handleShowDiscount}
       />
