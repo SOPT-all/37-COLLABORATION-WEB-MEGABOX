@@ -23,6 +23,11 @@ export default function CardDropdown({
         <Select.Portal>
           <Select.Content 
             className='bg-gray-0 rounded-[0.8rem] border border-gray-300 shadow-lg'
+            // position='popper'
+            // side='bottom'
+            // align='start'
+            // sideOffset={8}
+            // collisionPadding={16}
           >
             <Select.Viewport className='p-[0.8rem]'>
               {CARD_OPTIONS.map(option => (
