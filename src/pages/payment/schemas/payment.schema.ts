@@ -19,9 +19,8 @@ export const paymentFormSchema = z.object({
     .enum(POINT_ITEMS.map(point => point.key))
     .nullable()
     .optional(),
-  isChecked: z.boolean().refine(checked => checked === true, {
-    message: PAYMENT_MESSAGES.SELECT_CHECKED,
-  }),
+  // 자동 적용 체크 여부
+  isChecked: z.boolean().optional(),
 
   // 선택한 결제 방법
   selectedPaymentMethod: z

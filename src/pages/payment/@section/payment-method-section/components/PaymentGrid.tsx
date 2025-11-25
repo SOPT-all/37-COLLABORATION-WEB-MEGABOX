@@ -21,6 +21,7 @@ export default function PaymentGrid({
   selectedPaymentMethod,
   handleSelect,
 }: PaymentGridProps) {
+  console.info('selectedPaymentMethod in PaymentGrid', selectedPaymentMethod);
   return (
     <div className='mb-[2rem] grid grid-cols-2 gap-[1.2rem]'>
       {PAYMENT_METHODS.map(method => {
