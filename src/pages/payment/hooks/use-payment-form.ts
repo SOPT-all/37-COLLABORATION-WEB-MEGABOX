@@ -5,7 +5,6 @@ import {
   paymentFormSchema,
   type PaymentFormData,
 } from '@pages/payment/schemas/payment.schema';
-import { type PointItemType } from '@pages/payment/constants/discount';
 import {
   type PaymentMethodType,
   type PaymentTypeType,
@@ -37,19 +36,19 @@ export const usePaymentForm = () => {
   const selectedCard = useWatch({ control, name: 'selectedCard' });
   const isAgreed = useWatch({ control, name: 'isAgreed' });
 
-  const handleSelectedCoupon = (couponKey: string) => {
-    setValue('selectedCoupon', couponKey, {
+  const handleSelectedCoupon = (coupon: PaymentFormData['selectedCoupon']) => {
+    setValue('selectedCoupon', coupon, {
       shouldValidate: true,
       shouldDirty: true,
       shouldTouch: true,
     });
   };
 
-  const handleSelectedPoint = (point: PointItemType) => {
+  const handleSelectedPoint = (point: PaymentFormData['selectedPoint']) => {
     setValue('selectedPoint', point, { shouldValidate: true });
   };
 
-  const handleSelectedPolicy = (policy: boolean) => {
+  const handleSelectedPolicy = (policy: PaymentFormData['selectedPolicy']) => {
     setValue('selectedPolicy', policy, { shouldValidate: true });
   };
 
@@ -61,11 +60,11 @@ export const usePaymentForm = () => {
     setValue('paymentType', type, { shouldValidate: true });
   };
 
-  const handleSelectedAgreed = (agreed: boolean) => {
+  const handleSelectedAgreed = (agreed: PaymentFormData['isAgreed']) => {
     setValue('isAgreed', agreed, { shouldValidate: true });
   };
 
-  const handleSelectedCard = (card: string) => {
+  const handleSelectedCard = (card: PaymentFormData['selectedCard']) => {
     setValue('selectedCard', card, { shouldValidate: true });
   };
 

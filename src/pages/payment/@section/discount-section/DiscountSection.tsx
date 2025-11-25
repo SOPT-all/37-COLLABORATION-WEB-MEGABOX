@@ -5,14 +5,15 @@ import {
   PointGrid,
 } from '@pages/payment/@section/discount-section/components';
 import SectionHeader from '@pages/payment/components/SectionHeader';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountSectionProps {
-  selectedCoupon: string | null;
-  selectedPoint: string | null;
-  selectedPolicy: boolean;
-  handleSelectedCoupon: (coupon: string) => void;
-  handleSelectedPoint: (point: string) => void;
-  handleSelectedPolicy: (policy: boolean) => void;
+  selectedCoupon: PaymentFormData['selectedCoupon'];
+  selectedPoint: PaymentFormData['selectedPoint'];
+  selectedPolicy: PaymentFormData['selectedPolicy'];
+  handleSelectedCoupon: (coupon: PaymentFormData['selectedCoupon']) => void;
+  handleSelectedPoint: (point: PaymentFormData['selectedPoint']) => void;
+  handleSelectedPolicy: (policy: PaymentFormData['selectedPolicy']) => void;
 }
 
 export default function DiscountSection({

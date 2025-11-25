@@ -1,10 +1,11 @@
 import { cn } from '@utils/cn';
 import { POINT_ITEMS } from '@pages/payment/constants/discount';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 import { Button } from '@components/index';
 
 interface PointGridProps {
-  selectedPoint: string | null;
-  handleSelectedPoint: (point: string) => void;
+  selectedPoint: PaymentFormData['selectedPoint'];
+  handleSelectedPoint: (point: PaymentFormData['selectedPoint']) => void;
 }
 
 export default function PointGrid({
@@ -18,7 +19,9 @@ export default function PointGrid({
         <Button
           key={item.key}
           variant='primary'
-          onClick={() => handleSelectedPoint(selectedPoint === item.key ? '' : item.key)}
+          onClick={() =>
+            handleSelectedPoint(selectedPoint === item.key ? null : item.key)
+          }
           className={cn(
             'font-button1 bg-gray-0 rounded-[0.4rem] border-[0.1rem] px-[1rem] py-[1.2rem]',
             index === 0 && 'col-span-2',

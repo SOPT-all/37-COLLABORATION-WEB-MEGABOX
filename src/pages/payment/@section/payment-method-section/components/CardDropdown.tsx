@@ -1,10 +1,11 @@
 import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { CARD_OPTIONS } from '@pages/payment/constants/pay';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface CardDropdownProps {
-  selectedCard: string | null;
-  handleSelect: (card: string) => void;
+  selectedCard: PaymentFormData['selectedCard'];
+  handleSelect: (card: NonNullable<PaymentFormData['selectedCard']>) => void;
 }
 
 export default function CardDropdown({

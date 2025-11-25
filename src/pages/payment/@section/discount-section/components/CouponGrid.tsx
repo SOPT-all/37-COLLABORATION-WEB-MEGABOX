@@ -1,13 +1,14 @@
 import { cn } from '@utils/cn';
 import { COUPON_ITEMS } from '@pages/payment/constants/discount';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 import { Button } from '@components/index';
 import IconCheckFill from '@assets/components/IconCheckFill';
 
 interface CouponGridProps {
-  selectedCoupon: string | null;
-  selectedPolicy: boolean;
-  handleSelectedCoupon: (coupon: string) => void;
-  handleSelectedPolicy: (policy: boolean) => void;
+  selectedCoupon: PaymentFormData['selectedCoupon'];
+  selectedPolicy: PaymentFormData['selectedPolicy'];
+  handleSelectedCoupon: (coupon: PaymentFormData['selectedCoupon']) => void;
+  handleSelectedPolicy: (policy: PaymentFormData['selectedPolicy']) => void;
 }
 
 export default function CouponGrid({
@@ -24,7 +25,11 @@ export default function CouponGrid({
           <Button
             key={item.key}
             variant='primary'
-            onClick={() => handleSelectedCoupon(selectedCoupon === item.key ? '' : item.key)}
+            onClick={() =>
+              handleSelectedCoupon(
+                selectedCoupon === item.key ? null : item.key
+              )
+            }
             className={cn(
               'font-button1 bg-gray-0 rounded-[0.4rem] border-[0.1rem] px-[1rem] py-[1.2rem]',
               selectedCoupon === item.key

@@ -12,18 +12,19 @@ import type {
   PaymentMethodType,
   PaymentTypeType,
 } from '@pages/payment/constants/pay';
-import SectionHeader from '../../components/SectionHeader';
+import type { PaymentFormData } from '@pages/payment/schemas/payment.schema'; 
+import SectionHeader from '@pages/payment/components/SectionHeader';
 
 interface PaymentMethodSectionProps {
   selectedPaymentMethod: PaymentMethodType | null;
   paymentType: PaymentTypeType;
-  selectedCard: string | null;
-  isAgreed: boolean;
+  selectedCard: PaymentFormData['selectedCard'];
+  isAgreed: PaymentFormData['isAgreed'];
 
   handleSelectedPaymentMethod: (_method: PaymentMethodType) => void;
   handleSelectedPaymentType: (type: PaymentTypeType) => void;
-  handleSelectedAgreed: (agreed: boolean) => void;
-  handleSelectedCard: (card: string) => void;
+  handleSelectedAgreed: (agreed: PaymentFormData['isAgreed']) => void;
+  handleSelectedCard: (card: NonNullable<PaymentFormData['selectedCard']>) => void;
 }
 
 export default function PaymentMethodSection({
