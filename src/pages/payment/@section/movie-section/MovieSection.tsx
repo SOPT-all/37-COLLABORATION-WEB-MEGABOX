@@ -8,7 +8,7 @@ interface MovieSectionProps {
 }
 
 export default function MovieSection({
-  id,
+  // id,
   title,
   showTime,
   theater,

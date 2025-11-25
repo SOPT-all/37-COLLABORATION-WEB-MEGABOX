@@ -15,7 +15,7 @@ export default function Payment() {
     handleSelectedCoupon,
     handleSelectedPoint,
     handleSelectedPolicy,
-    onSubmit,
+    // onSubmit,
     handleSelectedPaymentMethod,
     handleSelectedPaymentType,
     handleSelectedAgreed,
