@@ -1,6 +1,8 @@
-const MORNING = { minHour: 6, maxHour: 12, label: '아침' };
-const AFTERNOON = { minHour: 12, maxHour: 18, label: '오후' };
-const EVENING = { minHour: 18, maxHour: 22, label: '저녁' };
-const NIGHT = { minHour: 22, maxHour: 6, label: '심야' };
+export type TimeType = 'MORNING' | 'AFTERNOON' | 'EVENING' | 'NIGHT';
 
-export const TIMES = [MORNING, AFTERNOON, EVENING, NIGHT];
+export const TIMES = [
+  {type: 'MORNING', label: '아침'},
+  {type: 'AFTERNOON', label: '오후'},
+  {type: 'EVENING', label: '저녁'},
+  {type: 'NIGHT', label: '심야'},
+];
