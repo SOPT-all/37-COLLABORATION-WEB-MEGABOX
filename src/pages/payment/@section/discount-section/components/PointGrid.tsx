@@ -14,13 +14,14 @@ export default function PointGrid({
   console.info('selectedPoint in PointGrid', selectedPoint);
   return (
     <div className='rounded-[0.4rem] bg-gray-100 px-[1.5rem] py-[1.2rem] grid grid-cols-2 gap-[0.8rem]'>
-      {POINT_ITEMS.map(item => (
+      {POINT_ITEMS.map((item, index) => (
         <Button
           key={item.key}
           variant='primary'
           onClick={() => handleSelectedPoint(item.key)}
           className={cn(
             'font-button1 bg-gray-0 rounded-[0.4rem] border-[0.1rem] px-[1rem] py-[1.2rem]',
+            index === 0 && 'col-span-2',
             selectedPoint === item.key
               ? 'border-violet-600 text-violet-600'
               : 'border-gray-200 text-gray-500'
