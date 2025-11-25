@@ -5,6 +5,7 @@ import {
   IconHeartFill,
   IconSystemShare,
 } from '@assets/index';
+import ImgLogo from '@/../public/assets/img-logo.svg';
 
 type HeaderVariant = 'main' | 'movie';
 
@@ -23,7 +24,7 @@ export default function Header({
   const isMain = variant === 'main';
 
   const headerClassName = `
-    sticky top-0 z-10
+    sticky top-0 z-100
     gradient-2
     flex h-[5.2rem] w-full items-center
     px-[1.5rem] text-white
@@ -33,11 +34,7 @@ export default function Header({
   if (isMain) {
     return (
       <header className={headerClassName}>
-        <img
-          src='/public/assets/img-logo.png'
-          alt='MEGABOX'
-          className='h-[2.1rem] w-auto'
-        />
+        <img src={ImgLogo} alt='MEGABOX' className='h-[2.1rem] w-auto' />
       </header>
     );
   }
