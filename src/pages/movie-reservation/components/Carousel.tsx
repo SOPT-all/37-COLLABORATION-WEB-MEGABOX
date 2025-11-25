@@ -23,7 +23,7 @@ export default function Carousel({
             )}
             onClick={() => handleClick(movie.id)}
           >
-            <img src={movie.image} className='h-full w-full' />
+            <img src={movie.image} className='w-full h-full rounded-[0.4rem] object-cover' />
           </button>
         </li>
       ))}
