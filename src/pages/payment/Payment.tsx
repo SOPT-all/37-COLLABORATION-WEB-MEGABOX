@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
 import PaymentButton from '@/pages/payment/components/PaymentButton';
 import { useToastStore } from '@store/toast';
@@ -10,8 +11,22 @@ import {
   GiftCardSection,
 } from '@/pages/payment/@section';
 import { mockMovie, mockPaymentAmount } from '@pages/payment/mock';
+import { MOVIES } from '@constants/movies';
+
+interface ReservationState {
+  memberId: number;
+  showtimeId: number;
+  movieId: number;
+  movieTitle: string;
+  date: string;
+  location: string;
+  numOfPeople: number;
+}
 
 export default function Payment() {
+  const location = useLocation();
+  const reservationData = location.state as ReservationState | null;
+
   const {
     form,
     handleSelectedCoupon,
@@ -26,6 +41,22 @@ export default function Payment() {
   } = usePaymentForm();
 
   const { showToast } = useToastStore();
+
+  // 영화 데이터
+  const movieData = reservationData
+    ? {
+        id: reservationData.movieId,
+        title: reservationData.movieTitle,
+        showTime: reservationData.date,
+        theater: reservationData.location,
+        seats: reservationData.numOfPeople,
+        posterUrl: MOVIES[reservationData.movieId]?.image || mockMovie.posterUrl,
+      }
+    : mockMovie;
+
+  const totalAmount = reservationData
+    ? reservationData.numOfPeople * 12000
+    : mockPaymentAmount.totalAmount;
 
   const handleSubmitClick = () => {
     const { selectedPaymentMethod, paymentType, isAgreed } = form;
@@ -47,12 +78,12 @@ export default function Payment() {
     <div className='flex min-h-screen flex-col'>
       <div className='bg-gray-0 flex-1'>
         <MovieSection
-          id={mockMovie.id}
-          title={mockMovie.title}
-          showTime={mockMovie.showTime}
-          theater={mockMovie.theater}
-          seats={mockMovie.seats}
-          posterUrl={mockMovie.posterUrl}
+          id={movieData.id}
+          title={movieData.title}
+          showTime={movieData.showTime}
+          theater={movieData.theater}
+          seats={movieData.seats}
+          posterUrl={movieData.posterUrl}
         />
         <DiscountSection
           selectedCoupon={form.selectedCoupon || null}
@@ -82,7 +113,7 @@ export default function Payment() {
       </div>
       <div className='bg-gray-0 pt-[2rem]'>
         <PaymentButton
-          totalAmount={23000}
+          totalAmount={totalAmount}
           isDisabled={!isValid}
           handleClick={handleSubmitClick}
         />
