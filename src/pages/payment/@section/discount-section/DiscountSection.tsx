@@ -11,9 +11,9 @@ interface DiscountSectionProps {
   selectedCoupon: PaymentFormData['selectedCoupon'];
   selectedPoint: PaymentFormData['selectedPoint'];
   selectedPolicy: PaymentFormData['selectedPolicy'];
-  handleSelectedCoupon: (coupon: PaymentFormData['selectedCoupon']) => void;
-  handleSelectedPoint: (point: PaymentFormData['selectedPoint']) => void;
-  handleSelectedPolicy: (policy: PaymentFormData['selectedPolicy']) => void;
+  handleSelectedCoupon: (_coupon: PaymentFormData['selectedCoupon']) => void;
+  handleSelectedPoint: (_point: PaymentFormData['selectedPoint']) => void;
+  handleSelectedPolicy: (_policy: PaymentFormData['selectedPolicy']) => void;
 }
 
 export default function DiscountSection({

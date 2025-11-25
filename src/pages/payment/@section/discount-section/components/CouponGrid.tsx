@@ -7,8 +7,8 @@ import IconCheckFill from '@assets/components/IconCheckFill';
 interface CouponGridProps {
   selectedCoupon: PaymentFormData['selectedCoupon'];
   selectedPolicy: PaymentFormData['selectedPolicy'];
-  handleSelectedCoupon: (coupon: PaymentFormData['selectedCoupon']) => void;
-  handleSelectedPolicy: (policy: PaymentFormData['selectedPolicy']) => void;
+  handleSelectedCoupon: (_coupon: PaymentFormData['selectedCoupon']) => void;
+  handleSelectedPolicy: (_policy: PaymentFormData['selectedPolicy']) => void;
 }
 
 export default function CouponGrid({

@@ -5,7 +5,7 @@ import { Button } from '@components/index';
 
 interface PointGridProps {
   selectedPoint: PaymentFormData['selectedPoint'];
-  handleSelectedPoint: (point: PaymentFormData['selectedPoint']) => void;
+  handleSelectedPoint: (_point: PaymentFormData['selectedPoint']) => void;
 }
 
 export default function PointGrid({

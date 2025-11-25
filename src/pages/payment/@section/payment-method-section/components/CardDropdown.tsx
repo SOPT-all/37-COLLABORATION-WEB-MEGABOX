@@ -5,7 +5,7 @@ import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface CardDropdownProps {
   selectedCard: PaymentFormData['selectedCard'];
-  handleSelect: (card: NonNullable<PaymentFormData['selectedCard']>) => void;
+  handleSelect: (_card: NonNullable<PaymentFormData['selectedCard']>) => void;
 }
 
 export default function CardDropdown({
@@ -22,7 +22,7 @@ export default function CardDropdown({
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content 
+          <Select.Content
             className='bg-gray-0 rounded-[0.8rem] border border-gray-300 shadow-lg'
             // position='popper'
             // side='bottom'

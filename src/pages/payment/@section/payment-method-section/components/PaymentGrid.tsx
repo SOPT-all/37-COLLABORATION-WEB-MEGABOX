@@ -1,6 +1,5 @@
 import { cn } from '@utils/cn';
-import { PAYMENT_METHODS } from '@pages/payment/constants/pay';
-import type { PaymentMethodType } from '@pages/payment/constants/pay';
+import { PAYMENT_METHODS, type PaymentMethodType } from '@pages/payment/constants/pay';
 import IconCard from '@assets/components/IconCard';
 import IconSimpleCard from '@assets/components/IconSimpleCard';
 import IconMyCard from '@assets/components/IconMyCard';
@@ -8,7 +7,7 @@ import IconPhone from '@assets/components/IconPhone';
 
 interface PaymentGridProps {
   selectedPaymentMethod: PaymentMethodType | null;
-  handleSelect: (method: PaymentMethodType) => void;
+  handleSelect: (_method: PaymentMethodType) => void;
 }
 
 const PAYMENT_ICONS = {
