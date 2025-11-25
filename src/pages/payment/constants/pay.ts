@@ -19,7 +19,7 @@ export const CARD_OPTIONS = [
   { value: 'nh-bank', label: '농협은행' },
   { value: 'hana-bank', label: '하나은행' },
   { value: 'ibk-bank', label: '기업은행' },
-];
+] as const;
 
 export type CardOptionType = (typeof CARD_OPTIONS)[number];
 export type PaymentTypeType = (typeof PAYMENT_TYPES)[number]['key'];
