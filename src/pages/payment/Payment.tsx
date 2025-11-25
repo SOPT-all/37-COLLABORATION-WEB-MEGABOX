@@ -1,5 +1,7 @@
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
 import PaymentButton from '@/pages/payment/components/PaymentButton';
+import { useToastStore } from '@store/toast';
+import { PAYMENT_MESSAGES } from '@pages/payment/constants/payment-messages';
 import {
   DiscountSection,
   MovieSection,
@@ -22,6 +24,24 @@ export default function Payment() {
     isValid,
     handleSelectedCard,
   } = usePaymentForm();
+  
+  const { showToast } = useToastStore();
+
+  const handleSubmitClick = () => {
+    const { selectedPaymentMethod, paymentType, isAgreed } = form;
+    if(!selectedPaymentMethod) {
+      showToast(PAYMENT_MESSAGES.SELECT_PAYMENT_METHOD);
+      return;
+    }
+    if(!paymentType) {
+      showToast(PAYMENT_MESSAGES.SELECT_PAYMENT_TYPE);
+      return;
+    }
+    if(!isAgreed) {
+      showToast(PAYMENT_MESSAGES.SELECT_AGREED);
+      return;
+    }
+  }
 
   return (
     <div className='flex min-h-screen flex-col'>
@@ -61,7 +81,11 @@ export default function Payment() {
         />
       </div>
       <div className='bg-gray-0 pt-[2rem]'>
-        <PaymentButton totalAmount={23000} disabled={!isValid} />
+        <PaymentButton 
+          totalAmount={23000} 
+          isDisabled={!isValid} 
+          onClick={handleSubmitClick}
+        />
       </div>
     </div>
   );
