@@ -64,7 +64,9 @@ export const usePaymentForm = () => {
     setValue('isAgreed', agreed, { shouldValidate: true });
   };
 
-  const handleSelectedCard = (card: PaymentFormData['selectedCard']) => {
+  const handleSelectedCard = (
+    card: NonNullable<PaymentFormData['selectedCard']>
+  ) => {
     setValue('selectedCard', card, { shouldValidate: true });
   };
 
