@@ -30,7 +30,12 @@ export default function DiscountSection({
     setShowDiscount(!showDiscount);
   };
   const handleTabChange = (tab: 'coupon' | 'point') => {
-    setActiveTab(tab);
+    if(activeTab === tab && showDiscount) {
+      setShowDiscount(false);
+    } else {
+      setActiveTab(tab);
+      setShowDiscount(true);
+    }
   };
 
   return (
@@ -41,12 +46,13 @@ export default function DiscountSection({
         isOpen={showDiscount}
         handleShow={handleShowDiscount}
       />
+      <DiscountTabs
+        activeTab={activeTab}
+        isOpen={showDiscount}
+        handleTabChange={handleTabChange}
+      />
       {showDiscount && (
         <>
-          <DiscountTabs
-            activeTab={activeTab}
-            handleTabChange={handleTabChange}
-          />
 
           {activeTab === 'coupon' && (
             <CouponGrid

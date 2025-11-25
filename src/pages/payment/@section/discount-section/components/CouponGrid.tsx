@@ -24,7 +24,7 @@ export default function CouponGrid({
           <Button
             key={item.key}
             variant='primary'
-            onClick={() => handleSelectedCoupon(item.key)}
+            onClick={() => handleSelectedCoupon(selectedCoupon === item.key ? '' : item.key)}
             className={cn(
               'font-button1 bg-gray-0 rounded-[0.4rem] border-[0.1rem] px-[1rem] py-[1.2rem]',
               selectedCoupon === item.key

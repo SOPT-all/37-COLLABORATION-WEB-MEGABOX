@@ -18,7 +18,7 @@ export default function PointGrid({
         <Button
           key={item.key}
           variant='primary'
-          onClick={() => handleSelectedPoint(item.key)}
+          onClick={() => handleSelectedPoint(selectedPoint === item.key ? '' : item.key)}
           className={cn(
             'font-button1 bg-gray-0 rounded-[0.4rem] border-[0.1rem] px-[1rem] py-[1.2rem]',
             index === 0 && 'col-span-2',
