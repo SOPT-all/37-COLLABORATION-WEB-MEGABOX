@@ -1,33 +1,103 @@
+import { useParams } from 'react-router-dom';
+
 import { Header, Movie, Button } from '@components/index';
 import { InfoSection, ReviewSection } from '@pages/movie-detail/@section';
 import { useMovieDetail } from '@pages/movie-detail/hooks/use-movie-detail';
 import {
   MOVIE_DETAIL_META,
   MOVIE_DETAIL_STATS,
+  MOVIE_DETAIL_DESCRIPTION,
+  MOVIE_DETAIL_AUDIENCE_CARD,
 } from '@pages/movie-detail/mock';
 import {
   Tab,
   TabContainer,
 } from '@pages/movie-detail/components/MovieDetailTabs';
+import {
+  useGetMovieDetailQuery,
+  useGetMovieReviewsQuery,
+} from '@pages/movie-detail/api/use-movie-detail-queries';
 
 export default function MovieDetail() {
+  const { id } = useParams<{ id: string }>();
+  const fallbackId = MOVIE_DETAIL_META.id ?? 1;
+  const movieId = Number(id ?? fallbackId) || fallbackId;
+
   const {
     activeTab,
-    descriptionText,
     handleClickTab,
     isDescriptionExpanded,
     handleToggleDescription,
   } = useMovieDetail();
 
-  const movie = MOVIE_DETAIL_META;
-  const stats = MOVIE_DETAIL_STATS;
+  const { data: detailResponse } = useGetMovieDetailQuery(movieId);
+  const { data: reviewsResponse } = useGetMovieReviewsQuery(movieId);
+
+  const detail = detailResponse?.data;
+  const reviewsData = reviewsResponse?.data;
+
+  const movie = {
+    id: detail?.id ?? MOVIE_DETAIL_META.id,
+    title: detail?.title ?? MOVIE_DETAIL_META.title,
+    tag: detail?.tag ?? MOVIE_DETAIL_META.tag,
+    ageRating: detail?.ageRating ?? MOVIE_DETAIL_META.ageRating,
+    releaseDate: detail?.releaseDate ?? MOVIE_DETAIL_META.releaseDate,
+    runningTimeMinutes:
+      detail?.runningTimeMinutes ?? MOVIE_DETAIL_META.runningTimeMinutes,
+  };
+
+  const stats = {
+    reservationRank: detail?.rank ?? MOVIE_DETAIL_STATS.reservationRank,
+    reservationSharePercent:
+      detail?.marketShare ?? MOVIE_DETAIL_STATS.reservationSharePercent,
+    totalAudienceText:
+      detail?.totalAudience != null
+        ? new Intl.NumberFormat('ko-KR', {
+            notation: 'compact',
+            maximumFractionDigits: 1,
+          }).format(detail.totalAudience)
+        : MOVIE_DETAIL_STATS.totalAudienceText,
+    averageScore: detail?.rating ?? MOVIE_DETAIL_STATS.averageScore,
+    totalReviewCount:
+      reviewsData?.reviewCount ?? MOVIE_DETAIL_STATS.totalReviewCount,
+  };
+
+  const cumulativeAudienceText = stats.totalAudienceText;
+
+  const openDayText = (() => {
+    if (!detail?.releaseDate) return MOVIE_DETAIL_AUDIENCE_CARD.openDayText;
+
+    const release = new Date(detail.releaseDate);
+    if (Number.isNaN(release.getTime()))
+      return MOVIE_DETAIL_AUDIENCE_CARD.openDayText;
+
+    const now = new Date();
+    const diffMs = now.getTime() - release.getTime();
+    const diffDays = Math.max(1, Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1);
+
+    return `개봉 ${diffDays}일차`;
+  })();
+
+  const dailyAudienceText = MOVIE_DETAIL_AUDIENCE_CARD.dailyAudienceText;
+  const dailyCompareText = MOVIE_DETAIL_AUDIENCE_CARD.dailyCompareText;
+
+  const fullDescription =
+    detail?.description ?? MOVIE_DETAIL_DESCRIPTION.full;
+  const shortDescription =
+    detail?.summary ?? MOVIE_DETAIL_DESCRIPTION.short;
+  const descriptionText = isDescriptionExpanded
+    ? fullDescription
+    : shortDescription;
+
   const totalReviewCountCompact = new Intl.NumberFormat('en-US', {
     notation: 'compact',
     maximumFractionDigits: 1,
   }).format(stats.totalReviewCount);
+
   return (
     <div className='min-h-screen'>
       <Header variant='movie' title={movie.title} />
+
       <Movie
         id={movie.id}
         title={movie.title}
@@ -84,21 +154,14 @@ export default function MovieDetail() {
         </section>
       </div>
 
-      <div className="relative overflow-hidden">
+      <div className='relative overflow-hidden'>
         <img
-          src="/assets/img-Banner1.png"
-          alt="이벤트 배너"
-          className="h-[7.6rem] w-full object-cover"
+          src='/assets/img-banner1.svg'
+          alt='이벤트 배너'
+          className='h-[7.6rem] w-full object-cover'
         />
         <span
-          className="
-            absolute left-0 top-0 inline-flex
-            items-center justify-center
-            px-3 py-[3px]
-            rounded-br-[0.6rem]
-            bg-blueGreen-500
-            font-label2 text-gray-0
-          "
+          className='absolute left-0 top-0 inline-flex items-center justify-center px-3 py-[3px] rounded-br-[0.6rem] bg-blueGreen-500 font-label2 text-gray-0'
         >
           이벤트
         </span>
@@ -120,7 +183,17 @@ export default function MovieDetail() {
           />
         </TabContainer>
 
-        {activeTab === 'info' ? <InfoSection /> : <ReviewSection />}
+        {activeTab === 'info' ? (
+          <InfoSection
+            movieId={movie.id}
+            cumulativeAudienceText={cumulativeAudienceText}
+            openDayText={openDayText}
+            dailyAudienceText={dailyAudienceText}
+            dailyCompareText={dailyCompareText}
+          />
+        ) : (
+          <ReviewSection />
+        )}
       </section>
     </div>
   );

@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import { IconStarFill } from '@assets/index';
 import { getRoundedStarStates } from '@utils/index';
 import {
@@ -5,17 +7,46 @@ import {
   MOVIE_DETAIL_REVIEWS,
 } from '@pages/movie-detail/mock';
 import { Button, Review } from '@components/index';
+import {
+  useGetMovieDetailQuery,
+  useGetMovieReviewsQuery,
+} from '@pages/movie-detail/api/use-movie-detail-queries';
 
 export default function ReviewSection() {
-  const averageScore = MOVIE_DETAIL_STATS.averageScore;
+  const { id } = useParams<{ id: string }>();
+  const fallbackId = 1;
+  const movieId = Number(id ?? fallbackId) || fallbackId;
+
+  const { data: detailResponse } = useGetMovieDetailQuery(movieId);
+  const { data: reviewsResponse } = useGetMovieReviewsQuery(movieId);
+
+  const detail = detailResponse?.data;
+  const reviewsData = reviewsResponse?.data;
+
+  const averageScore = detail?.rating ?? MOVIE_DETAIL_STATS.averageScore;
   const starRating = averageScore / 2;
   const starStates = getRoundedStarStates(starRating);
-  const totalReviewCountText = MOVIE_DETAIL_STATS.totalReviewCount.toLocaleString('ko-KR');
+
+  const totalReviewCount =
+    reviewsData?.reviewCount ?? MOVIE_DETAIL_STATS.totalReviewCount;
+  const totalReviewCountText =
+    totalReviewCount.toLocaleString('ko-KR');
+
+  const reviews =
+    reviewsData?.reviews?.map(review => ({
+      content: review.content ?? '',
+      rating: review.rating ?? 0,
+      createdAt: review.createdAt
+        ? new Date(review.createdAt)
+        : new Date(),
+      nickname: review.nickname ?? '익명',
+    })) ?? MOVIE_DETAIL_REVIEWS;
+
   return (
     <div className="flex flex-col gap-[rem]">
       <section className="relative flex flex-col items-center pt-[2.2rem] pb-[1.1rem] bg-[#181818] overflow-hidden">
-        <div className="pointer-events-none absolute -left-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80"/>
-        <div className="pointer-events-none absolute -right-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80"/>
+        <div className="pointer-events-none absolute -left-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80" />
+        <div className="pointer-events-none absolute -right-10 top-[5rem] h-[60px] w-[60px] rounded-full bg-violet-600 blur-[38px] opacity-80" />
         <p className='font-body4 text-violet-600'>
           {averageScore}
           <span className='font-body5 text-gray-0'> / 10</span>
@@ -53,7 +84,7 @@ export default function ReviewSection() {
             <span className="text-gray-0">실관람평 </span>
             <span className="text-violet-500">{totalReviewCountText}</span>
           </h2>
-          {MOVIE_DETAIL_REVIEWS.map(review => (
+          {reviews.map(review => (
             <Review
               key={`${review.nickname}-${review.createdAt.toISOString()}`}
               content={review.content}
