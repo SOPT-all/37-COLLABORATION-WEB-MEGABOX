@@ -24,7 +24,7 @@ export default function Payment() {
     isValid,
     handleSelectedCard,
   } = usePaymentForm();
-  
+
   const { showToast } = useToastStore();
 
   const handleSubmitClick = () => {
@@ -81,9 +81,9 @@ export default function Payment() {
         />
       </div>
       <div className='bg-gray-0 pt-[2rem]'>
-        <PaymentButton 
-          totalAmount={23000} 
-          isDisabled={!isValid} 
+        <PaymentButton
+          totalAmount={23000}
+          isDisabled={!isValid}
           onClick={handleSubmitClick}
         />
       </div>
