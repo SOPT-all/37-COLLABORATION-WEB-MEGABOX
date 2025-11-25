@@ -75,13 +75,13 @@
     z-index: 5;
   }
   .scroll-fade::before {
-    left: 0;
-    width: 1rem;
+    left: -1rem;
+    width: 3rem;
     background :linear-gradient(to right,#131313,transparent);
   }
   .scroll-fade::after {
-    right: 0;
-    width: 1rem;
+    right: -1rem;
+    width: 3rem;
     background: linear-gradient(to left,#131313,transparent);
   }
 }
