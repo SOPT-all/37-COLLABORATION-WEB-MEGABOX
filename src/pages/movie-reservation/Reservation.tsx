@@ -40,10 +40,14 @@ export default function Reservation() {
     handleClickTime,
   } = useSelection(dates[0]);
 
+  const selectedTimeSlot = selectedTimeId === null
+    ? undefined
+    : (TIMES[selectedTimeId].type as TimeType);
+
   const { data: filteredShowtimes, isLoading } = useShowtimes({
     movieIds: selectedMovieIds,
     date: selectedDate.date,
-    timeSlot: TIMES[selectedTimeId ?? 0].type as TimeType
+    timeSlot: selectedTimeSlot
   });
 
   const [showtimeOpenMap, setShowtimeOpenMap] = useState<Record<string, boolean>>({});
