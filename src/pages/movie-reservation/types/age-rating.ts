@@ -1,0 +1,1 @@
+export type AgeRating = 0 | 12 | 15 | 19;

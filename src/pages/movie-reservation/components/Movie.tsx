@@ -1,8 +1,9 @@
 import { MOVIES } from '@constants/movies';
+import { type AgeRating } from '@pages/movie-reservation/types/index';
 
 interface MovieProps {
   movieTitle: string;
-  ageRating: 'all' | 12 | 15 | 19;
+  ageRating: AgeRating;
 }
 
 export default function Movie({ movieTitle, ageRating }: MovieProps) {
@@ -20,7 +21,7 @@ export default function Movie({ movieTitle, ageRating }: MovieProps) {
       />
       <div className='flex items-center gap-[0.6rem]'>
         <img
-          src={`/assets/agelimit-${ageRating}.svg`}
+          src={`/assets/agelimit-${ageRating || 'all'}.svg`}
           alt={`${ageRating} 제한`}
           className='h-[1.5rem] w-[1.5rem]'
         />

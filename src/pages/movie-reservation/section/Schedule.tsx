@@ -1,6 +1,6 @@
 import { Cinema, Movie, Theater } from '@pages/movie-reservation/components/index';
 import { type CinemaResponse } from 'apis/data-contracts';
-import { type ShowtimeDetail } from '@pages/movie-reservation/types/index';
+import type { ShowtimeDetail, AgeRating } from '@pages/movie-reservation/types/index';
 
 interface ScheduleProps {
   filteredShowtimes: CinemaResponse[];
@@ -41,7 +41,7 @@ export default function Schedule({
                 <Movie
                   key={`${cinema.cinemaName} - ${movie.movieTitle}`}
                   movieTitle={movie.movieTitle || ''}
-                  ageRating={12}
+                  ageRating={(movie.ageRating ?? 0) as AgeRating}
                 />
                 {movie.theaters?.map(theater => (
                   <Theater
