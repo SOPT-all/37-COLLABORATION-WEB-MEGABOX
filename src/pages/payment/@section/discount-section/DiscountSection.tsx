@@ -28,7 +28,7 @@ export default function DiscountSection({
   const [activeTab, setActiveTab] = useState<'coupon' | 'point'>('coupon');
 
   const handleShowDiscount = () => {
-    setShowDiscount(!showDiscount);
+    setShowDiscount(prev => !prev);
   };
   const handleTabChange = (tab: 'coupon' | 'point') => {
     if(activeTab === tab && showDiscount) {
@@ -40,7 +40,7 @@ export default function DiscountSection({
   };
 
   return (
-    <section className='bg-gray-0 p-[1.6rem]' aria-labelledby='할인 세션'>
+    <section className='bg-gray-0 p-[1.6rem]' aria-label='할인 세션'>
       <div className='mb-[2.5rem]'>
         <SectionHeader
           title='할인적용'

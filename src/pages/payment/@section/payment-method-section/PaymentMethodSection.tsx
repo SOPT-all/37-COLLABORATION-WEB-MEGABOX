@@ -40,7 +40,7 @@ export default function PaymentMethodSection({
   const [showPaymentMethod, setShowPaymentMethod] = useState<boolean>(true);
 
   const handleShowPaymentMethod = () => {
-    setShowPaymentMethod(!showPaymentMethod);
+    setShowPaymentMethod(prev => !prev);
   };
 
   return (
