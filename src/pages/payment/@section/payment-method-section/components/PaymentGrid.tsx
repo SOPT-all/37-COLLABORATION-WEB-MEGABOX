@@ -4,6 +4,7 @@ import type { PaymentMethodType } from '@pages/payment/constants/pay';
 import IconCard from '@assets/components/IconCard';
 import IconSimpleCard from '@assets/components/IconSimpleCard';
 import IconMyCard from '@assets/components/IconMyCard';
+import IconPhone from '@assets/components/IconPhone';
 
 interface PaymentGridProps {
   selectedPaymentMethod: PaymentMethodType | null;
@@ -13,6 +14,7 @@ interface PaymentGridProps {
 const PAYMENT_ICONS = {
   'credit-card': IconCard,
   'simple-pay': IconSimpleCard,
+  'phone-pay': IconPhone,
   'account-pay': IconMyCard,
 } as const;
 

@@ -1,7 +1,8 @@
 export const PAYMENT_METHODS = [
   { key: 'credit-card', label: '신용카드' },
   { key: 'simple-pay', label: '간편결제' },
-  { key: 'account-pay', label: '계좌이체' },
+  { key: 'phone-pay', label: '휴대폰결제' },
+  { key: 'account-pay', label: '내통장결제' },
 ] as const;
 
 export type PaymentMethodType = (typeof PAYMENT_METHODS)[number]['key'];
