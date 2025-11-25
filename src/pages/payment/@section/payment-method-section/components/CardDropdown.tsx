@@ -21,7 +21,9 @@ export default function CardDropdown({
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className='bg-gray-0 overflow-hidden rounded-[0.8rem] border border-gray-300 shadow-lg'>
+          <Select.Content 
+            className='bg-gray-0 rounded-[0.8rem] border border-gray-300 shadow-lg'
+          >
             <Select.Viewport className='p-[0.8rem]'>
               {CARD_OPTIONS.map(option => (
                 <Select.Item key={option.value} value={option.value}>

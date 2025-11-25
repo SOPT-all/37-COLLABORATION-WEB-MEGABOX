@@ -1,5 +1,5 @@
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
-import PaymentBtn from '@pages/payment/components/PaymentBtn';
+import PaymentButton from '@/pages/payment/components/PaymentButton';
 import {
   DiscountSection,
   MovieSection,
@@ -61,7 +61,7 @@ export default function Payment() {
         />
       </div>
       <div className='bg-gray-0 pt-[2rem]'>
-        <PaymentBtn totalAmount={23000} disabled={!isValid} />
+        <PaymentButton totalAmount={23000} disabled={!isValid} />
       </div>
     </div>
   );

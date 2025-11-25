@@ -3,7 +3,7 @@ interface PaymentBtnProps {
   disabled?: boolean;
 }
 //네이밍 다시 해라
-export default function PaymentBtn({
+export default function PaymentButton({
   totalAmount,
   disabled = false,
 }: PaymentBtnProps) {
