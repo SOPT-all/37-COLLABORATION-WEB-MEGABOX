@@ -1,12 +1,14 @@
 import { cn } from '@utils/cn';
-import type { PaymentFormData } from '@pages/payment/schemas/payment.schema';
 
 interface DiscountTabsProps {
-  activeTab: PaymentFormData['activeTab'];
-  handleTabChange: (_tab: PaymentFormData['activeTab']) => void;
+  activeTab: 'coupon' | 'point';
+  handleTabChange: (_tab: 'coupon' | 'point') => void;
 }
 
-const DiscountTabs = ({ activeTab, handleTabChange }: DiscountTabsProps) => {
+export default function DiscountTabs({
+  activeTab,
+  handleTabChange,
+}: DiscountTabsProps) {
   const getTabClassName = (isActive: boolean) =>
     cn(
       'font-button2 relative flex-1 rounded-[0.4rem] border-[0.1rem] p-[1rem]',
@@ -19,7 +21,7 @@ const DiscountTabs = ({ activeTab, handleTabChange }: DiscountTabsProps) => {
     <div className='mb-[1.8rem] flex gap-[0.7rem]' aria-label='할인 수단 종류'>
       <button
         type='button'
-        onClick={() => handleTabChange(activeTab === 'coupon' ? null : 'coupon')}
+        onClick={() => handleTabChange('coupon')}
         className={getTabClassName(activeTab === 'coupon')}
         role='tab'
         aria-selected={activeTab === 'coupon'}
@@ -28,7 +30,7 @@ const DiscountTabs = ({ activeTab, handleTabChange }: DiscountTabsProps) => {
       </button>
       <button
         type='button'
-        onClick={() => handleTabChange(activeTab === 'point' ? null : 'point')}
+        onClick={() => handleTabChange('point')}
         className={getTabClassName(activeTab === 'point')}
         role='tab'
         aria-selected={activeTab === 'point'}
@@ -37,6 +39,4 @@ const DiscountTabs = ({ activeTab, handleTabChange }: DiscountTabsProps) => {
       </button>
     </div>
   );
-};
-
-export default DiscountTabs;
+}

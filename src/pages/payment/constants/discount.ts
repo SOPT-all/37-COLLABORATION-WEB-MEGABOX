@@ -1,31 +1,30 @@
-export type DiscountItem = {
-  id: number;
-  label: string;
-};
-
-export const COUPON_ITEMS: DiscountItem[] = [
-  { id: 1, label: '할인쿠폰' },
-  { id: 2, label: 'VIP 영화쿠폰' },
-  { id: 3, label: '메가박스 관람권' },
-  { id: 4, label: '스토어 교환권' },
-  { id: 5, label: '모바일 관람권' },
-  { id: 6, label: '페이즈 금액권' },
-  { id: 7, label: '중앙 패밀리' },
+export const COUPON_ITEMS = [
+  { key: 'discount-coupon', label: '할인쿠폰' },
+  { key: 'vip-movie-coupon', label: 'VIP 영화쿠폰' },
+  { key: 'megabox-movie-ticket', label: '메가박스 관람권' },
+  { key: 'store-exchange-ticket', label: '스토어 교환권' },
+  { key: 'mobile-movie-ticket', label: '모바일 관람권' },
+  { key: 'phase-cash-ticket', label: '페이즈 금액권' },
+  { key: 'central-family', label: '중앙 패밀리' },
 ];
 
-export const POINT_ITEMS: DiscountItem[] = [
-  { id: 8, label: 'VIP 영화쿠폰' },
-  { id: 9, label: 'U+ 멤버십' },
-  { id: 10, label: 'OK캐시백' },
-  { id: 11, label: 'LPOINT' },
-  { id: 12, label: 'GS&POINT' },
-  { id: 13, label: 'HD현대오일뱅크' },
-  { id: 14, label: '해피포인트' },
-  { id: 15, label: '블루멤버스포인트' },
-  { id: 16, label: '기아멤버스포인트' },
-  { id: 17, label: '현대M포인트' },
-  { id: 18, label: '북앤라이프캐시' },
-  { id: 19, label: '컬쳐캐시' },
-  { id: 20, label: '문화누리카드' },
-  { id: 21, label: '중앙멤버십' },
+export type CouponItemType = (typeof COUPON_ITEMS)[number]['key'];
+
+export const POINT_ITEMS = [
+  { key: 'vip-movie-coupon', label: 'VIP 영화쿠폰' },
+  { key: 'u-membership', label: 'U+ 멤버십' },
+  { key: 'ok-cashback', label: 'OK캐시백' },
+  { key: 'lpoint', label: 'LPOINT' },
+  { key: 'gs-point', label: 'GS&POINT' },
+  { key: 'hd-hyundai-oil-bank', label: 'HD현대오일뱅크' },
+  { key: 'happy-point', label: '해피포인트' },
+  { key: 'blue-membership-point', label: '블루멤버스포인트' },
+  { key: 'kia-membership-point', label: '기아멤버스포인트' },
+  { key: 'hyundai-m-point', label: '현대M포인트' },
+  { key: 'north-and-life-cash', label: '북앤라이프캐시' },
+  { key: 'culture-cash', label: '컬쳐캐시' },
+  { key: 'culture-culture-card', label: '문화누리카드' },
+  { key: 'central-membership', label: '중앙멤버십' },
 ];
+
+export type PointItemType = (typeof POINT_ITEMS)[number]['key'];

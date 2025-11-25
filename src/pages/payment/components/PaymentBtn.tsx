@@ -2,8 +2,11 @@ interface PaymentBtnProps {
   totalAmount: number;
   disabled?: boolean;
 }
-
-const PaymentBtn = ({ totalAmount, disabled = false }: PaymentBtnProps) => {
+//네이밍 다시 해라
+export default function PaymentBtn({
+  totalAmount,
+  disabled = false,
+}: PaymentBtnProps) {
   const formatAmount = (amount: number) => {
     return amount.toLocaleString('ko-KR');
   };
@@ -17,6 +20,4 @@ const PaymentBtn = ({ totalAmount, disabled = false }: PaymentBtnProps) => {
       {`${formatAmount(totalAmount)}원 결제하기`}
     </button>
   );
-};
-
-export default PaymentBtn;
+}

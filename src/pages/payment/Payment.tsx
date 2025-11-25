@@ -1,81 +1,68 @@
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
-import DiscountSection from '@pages/payment/section/DiscountSection';
-import MovieInfo from '@pages/payment/components/MovieInfo';
-import PaymentMethodSection from '@pages/payment/section/PaymentMethodSection';
 import PaymentBtn from '@pages/payment/components/PaymentBtn';
-import PaymentAmountSection from '@pages/payment/components/PaymentAmountSection';
-import GiftCardInquiry from '@pages/payment/components/GiftCardInquiry';
+import {
+  DiscountSection,
+  MovieSection,
+  PaymentMethodSection,
+  PaymentAmountSection,
+  GiftCardSection,
+} from '@/pages/payment/@section';
+import { mockMovie, mockPaymentAmount } from '@pages/payment/mock';
 
-
-const Payment = () => {
+export default function Payment() {
   const {
     form,
-    handleActiveTab,
-    handleSelectedDiscountId,
-    handleIsChecked,
-    handlePaymentMethod,
-    handleCardSelect,
-    handlePaymentType,
-    handleAgreed,
+    handleSelectedCoupon,
+    handleSelectedPoint,
+    handleSelectedPolicy,
     onSubmit,
+    handleSelectedPaymentMethod,
+    handleSelectedPaymentType,
+    handleSelectedAgreed,
     isValid,
+    handleSelectedCard,
   } = usePaymentForm();
 
-  // 필수 필드 구독
-  const selectedPaymentMethod = form.watch('selectedPaymentMethod');
-  const selectedCard = form.watch('selectedCard');
-  const isAgreed = form.watch('isAgreed');
-
-  const isFormValid =
-    selectedPaymentMethod !== null &&
-    selectedCard !== '' &&
-    isAgreed === true &&
-    isValid;
-
   return (
-    <>
-      <form
-      onSubmit={form.handleSubmit(onSubmit)}
-      className='flex min-h-screen flex-col'
-      >
-      <div className='flex-1 bg-gray-0'>
-        <MovieInfo
-          movie={{
-            id: 1,
-            title: '위키드:포 굿',
-            showTime: '2025.11.19(수)10:00~12:27',
-            theater: '강남/르릴클라이너1관·2D(자막)',
-            seats: 2,
-            posterUrl: '/assets/@movie/img-movieposter-wicked.svg',
-          }}
+    <div className='flex min-h-screen flex-col'>
+      <div className='bg-gray-0 flex-1'>
+        <MovieSection
+          id={mockMovie.id}
+          title={mockMovie.title}
+          showTime={mockMovie.showTime}
+          theater={mockMovie.theater}
+          seats={mockMovie.seats}
+          posterUrl={mockMovie.posterUrl}
         />
         <DiscountSection
-          form={form}
-          handleActiveTab={handleActiveTab}
-          handleSelectedDiscountId={handleSelectedDiscountId}
-          handleIsChecked={handleIsChecked}
+          selectedCoupon={form.selectedCoupon || null}
+          selectedPoint={form.selectedPoint || null}
+          selectedPolicy={form.selectedPolicy || false}
+          handleSelectedCoupon={handleSelectedCoupon}
+          handleSelectedPoint={handleSelectedPoint}
+          handleSelectedPolicy={handleSelectedPolicy}
         />
-        <GiftCardInquiry />
+        <GiftCardSection />
         <PaymentMethodSection
-          form={form}
-          handlePaymentMethod={handlePaymentMethod}
-          handleCardSelect={handleCardSelect}
-          handlePaymentType={handlePaymentType}
-          handleAgreed={handleAgreed}
+          selectedPaymentMethod={form.selectedPaymentMethod || null}
+          paymentType={form.paymentType}
+          selectedCard={form.selectedCard || null}
+          isAgreed={form.isAgreed}
+          handleSelectedPaymentMethod={handleSelectedPaymentMethod}
+          handleSelectedPaymentType={handleSelectedPaymentType}
+          handleSelectedAgreed={handleSelectedAgreed}
+          handleSelectedCard={handleSelectedCard}
         />
         <PaymentAmountSection
-          productAmount={24000}
-          discountAmount={1000}
-          deductionAmount={0}
-          totalAmount={23000}
+          productAmount={mockPaymentAmount.productAmount}
+          discountAmount={mockPaymentAmount.discountAmount}
+          deductionAmount={mockPaymentAmount.deductionAmount}
+          totalAmount={mockPaymentAmount.totalAmount}
         />
-        </div>
-        <div className='bg-gray-0 pt-[2rem]'>
-          <PaymentBtn totalAmount={23000} disabled={!isFormValid} />
-        </div>
-      </form>
-    </>
+      </div>
+      <div className='bg-gray-0 pt-[2rem]'>
+        <PaymentBtn totalAmount={23000} disabled={!isValid} />
+      </div>
+    </div>
   );
-};
-
-export default Payment;
+}

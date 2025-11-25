@@ -1,73 +1,73 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver} from '@hookform/resolvers/zod';
+import { useForm, useWatch } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   paymentFormDefaultValues,
-    paymentFormSchema,
-    type PaymentFormData,
+  paymentFormSchema,
+  type PaymentFormData,
 } from '@pages/payment/schemas/payment.schema';
+import { type PointItemType } from '@pages/payment/constants/discount';
+import {
+  type PaymentMethodType,
+  type PaymentTypeType,
+} from '@pages/payment/constants/pay';
 
 export const usePaymentForm = () => {
-  // useForm 설정
   const form = useForm<PaymentFormData>({
     resolver: zodResolver(paymentFormSchema),
     defaultValues: paymentFormDefaultValues,
-    mode: 'onChange', // -> 입력 실시간 검증
+    mode: 'onChange',
   });
-  // 필요 메소드 및 상태 추출
+
   const {
     trigger,
-    // watch,
+    control,
     formState: { errors, isValid },
     setValue,
   } = form;
 
-  // const fields = {
-  //     activeTab: formData.activeTab,
-  //     selectedDiscountId: formData.selectedDiscountId,
-  //     isChecked: formData.isChecked,
-  // };
+  const selectedCoupon = useWatch({ control, name: 'selectedCoupon' });
+  const selectedPolicy = useWatch({ control, name: 'selectedPolicy' });
+  const selectedPoint = useWatch({ control, name: 'selectedPoint' });
+  const isChecked = useWatch({ control, name: 'isChecked' });
+  const selectedPaymentMethod = useWatch({
+    control,
+    name: 'selectedPaymentMethod',
+  });
+  const paymentType = useWatch({ control, name: 'paymentType' });
+  const selectedCard = useWatch({ control, name: 'selectedCard' });
+  const isAgreed = useWatch({ control, name: 'isAgreed' });
 
-  // 토스트 메시지
-  const fieldErrors = {
-    selectedDiscountId: errors.selectedDiscountId?.message,
-    isChecked: errors.isChecked?.message,
+  const handleSelectedCoupon = (couponKey: string) => {
+    setValue('selectedCoupon', couponKey, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
   };
 
-  // 탭
-  const handleActiveTab = (tab: PaymentFormData['activeTab']) => {
-    setValue('activeTab', tab, { shouldValidate: true });
+  const handleSelectedPoint = (point: PointItemType) => {
+    setValue('selectedPoint', point, { shouldValidate: true });
   };
 
-  // 그리드 아이템
-  const handleSelectedDiscountId = (
-    id: PaymentFormData['selectedDiscountId']
-  ) => {
-    setValue('selectedDiscountId', id, { shouldValidate: true });
+  const handleSelectedPolicy = (policy: boolean) => {
+    setValue('selectedPolicy', policy, { shouldValidate: true });
   };
 
-  // 체크박스
-  const handleIsChecked = (id: PaymentFormData['isChecked']) => {
-    setValue('isChecked', id, { shouldValidate: true });
-  };
-  // 결제수단 관련 핸들러
-  const handlePaymentMethod = (
-    method: PaymentFormData['selectedPaymentMethod']
-  ) => {
+  const handleSelectedPaymentMethod = (method: PaymentMethodType) => {
     setValue('selectedPaymentMethod', method, { shouldValidate: true });
   };
 
-  const handleCardSelect = (card: PaymentFormData['selectedCard']) => {
-    setValue('selectedCard', card, { shouldValidate: true });
-  };
-
-  const handlePaymentType = (type: PaymentFormData['paymentType']) => {
+  const handleSelectedPaymentType = (type: PaymentTypeType) => {
     setValue('paymentType', type, { shouldValidate: true });
   };
 
-  const handleAgreed = (agreed: PaymentFormData['isAgreed']) => {
+  const handleSelectedAgreed = (agreed: boolean) => {
     setValue('isAgreed', agreed, { shouldValidate: true });
   };
 
+  const handleSelectedCard = (card: string) => {
+    setValue('selectedCard', card, { shouldValidate: true });
+  };
 
   const onSubmit = async (data: PaymentFormData) => {
     // 모든 필드 검증
@@ -79,18 +79,38 @@ export const usePaymentForm = () => {
     console.info('폼 데이터', data);
   };
 
+  const formFields = {
+    selectedCoupon,
+    selectedPolicy,
+    selectedPoint,
+    isChecked,
+    selectedPaymentMethod,
+    paymentType,
+    selectedCard,
+    isAgreed,
+  };
+
+  const fieldErrors = {
+    selectedCoupon: errors.selectedCoupon?.message,
+    selectedPolicy: errors.selectedPolicy?.message,
+    selectedPoint: errors.selectedPoint?.message,
+    isChecked: errors.isChecked?.message,
+    selectedPaymentMethod: errors.selectedPaymentMethod?.message,
+    paymentType: errors.paymentType?.message,
+    isAgreed: errors.isAgreed?.message,
+    selectedCard: errors.selectedCard?.message,
+  };
   return {
-    form,
-    fieldErrors,
+    form: formFields,
+    errors: fieldErrors,
     isValid,
     onSubmit,
-    handleActiveTab,
-    handleSelectedDiscountId,
-    handleIsChecked,
-    // 결제수단 관련
-    handlePaymentMethod,
-    handleCardSelect,
-    handlePaymentType,
-    handleAgreed,
+    handleSelectedCoupon,
+    handleSelectedPoint,
+    handleSelectedPolicy,
+    handleSelectedPaymentMethod,
+    handleSelectedPaymentType,
+    handleSelectedAgreed,
+    handleSelectedCard,
   };
-}
+};

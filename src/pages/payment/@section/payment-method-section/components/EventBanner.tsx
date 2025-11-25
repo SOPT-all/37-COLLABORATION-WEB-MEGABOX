@@ -1,4 +1,4 @@
-const EventBanner = () => {
+export default function EventBanner() {
   return (
     <div className='rounded-[0.4rem] bg-gray-100 px-[1rem] py-[1.3rem]'>
       <div className='flex items-center gap-[0.2rem]'>
@@ -23,6 +23,4 @@ const EventBanner = () => {
       </div>
     </div>
   );
-};
-
-export default EventBanner;
+}

@@ -5,12 +5,12 @@ interface PaymentAmountSectionProps {
   totalAmount: number;
 }
 
-const PaymentAmountSection = ({
+export default function PaymentAmountSection({
   productAmount,
   discountAmount,
   deductionAmount,
   totalAmount,
-}: PaymentAmountSectionProps) => {
+}: PaymentAmountSectionProps) {
   const formatAmount = (amount: number) => {
     return amount.toLocaleString('ko-KR');
   };
@@ -57,6 +57,4 @@ const PaymentAmountSection = ({
       </section>
     </>
   );
-};
-
-export default PaymentAmountSection;
+}

@@ -7,7 +7,10 @@ interface RefundPolicyProps {
   handleChange: (_agreed: PaymentFormData['isAgreed']) => void;
 }
 
-const RefundPolicy = ({ isAgreed, handleChange }: RefundPolicyProps) => {
+export default function RefundPolicy({
+  isAgreed,
+  handleChange,
+}: RefundPolicyProps) {
   return (
     <div className='mt-[2.2rem]'>
       <button
@@ -32,12 +35,10 @@ const RefundPolicy = ({ isAgreed, handleChange }: RefundPolicyProps) => {
           - 온라인 예매는 영화 상영시간 20분전까지 취소 가능하며, 20분 이후 현장
           취소만 가능합니다.
         </p>
-        <p className='font-caption3 text-gray-400 mb-[0.7rem]'>
+        <p className='font-caption3 mb-[0.7rem] text-gray-400'>
           - 현장 취소 시 영화 상영시간 이전까지만 가능합니다.
         </p>
       </div>
     </div>
   );
-};
-
-export default RefundPolicy;
+}

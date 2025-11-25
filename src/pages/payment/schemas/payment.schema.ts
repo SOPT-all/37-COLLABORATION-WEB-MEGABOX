@@ -1,115 +1,62 @@
 import { z } from 'zod';
+import {
+  PAYMENT_METHODS,
+  PAYMENT_TYPES,
+  CARD_OPTIONS,
+} from '@pages/payment/constants/pay';
 import { PAYMENT_MESSAGES } from '@pages/payment/constants/payment-messages';
+import { COUPON_ITEMS, POINT_ITEMS } from '@pages/payment/constants/discount';
 
-/**
- * 할인 적용 폼 스키마
- * 해당 스키마는 선택사항(선택하지 않아도 결제에 문제 없음)
- */
-export const discountFormSchema = z
-  .object({
-    // 활성화 탭
-    activeTab: z.enum(['coupon', 'point']).nullable(),
+export const paymentFormSchema = z.object({
+  //coupon
+  selectedCoupon: z
+    .enum(COUPON_ITEMS.map(coupon => coupon.key))
+    .nullable()
+    .optional(),
+  selectedPolicy: z.boolean().optional(),
+  //포인트
+  selectedPoint: z
+    .enum(POINT_ITEMS.map(point => point.key))
+    .nullable()
+    .optional(),
+  isChecked: z.boolean().refine(checked => checked === true, {
+    message: PAYMENT_MESSAGES.SELECT_CHECKED,
+  }),
 
-    // 선택된 할인 수단 ID
-    selectedDiscountId: z.number().positive().nullable(),
+  // 선택한 결제 방법
+  selectedPaymentMethod: z
+    .enum(PAYMENT_METHODS.map(method => method.key))
+    .nullable()
+    .refine(method => method !== null, {
+      message: PAYMENT_MESSAGES.SELECT_PAYMENT_METHOD,
+    }),
 
-    // 자동 적용 체크 여부
-    isChecked: z.boolean(),
-  })
-  .refine(
-    data => {
-      // activeTab이 선택되었으면 selectedDiscountId도 필수
-      if (data.activeTab !== null && data.selectedDiscountId === null) {
-        return false;
-      }
-      return true;
-    },
-    {
-      message: PAYMENT_MESSAGES.SELECT_DISCOUNT,
-      path: ['selectedDiscountId'],
-    }
-)
+  // 결제 타입
+  paymentType: z
+    .enum(PAYMENT_TYPES.map(type => type.key))
+    .refine(type => type !== null, {
+      message: PAYMENT_MESSAGES.SELECT_PAYMENT_TYPE,
+    }),
+  selectedCard: z
+    .enum(CARD_OPTIONS.map(card => card.value))
+    .nullable()
+    .optional(),
 
-// 타입 자동 생성
-export type DiscountFormData = z.infer<typeof discountFormSchema>;
+  // 취소/환불 정책 동의
+  isAgreed: z.boolean().refine(agreed => agreed === true, {
+    message: PAYMENT_MESSAGES.SELECT_AGREED,
+  }),
+});
 
-// 초기값
-export const discountFormDefaultValues: DiscountFormData = {
-  // 할인
-  activeTab: null,
-  selectedDiscountId: null,
-  isChecked: false,
-};
-
-/**
- * 결제수단 폼 스키마 (필수)
- */
-export const paymentMethodSchema = z.object({
-    // 선택한 결제 방법
-    selectedPaymentMethod: z
-      .enum(['credit-card', 'simple-pay', 'phone-pay', 'account-pay'])
-      .nullable(),
-
-    // 선택한 카드
-    selectedCard: z.string(),
-
-    // 결제 타입
-    paymentType: z.enum(['isp', 'general']),
-
-    // 취소/환불 정책 동의
-    isAgreed: z.boolean(),
-})
-.refine(
-  data => {
-    // 결제 방법은 필수
-    return data.selectedPaymentMethod !== null;
-  },
-  {
-    message: '결제 수단을 선택해주세요',
-    path: ['selectedPaymentMethod'],
-  }
-)
-.refine(
-  data => {
-    // 취소/환불 정책 동의는 필수
-    return data.isAgreed === true;
-  },
-  {
-    message: '취소/환불 정책에 동의해주세요',
-    path: ['isAgreed'],
-  }
-);
-
-export type PaymentMethodFormData = z.infer<typeof paymentMethodSchema>;
-
-// 초기값
-export const paymentMethodDefaultValues: PaymentMethodFormData = {
-  selectedPaymentMethod: null,
-  selectedCard: '',
-  paymentType: 'isp',
-  isAgreed: false,
-};
-
-/**
- * 최종 결제 폼 스키마 (할인 + 결제수단)
- */
-export const paymentFormSchema = discountFormSchema.extend(
-  paymentMethodSchema.shape
-);
-
-// 타입 자동 생성
 export type PaymentFormData = z.infer<typeof paymentFormSchema>;
-
 // 초기값
-export const paymentFormDefaultValues: PaymentFormData = {
-  // 할인 -> 선택사항
-  activeTab: null,
-  selectedDiscountId: null,
+export const paymentFormDefaultValues = {
+  selectedCoupon: null,
+  selectedPolicy: false,
+  selectedPoint: null,
   isChecked: false,
-
-  // 결제수단 -> 필수사항
   selectedPaymentMethod: null,
-  selectedCard: '',
-  paymentType: 'isp',
+  paymentType: PAYMENT_TYPES[0].key,
+  selectedCard: null,
   isAgreed: false,
 };
