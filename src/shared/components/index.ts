@@ -6,3 +6,4 @@ export { default as Modal } from './@modal/Modal';
 export { default as Header } from './header/Header';
 export { default as Spinner } from './spinner/Spinner';
 export { default as Toast } from './toast/Toast';
+export { default as Stars } from './stars/Stars';
