@@ -5,14 +5,14 @@ const formatAmount = (amount: number) => amount.toLocaleString('ko-KR');
 interface PaymentButtonProps {
   totalAmount: number;
   isDisabled?: boolean;
-  onClick: () => void;
+  handleClick: () => void;
 }
 
-const PaymentButton = ({ totalAmount, isDisabled = false, onClick }: PaymentButtonProps) => {
+const PaymentButton = ({ totalAmount, isDisabled = false, handleClick }: PaymentButtonProps) => {
   return (
     <button
       type='button'
-      onClick={onClick}
+      onClick={handleClick}
       className={cn(
         'font-button4 w-full px-[3.2rem] py-[1.6rem] text-white transition-colors',
         isDisabled ? 'bg-gray-800 cursor-not-allowed' : 'bg-violet-600'

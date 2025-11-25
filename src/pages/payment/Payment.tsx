@@ -84,7 +84,7 @@ export default function Payment() {
         <PaymentButton
           totalAmount={23000}
           isDisabled={!isValid}
-          onClick={handleSubmitClick}
+          handleClick={handleSubmitClick}
         />
       </div>
     </div>
