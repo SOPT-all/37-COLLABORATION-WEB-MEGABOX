@@ -1,50 +1,43 @@
 import { formatTime } from '@/shared/utils';
-import {
-  useShowtimeStore,
-  type ShowtimeDetail,
-} from '@pages/movie-reservation/store/showtimeStore';
+import { useOneShowtime } from '@pages/movie-reservation/hooks/index';
+import { type ShowtimeDetail } from '@pages/movie-reservation/types/index';
 
 interface TimeProps {
-  cinemaName: string;
   movieTitle: string;
-  theaterName: string;
-  screenType: string;
   showtimeId: number;
   startTime: string;
   endTime: string;
   totalSeatCount: number;
   availableSeatCount: number;
+  handleSelectShowtime: (_: ShowtimeDetail) => void;
   handleOpenModal: (_: boolean) => void;
 }
 
 export default function Time({
-  cinemaName,
   movieTitle,
-  theaterName,
-  screenType,
   showtimeId,
   startTime,
   endTime,
   totalSeatCount,
   availableSeatCount,
+  handleSelectShowtime,
   handleOpenModal,
 }: TimeProps) {
-  const setSelectedShowtime = useShowtimeStore(
-    state => state.setSelectedShowtime
-  );
+  const { data } = useOneShowtime(showtimeId);
 
   const handleClick = () => {
-    setSelectedShowtime({
-      cinemaName,
+    handleSelectShowtime({
+      cinemaName: data?.cinemaName ?? '',
+      movieId: data?.movieId ?? 0,
       movieTitle,
-      theaterName,
-      screenType,
+      theaterName: data?.theaterName ?? '',
+      screenType: data?.screenType ?? '',
       showtimeId,
       startTime,
       endTime,
       totalSeatCount,
       availableSeatCount,
-    } as ShowtimeDetail);
+    });
 
     handleOpenModal(true);
   };
