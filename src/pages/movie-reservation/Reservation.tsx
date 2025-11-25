@@ -130,7 +130,7 @@ export default function Reservation() {
                   handleSelectShowtime={setSelectedShowtime}
                 />
               ) : (
-                <div className='flex justify-center items-center w-full mt-[12rem] text-[1.3rem] text-gray-0'>상영정보가 존재하지 않습니다.</div>
+                <div className='flex justify-center items-center w-full mt-[16rem] text-[1.3rem] text-gray-0'>상영정보가 존재하지 않습니다.</div>
               )}
             </>
           )}
