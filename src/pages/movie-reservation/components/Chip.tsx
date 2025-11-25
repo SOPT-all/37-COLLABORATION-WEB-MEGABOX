@@ -17,14 +17,14 @@ const variants = {
   date: {
     layout: 'flex flex-col justify-end gap-[0.2rem] shrink-0 w-[4.8rem] h-[5.2rem] px-[0.8rem] py-[0.5rem]',
     style: 'border-[0.05rem] rounded-[0.6rem] border-gray-600 bg-gray-800 opacity-50',
-    selectedStyle: 'border-gradient-1',
+    selectedStyle: 'border-gradient-2',
     text: 'text-gray-0',
     selectedText: 'text-gray-0',
   },
   time: {
     layout: 'flex justify-center items-center gap-[1rem] px-[1.5rem] py-[0.7rem]',
     style: 'border-[0.1rem] rounded-[100rem] border-gray-600 bg-gray-800 ',
-    selectedStyle: 'border-gradient-2',
+    selectedStyle: 'border-gradient-3',
     text: 'font-label1 text-gray-0',
     selectedText: 'font-label1 text-gray-0',
   },
