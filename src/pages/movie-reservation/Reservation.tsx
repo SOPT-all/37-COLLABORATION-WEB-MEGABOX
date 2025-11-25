@@ -1,53 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import dayjs from 'dayjs';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
 import Tooltip from '@components/tooltip/Tooltip';
+import Spinner from '@components/spinner/Spinner';
 
-import { cn } from '@utils/index';
 import {
-  useFilter,
   useTooltip,
   useSelection,
   useModalDetail,
   useDate,
+  useShowtimes,
 } from '@pages/movie-reservation/hooks/index';
+import { Carousel } from '@pages/movie-reservation/components/index';
 import {
-  Chip,
-  Carousel,
-  Cinema,
-  Movie,
-  Theater,
-} from '@pages/movie-reservation/components/index';
-import { TIMES, CINEMAS } from '@pages/movie-reservation/constants/index';
-
-import { useShowtimeStore } from '@pages/movie-reservation/store/showtimeStore';
+  CinemaChips,
+  DateChips,
+  TimeChips,
+  Schedule
+} from '@pages/movie-reservation/section/index';
+import { type TimeType, TIMES } from '@pages/movie-reservation/constants/index';
+import { type ShowtimeDetail } from '@pages/movie-reservation/types/index';
+import { type CinemaResponse } from 'apis/data-contracts';
 
 export default function Reservation() {
   const navigate = useNavigate();
 
-  const selectedShowtime = useShowtimeStore(state => state.selectedShowtime);
+  const [selectedShowtime, setSelectedShowtime] = useState<ShowtimeDetail | null>(null);
   const dates = useDate();
   const { isTooltipOpen, handleCloseTooltip } = useTooltip();
   const {
     selectedMovieIds,
     selectedCinemas,
+    selectedDate,
+    selectedTimeId,
     handleClickMovie,
     handleClickDate,
     handleClickTime,
-    selectedDate,
-    selectedTimeId,
   } = useSelection(dates[0]);
 
-  const filteredShowtimes = useFilter(selectedDate.date);
+  const { data: filteredShowtimes, isLoading } = useShowtimes({
+    movieIds: selectedMovieIds,
+    date: selectedDate.date,
+    timeSlot: TIMES[selectedTimeId ?? 0].type as TimeType
+  });
 
-  const initialOpenMap = Object.fromEntries(
-    filteredShowtimes.map(cinema => [cinema.cinemaName, true])
-  );
-  const [showtimeOpenMap, setShowtimeOpenMap] =
-    useState<Record<string, boolean>>(initialOpenMap);
+  const [showtimeOpenMap, setShowtimeOpenMap] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (!filteredShowtimes) return;
+    const newMap = Object.fromEntries(
+      filteredShowtimes.map((cinema: CinemaResponse) => [cinema.cinemaName, true])
+    );
+    setShowtimeOpenMap(newMap);
+  }, [filteredShowtimes]);
 
   const {
     isOpen,
