@@ -72,16 +72,16 @@
     top: 0;
     bottom: 0;
     pointer-events: none;
-    z-index: 10;
+    z-index: 5;
   }
   .scroll-fade::before {
     left: 0;
-    width: 2rem;
+    width: 1rem;
     background :linear-gradient(to right,#131313,transparent);
   }
   .scroll-fade::after {
     right: 0;
-    width: 6rem;
+    width: 1rem;
     background: linear-gradient(to left,#131313,transparent);
   }
 }
