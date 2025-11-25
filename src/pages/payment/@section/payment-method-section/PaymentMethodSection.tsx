@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { cn } from '@utils/cn';
 import {
   JoongAngPayButton,
   PaymentGrid,
-  CardSelector,
+  CardDropdown,
   PaymentTypeRadio,
   EventBanner,
   RefundPolicy,
@@ -43,12 +44,14 @@ export default function PaymentMethodSection({
 
   return (
     <section className='bg-gray-0 p-[1.6rem]'>
-      <SectionHeader
-        title='결제 수단'
-        subtitle='결제 수단을 선택하세요'
-        isOpen={showPaymentMethod}
-        handleShow={handleShowPaymentMethod}
-      />
+      <div className={cn(showPaymentMethod && 'mb-[2.5rem]')}>
+        <SectionHeader
+          title='결제 수단'
+          subtitle='결제 수단을 선택하세요'
+          isOpen={showPaymentMethod}
+          handleShow={handleShowPaymentMethod}
+        />
+      </div>
 
       {showPaymentMethod && (
         <>
@@ -59,7 +62,7 @@ export default function PaymentMethodSection({
           />
           {selectedPaymentMethod && (
             <>
-              <CardSelector
+              <CardDropdown
                 selectedCard={selectedCard}
                 handleSelect={handleSelectedCard}
               />

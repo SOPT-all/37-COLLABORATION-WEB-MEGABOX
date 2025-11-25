@@ -2,15 +2,15 @@ import * as Select from '@radix-ui/react-select';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { CARD_OPTIONS } from '@pages/payment/constants/pay';
 
-interface CardSelectorProps {
+interface CardDropdownProps {
   selectedCard: string | null;
   handleSelect: (card: string) => void;
 }
-//드롭다운이겠지;
-export default function CardSelector({
+
+export default function CardDropdown({
   selectedCard,
   handleSelect,
-}: CardSelectorProps) {
+}: CardDropdownProps) {
   return (
     <div className='mb-[1rem]'>
       <Select.Root value={selectedCard || ''} onValueChange={handleSelect}>
@@ -35,3 +35,4 @@ export default function CardSelector({
     </div>
   );
 }
+

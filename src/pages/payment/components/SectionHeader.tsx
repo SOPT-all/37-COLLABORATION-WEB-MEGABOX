@@ -15,7 +15,7 @@ export default function SectionHeader({
   handleShow,
 }: SectionHeaderProps) {
   return (
-    <div className='mb-[2.5rem] flex items-center justify-between'>
+    <div className='flex items-center justify-between'>
       <h2 className='font-title2'>{title}</h2>
       <div>
         <button

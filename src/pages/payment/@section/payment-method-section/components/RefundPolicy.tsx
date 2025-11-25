@@ -27,7 +27,7 @@ export default function RefundPolicy({
           )}
         />
         <span className='font-caption2 text-gray-800'>
-          취소/환불 정첵에 대한 동의
+          취소/환불 정책에 대한 동의
         </span>
       </button>
       <div className='mt-[1.6rem] space-y-[1.4rem] border-t border-gray-200 pt-[1.6rem]'>
