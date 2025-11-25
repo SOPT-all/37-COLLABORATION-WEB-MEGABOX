@@ -21,7 +21,7 @@ export default function DateChips({
           dateInfo.day === '토' && 'text-blue-500',
           dateInfo.day === '일' && 'text-red-500'
         );
-        const dateString = dayjs(dateInfo.date).format('M/D');
+        const dateString = dayjs(dateInfo.date).format('D');
 
         return (
           <Chip
@@ -31,10 +31,10 @@ export default function DateChips({
             onClick={() => handleClickDate(dateInfo)}
           >
             <span className={cn('font-title3', dayColorClass)}>
-              {dateInfo.day}
+              {dateString}
             </span>
             <span className={cn('font-label1', dayColorClass)}>
-              {dateString}
+              {dateInfo.day}
             </span>
           </Chip>
         );
