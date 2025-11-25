@@ -2,7 +2,7 @@ import { MOVIES } from '@constants/movies';
 
 interface MovieProps {
   movieTitle: string;
-  ageRating: 'ALL' | 12 | 15 | 19;
+  ageRating: 'all' | 12 | 15 | 19;
 }
 
 export default function Movie({ movieTitle, ageRating }: MovieProps) {
@@ -20,7 +20,7 @@ export default function Movie({ movieTitle, ageRating }: MovieProps) {
       />
       <div className='flex items-center gap-[0.6rem]'>
         <img
-          src={`/assets/ageLimit-${ageRating}.png`}
+          src={`/assets/agelimit-${ageRating}.svg`}
           alt={`${ageRating} 제한`}
           className='h-[1.5rem] w-[1.5rem]'
         />
