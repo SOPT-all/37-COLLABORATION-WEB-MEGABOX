@@ -116,10 +116,12 @@ export default function Reservation() {
           ) : (
             <>
               {filteredShowtimes.length !== 0 && isTooltipOpen && (
-                <Tooltip
-                  message='최근 이용극장을 선호극장에 추가해보세요'
-                  handleClose={handleCloseTooltip}
-                />
+                <div className='absolute top-[34rem] left-[5rem]'>
+                  <Tooltip
+                    message='최근 이용극장을 선호극장에 추가해보세요'
+                    handleClose={handleCloseTooltip}
+                  />
+                </div>
               )}
               {filteredShowtimes.length !== 0 ? (
                 <Schedule
