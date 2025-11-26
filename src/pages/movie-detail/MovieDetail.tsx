@@ -76,9 +76,7 @@ export default function MovieDetail() {
     detail?.description ?? MOVIE_DETAIL_DESCRIPTION.full;
   const shortDescription =
     detail?.summary ?? MOVIE_DETAIL_DESCRIPTION.short;
-  const descriptionText = isDescriptionExpanded
-    ? fullDescription
-    : shortDescription;
+
 
   const totalReviewCountCompact = new Intl.NumberFormat('en-US', {
     notation: 'compact',
@@ -167,7 +165,7 @@ export default function MovieDetail() {
           alt='이벤트 배너'
           className='h-[7.6rem] w-full object-cover'
         />
-        <span 
+        <span
         className="absolute left-0 top-0 inline-flex items-center justify-center pt-[0.125rem] pr-[0.75rem] pb-[0.1875rem] pl-[0.6875rem] rounded-br-[0.6rem] bg-blueGreen-500 font-label2 text-gray-0">
           이벤트
         </span>
