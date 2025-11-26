@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Header, Button, Spinner } from '@components/index';
-import { useMovie } from '@/pages/home/hooks';
+import { useMovie } from '@/pages/home/hooks/use-movie';
 import HomeClient from '@pages/home/Home.client';
 
 export default function Home() {
