@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
         path: ROUTES.MOVIE_DETAIL,
         element: <MovieDetail />,
       },
+      {
         path: ROUTES.MOVIE_RESERVATION,
         element: <Reservation />,
       },
