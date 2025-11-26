@@ -88,6 +88,7 @@ export default function Reservation() {
       <Header
         variant='movie'
         title='영화 예매하기'
+        icon={false}
         handleClickBack={() => navigate(-1)}
       />
       <div className='p-[2rem]'>
