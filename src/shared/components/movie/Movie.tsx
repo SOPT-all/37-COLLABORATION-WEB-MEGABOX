@@ -43,11 +43,11 @@ export default function Movie({
       <div className='gradient-4 absolute inset-0 h-full w-full' />
       <div className='absolute inset-0 h-full w-full bg-gray-900/70' />
       <div className='relative z-10 flex shrink-0 flex-col gap-[0.8rem] px-[3.1rem] py-[2rem]'>
-        <div className='flex h-full items-end gap-[2rem]'>
+        <div className='flex h-full w-full items-end gap-[2rem]'>
           <img
             src={movie.image}
             alt={`${title} 포스터 이미지`}
-            className='h-[17.4rem] w-[12.4rem]'
+            className='h-[17.4rem] w-[12.4rem] shrink-0'
           />
           <div className='flex w-full flex-col gap-[1.9rem]'>
             <div className='flex flex-col gap-[0.5rem]'>
