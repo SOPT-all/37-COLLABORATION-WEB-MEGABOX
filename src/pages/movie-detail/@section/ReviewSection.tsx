@@ -79,7 +79,7 @@ export default function ReviewSection() {
           실관람평 작성하고 포인트 받기
         </Button>
 
-        <section className='flex flex-col gap-[1.5rem]'>
+        <section className="flex flex-col items-start self-stretch py-[0.9375rem] gap-[1px]">
           <h2 className="mb-2 font-title3">
             <span className="text-gray-0">실관람평 </span>
             <span className="text-violet-500">{totalReviewCountText}</span>
