@@ -1,6 +1,12 @@
-export default function Divider() {
+import { cn } from '@utils/cn';
+
+interface DividerProps {
+  className?: string;
+}
+
+export default function Divider({ className }: DividerProps) {
   return (
-    <div className='flex w-full items-center justify-center'>
+    <div className={cn('flex w-full items-center justify-center', className)}>
       <svg
         width='344'
         height='12'
