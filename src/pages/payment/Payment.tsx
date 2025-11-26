@@ -1,6 +1,7 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
 import PaymentButton from '@/pages/payment/components/PaymentButton';
+import Header from '@components/header/Header';
 import { useToastStore } from '@store/toast';
 import { PAYMENT_MESSAGES } from '@pages/payment/constants/payment-messages';
 import {
@@ -28,6 +29,7 @@ interface ReservationState {
 }
 
 export default function Payment() {
+  const navigate = useNavigate();
   const location = useLocation();
   const reservationData = location.state as ReservationState | null;
 
@@ -89,6 +91,12 @@ export default function Payment() {
 
   return (
     <div className='flex min-h-screen flex-col'>
+      <Header
+        variant='movie'
+        title='결제하기'
+        icon={false}
+        handleClickBack={() => navigate(-1)}
+      />
       <div className='bg-gray-0 flex-1'>
         <MovieSection
           id={movieData.id}
