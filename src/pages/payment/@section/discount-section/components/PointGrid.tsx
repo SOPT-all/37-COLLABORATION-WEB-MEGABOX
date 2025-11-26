@@ -14,6 +14,7 @@ export default function PointGrid({
   selectedPoint,
   handleSelectedPoint,
 }: PointGridProps) {
+  const tooltipMessage = '최근 사용한 할인수단!';
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
 
   const handleCloseTooltip = () => {
@@ -44,7 +45,7 @@ export default function PointGrid({
           {index === 1 && isTooltipOpen && (
             <div className='absolute bottom-full left-[1rem] mb-[0rem] '>
               <Tooltip
-                message='최근 사용한 할인수단!'
+                message={tooltipMessage}
                 handleClose={handleCloseTooltip}
               />
             </div>

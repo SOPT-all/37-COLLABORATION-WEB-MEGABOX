@@ -4,6 +4,7 @@ import Tooltip from '@components/tooltip/Tooltip';
 import JoongAngPAY from '@../../public/assets/img-joonang-logo.svg';
 
 export default function JoongAngPayButton() {
+  const tooltipMessage = '자주 사용하는 카드를 등록하고 빠르게 결제하세요!';
   const [isTooltipOpen, setIsTooltipOpen] = useState(true);
 
   const handleCloseTooltip = () => {
@@ -15,7 +16,7 @@ export default function JoongAngPayButton() {
       {isTooltipOpen && (
         <div className='absolute left-[1.6rem] -top-[2.5rem]'>
           <Tooltip
-            message='자주 사용하는 카드를 등록하고 빠르게 결제하세요!'
+            message={tooltipMessage}
             handleClose={handleCloseTooltip}
           />
         </div>

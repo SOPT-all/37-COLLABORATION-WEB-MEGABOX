@@ -136,6 +136,7 @@ export default function Payment() {
         <PaymentButton
           totalAmount={totalAmount}
           isDisabled={!isValid}
+          showTooltip={isValid}
           handleClick={handleSubmitClick}
         />
       </div>
