@@ -8,4 +8,6 @@ export const MOVIE_KEY = {
     ...MOVIE_KEY.THEATERS(movieId),
     theaterId,
   ],
+  CINEMAS: (movieIds: number[]) => [...MOVIE_KEY.ALL, 'cinemas', ...movieIds],
+  SHOWTIME: (showtimeId: number) => [...MOVIE_KEY.ALL, 'showtime', showtimeId],
 } as const;

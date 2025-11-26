@@ -64,6 +64,33 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 82.95%, #131313 100%);
   }
 
+  .border-gradient-1 {
+    border: 0.05rem solid transparent;
+    border-radius: 0.6rem;
+    background-image: linear-gradient(103deg, #2e285e 6.95%, #41266c 65.1%),
+    linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%);
+    background-origin: border-box, border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .border-gradient-2 {
+    border: 0.05rem solid transparent;
+    border-radius: 0.6rem;
+    background-image: linear-gradient(#24113C, #24113C),
+    linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%);
+    background-origin: border-box, border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .border-gradient-3 {
+    border: 0.1rem solid transparent;
+    border-radius: 100rem;
+    background-image: linear-gradient(#24113C, #24113C),
+    linear-gradient(97deg, #ad86ff -6.84%, #1a1a1a 121.28%);
+    background-origin: border-box, border-box;
+    background-clip: padding-box, border-box;
+  }
+
   .gradient-5 {
     background: linear-gradient(
       180deg,
