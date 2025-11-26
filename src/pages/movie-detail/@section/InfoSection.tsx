@@ -26,13 +26,13 @@ export default function InfoSection({
 
   return (
     <div className='flex flex-col gap-[2.8rem] p-[1.7rem]'>
-
+≈
       <section className='flex flex-col gap-[1.4rem]'>
         <h2 className='font-title3 text-gray-0 mb-[1rem]'>누적관람</h2>
 
         <div className='border-gradient-1 relative flex justify-center gap-[2rem] p-[2rem] rounded-[0.8rem] overflow-hidden'>
-          <div className='pointer-events-none absolute -left-6 top-0 h-[4.4rem] w-[4.4rem] rounded-full bg-violet-400 blur-[38px]' />
-          <div className='pointer-events-none absolute -right-6 bottom-0 h-[4.4rem] w-[4.4rem] rounded-full bg-violet-400 blur-[38px]' />
+          <div className='pointer-events-none absolute -left-6 top-0 h-[4.4rem] w-[4.4rem] rounded-full bg-violet-400 blur-[2.375rem]' />
+          <div className='pointer-events-none absolute -right-6 bottom-0 h-[4.4rem] w-[4.4rem] rounded-full bg-violet-400 blur-[2.375rem]' />
 
           <div className='flex w-full flex-col gap-[1.3rem]'>
             <p className='font-body1 text-gray-0'>누적 관객 수</p>
@@ -110,7 +110,7 @@ export default function InfoSection({
             <img
               src={goods.image}
               alt='오리지널 굿즈'
-              className='h-[14em] w-[14rem] object-cover'
+              className='h-[14rem] w-[14rem] object-cover'
             />
             <p className='font-body1 text-gray-0 mt-[0.9rem]'>{goods.title}</p>
           </div>

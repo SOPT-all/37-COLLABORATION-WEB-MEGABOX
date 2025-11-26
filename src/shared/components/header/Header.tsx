@@ -12,12 +12,14 @@ type HeaderVariant = 'main' | 'movie';
 interface HeaderProps {
   variant?: HeaderVariant;
   title?: string;
+  icon?: boolean;
   handleClickBack?: () => void;
 }
 
 export default function Header({
   variant = 'movie',
   title = '',
+  icon = true,
   handleClickBack,
 }: HeaderProps) {
   const [liked, setLiked] = useState(false);
@@ -49,26 +51,28 @@ export default function Header({
 
       <h1 className='font-title1 flex-1 text-center'>{title}</h1>
 
-      <div className='flex items-center gap-[1.3rem]'>
-        {liked ? (
-          <IconHeartFill
-            aria-label='하트 취소'
-            className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-            onClick={() => setLiked(false)}
-          />
-        ) : (
-          <IconHeart
-            aria-label='하트 클릭'
-            className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-            onClick={() => setLiked(true)}
-          />
-        )}
+      {icon &&
+        <div className='flex items-center gap-[1.3rem]'>
+          {liked ? (
+            <IconHeartFill
+              aria-label='하트 취소'
+              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
+              onClick={() => setLiked(false)}
+            />
+          ) : (
+            <IconHeart
+              aria-label='하트 클릭'
+              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
+              onClick={() => setLiked(true)}
+            />
+          )}
 
-        <IconSystemShare
-          aria-label='공유하기'
-          className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white'
-        />
-      </div>
+          <IconSystemShare
+            aria-label='공유하기'
+            className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white'
+          />
+        </div>
+      }
     </header>
   );
 }

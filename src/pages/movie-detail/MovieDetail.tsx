@@ -163,7 +163,7 @@ export default function MovieDetail() {
           className='h-[7.6rem] w-full object-cover'
         />
         <span
-          className='absolute left-0 top-0 inline-flex items-center justify-center px-3 py-[3px] rounded-br-[0.6rem] bg-blueGreen-500 font-label2 text-gray-0'
+          className='absolute left-0 top-0 inline-flex items-center justify-center px-[0.1875rem] py-[0.1875rem] rounded-br-[0.6rem] bg-blueGreen-500 font-label2 text-gray-0'
         >
           이벤트
         </span>
