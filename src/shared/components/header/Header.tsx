@@ -45,7 +45,7 @@ export default function Header({
     <header className={headerClassName}>
       <IconSystemBack
         aria-label='뒤로가기'
-        className='h-[2.4rem] w-[2.4rem] cursor-pointer'
+        className='h-[2.4rem] w-[2.4rem] cursor-pointer transition-transform active:scale-90 hover:opacity-70'
         onClick={handleClickBack}
       />
 
@@ -56,20 +56,20 @@ export default function Header({
           {liked ? (
             <IconHeartFill
               aria-label='하트 취소'
-              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
+              className='h-[2.4rem] w-[2.4rem] cursor-pointer transition-transform active:scale-90 hover:opacity-70'
               onClick={() => setLiked(false)}
             />
           ) : (
             <IconHeart
               aria-label='하트 클릭'
-              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
+              className='h-[2.4rem] w-[2.4rem] cursor-pointer transition-transform active:scale-90 hover:opacity-70'
               onClick={() => setLiked(true)}
             />
           )}
 
           <IconSystemShare
             aria-label='공유하기'
-            className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white'
+            className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white transition-transform active:scale-90 hover:opacity-70'
           />
         </div>
       }
