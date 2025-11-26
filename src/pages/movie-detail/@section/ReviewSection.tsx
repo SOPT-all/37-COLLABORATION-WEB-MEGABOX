@@ -45,8 +45,8 @@ export default function ReviewSection() {
   return (
     <div className="flex flex-col">
       <section className="relative flex flex-col items-center pt-[2.2rem] pb-[1.1rem] bg-[#181818] overflow-hidden">
-        <div className="pointer-events-none absolute -left-10 top-[5rem] h-[3.75rem] w-[3.75rem] rounded-full bg-violet-600 blur-[2.375rem] opacity-80" />
-        <div className="pointer-events-none absolute -right-10 top-[5rem] h-[3.75rem] w-[3.75rem] rounded-full bg-violet-600 blur-[2.375rem] opacity-80" />
+        <div className="pointer-events-none absolute -left-[2.5rem] top-[5rem] h-[3.75rem] w-[3.75rem] rounded-full bg-violet-600 blur-[2.375rem] opacity-80" />
+        <div className="pointer-events-none absolute -right-[2.5rem] top-[5rem] h-[3.75rem] w-[3.75rem] rounded-full bg-violet-600 blur-[2.375rem] opacity-80" />
         <p className='font-body4 text-violet-600'>
           {averageScore}
           <span className='font-body5 text-gray-0'> / 10</span>
