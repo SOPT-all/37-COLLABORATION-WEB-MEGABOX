@@ -149,4 +149,8 @@
     font: inherit;
     resize: none;
   }
+
+  html, body {
+    background: #000000;
+  }
 }
