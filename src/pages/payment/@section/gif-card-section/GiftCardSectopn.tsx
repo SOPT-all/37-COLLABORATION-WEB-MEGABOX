@@ -1,3 +1,5 @@
+import { cn } from '@utils/cn';
+
 export default function GiftCardSection() {
   return (
     <>
@@ -6,7 +8,10 @@ export default function GiftCardSection() {
         <h2 className='font-title2 text-gray-900'>메가박스 기프트카드</h2>
         <button
           type='button'
-          className='font-button1 bg-gray-0 rounded-[0.4rem] border border-gray-300 px-[0.8rem] py-[0.7rem] text-gray-500'
+          className={cn(
+            'font-button1 bg-gray-0 rounded-[0.4rem] border border-gray-300 px-[0.8rem] py-[0.7rem] text-gray-500',
+            'active:border-violet-600 active:text-violet-600'
+          )}
         >
           카드조회
         </button>
