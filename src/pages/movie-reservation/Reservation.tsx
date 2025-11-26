@@ -97,6 +97,7 @@ export default function Reservation() {
         <div className='scroll-fade flex w-full flex-col items-start gap-[1.2rem]'>
           <Carousel
             selectedMovieIds={selectedMovieIds}
+            initialSelectedMovie={initialSelectedMovie}
             handleClick={id => handleClickMovie(id)}
           />
           <CinemaChips selectedCinemas={selectedCinemas} />
