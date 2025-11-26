@@ -1,75 +1,117 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver} from '@hookform/resolvers/zod';
+import { useForm, useWatch } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
-    discountFormDefaultValues,
-    discountFormSchema,
-    type DiscountFormData,
+  paymentFormDefaultValues,
+  paymentFormSchema,
+  type PaymentFormData,
 } from '@pages/payment/schemas/payment.schema';
+import {
+  type PaymentMethodType,
+  type PaymentTypeType,
+} from '@pages/payment/constants/pay';
 
 export const usePaymentForm = () => {
-    // useForm 설정
-    const form = useForm<DiscountFormData>({
-        resolver: zodResolver(discountFormSchema),
-        defaultValues: discountFormDefaultValues,
-        mode : 'onChange', // -> 입력 실시간 검증
-    })
-    // 필요 메소드 및 상태 추출
-    const {
-        trigger,
-        // watch,
-        formState: { errors, isValid },
-        setValue,
-    } = form;
+  const form = useForm<PaymentFormData>({
+    resolver: zodResolver(paymentFormSchema),
+    defaultValues: paymentFormDefaultValues,
+    mode: 'onChange',
+  });
 
-    // 전체 폼 구독
-    // const formData = watch();
+  const {
+    trigger,
+    control,
+    formState: { errors, isValid },
+    setValue,
+  } = form;
 
-    // const fields = {
-    //     activeTab: formData.activeTab,
-    //     selectedDiscountId: formData.selectedDiscountId,
-    //     isChecked: formData.isChecked,
-    // };
+  const selectedCoupon = useWatch({ control, name: 'selectedCoupon' });
+  const selectedPolicy = useWatch({ control, name: 'selectedPolicy' });
+  const selectedPoint = useWatch({ control, name: 'selectedPoint' });
+  const isChecked = useWatch({ control, name: 'isChecked' });
+  const selectedPaymentMethod = useWatch({
+    control,
+    name: 'selectedPaymentMethod',
+  });
+  const paymentType = useWatch({ control, name: 'paymentType' });
+  const selectedCard = useWatch({ control, name: 'selectedCard' });
+  const isAgreed = useWatch({ control, name: 'isAgreed' });
 
-    // 토스트 메시지
-    const fieldErrors = {
-        selectedDiscountId: errors.selectedDiscountId?.message,
-        isChecked: errors.isChecked?.message,
+  const handleSelectedCoupon = (coupon: PaymentFormData['selectedCoupon']) => {
+    setValue('selectedCoupon', coupon, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const handleSelectedPoint = (point: PaymentFormData['selectedPoint']) => {
+    setValue('selectedPoint', point, { shouldValidate: true });
+  };
+
+  const handleSelectedPolicy = (policy: PaymentFormData['selectedPolicy']) => {
+    setValue('selectedPolicy', policy, { shouldValidate: true });
+  };
+
+  const handleSelectedPaymentMethod = (method: PaymentMethodType) => {
+    setValue('selectedPaymentMethod', method, { shouldValidate: true });
+  };
+
+  const handleSelectedPaymentType = (type: PaymentTypeType) => {
+    setValue('paymentType', type, { shouldValidate: true });
+  };
+
+  const handleSelectedAgreed = (agreed: PaymentFormData['isAgreed']) => {
+    setValue('isAgreed', agreed, { shouldValidate: true });
+  };
+
+  const handleSelectedCard = (
+    card: NonNullable<PaymentFormData['selectedCard']>
+  ) => {
+    setValue('selectedCard', card, { shouldValidate: true });
+  };
+
+  const onSubmit = async (data: PaymentFormData) => {
+    // 모든 필드 검증
+    const isValid = await trigger();
+    // 검증 실패
+    if (!isValid) {
+      return;
     }
+    console.info('폼 데이터', data);
+  };
 
-    // 탭
-    const handleActiveTab = (tab: DiscountFormData['activeTab']) => {
-        setValue('activeTab', tab, {shouldValidate: true});
-    }
+  const formFields = {
+    selectedCoupon,
+    selectedPolicy,
+    selectedPoint,
+    isChecked,
+    selectedPaymentMethod,
+    paymentType,
+    selectedCard,
+    isAgreed,
+  };
 
-    // 그리드 아이템
-    const handleSelectedDiscountId = (id: DiscountFormData['selectedDiscountId']) => {
-        setValue('selectedDiscountId', id, {shouldValidate: true})
-    }
-
-    // 체크박스
-    const handleIsChecked = (id: DiscountFormData['isChecked']) => {
-        setValue('isChecked', id, {shouldValidate: true})
-    }
-
-    const onSubmit = async(data: DiscountFormData) => {
-        // 모든 필드 검증
-        const isValid = await trigger();
-        // 검증 실패
-        if (!isValid) {
-            return;
-        }
-        console.info('폼 데이터', data);
-    };
-
-    return {
-        form,
-        // formData,
-        fieldErrors,
-        isValid,
-        onSubmit,
-        handleActiveTab,
-        handleSelectedDiscountId,
-        handleIsChecked,
-        // fields
-    }
-}
+  const fieldErrors = {
+    selectedCoupon: errors.selectedCoupon?.message,
+    selectedPolicy: errors.selectedPolicy?.message,
+    selectedPoint: errors.selectedPoint?.message,
+    isChecked: errors.isChecked?.message,
+    selectedPaymentMethod: errors.selectedPaymentMethod?.message,
+    paymentType: errors.paymentType?.message,
+    isAgreed: errors.isAgreed?.message,
+    selectedCard: errors.selectedCard?.message,
+  };
+  return {
+    form: formFields,
+    errors: fieldErrors,
+    isValid,
+    onSubmit,
+    handleSelectedCoupon,
+    handleSelectedPoint,
+    handleSelectedPolicy,
+    handleSelectedPaymentMethod,
+    handleSelectedPaymentType,
+    handleSelectedAgreed,
+    handleSelectedCard,
+  };
+};

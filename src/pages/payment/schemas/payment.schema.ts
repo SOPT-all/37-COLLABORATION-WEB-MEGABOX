@@ -1,38 +1,61 @@
 import { z } from 'zod';
+import {
+  PAYMENT_METHODS,
+  PAYMENT_TYPES,
+  CARD_OPTIONS,
+} from '@pages/payment/constants/pay';
 import { PAYMENT_MESSAGES } from '@pages/payment/constants/payment-messages';
+import { COUPON_ITEMS, POINT_ITEMS } from '@pages/payment/constants/discount';
 
-/**
- * 할인 적용 폼 스키마
- */
-export const discountFormSchema = z.object({
-  // 활성화 탭
-  activeTab: z.enum(['coupon', 'point']).nullable(),
-
-  // 선택된 할인 수단 ID
-  selectedDiscountId: z.number().positive().nullable(),
-
+export const paymentFormSchema = z.object({
+  //coupon
+  selectedCoupon: z
+    .enum(COUPON_ITEMS.map(coupon => coupon.key))
+    .nullable()
+    .optional(),
+  selectedPolicy: z.boolean().optional(),
+  //포인트
+  selectedPoint: z
+    .enum(POINT_ITEMS.map(point => point.key))
+    .nullable()
+    .optional(),
   // 자동 적용 체크 여부
-  isChecked: z.boolean(),
-}).refine(
-  (data) => {
-    // activeTab이 선택되었으면 selectedDiscountId도 필수
-    if (data.activeTab !== null && data.selectedDiscountId === null) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message: PAYMENT_MESSAGES.SELECT_DISCOUNT,
-    path: ['selectedDiscountId'],
-  }
-)
+  isChecked: z.boolean().optional(),
 
-// 타입 자동 생성
-export type DiscountFormData = z.infer<typeof discountFormSchema>;
+  // 선택한 결제 방법
+  selectedPaymentMethod: z
+    .enum(PAYMENT_METHODS.map(method => method.key))
+    .nullable()
+    .refine(method => method !== null, {
+      message: PAYMENT_MESSAGES.SELECT_PAYMENT_METHOD,
+    }),
 
+  // 결제 타입
+  paymentType: z
+    .enum(PAYMENT_TYPES.map(type => type.key))
+    .refine(type => type !== null, {
+      message: PAYMENT_MESSAGES.SELECT_PAYMENT_TYPE,
+    }),
+  selectedCard: z
+    .enum(CARD_OPTIONS.map(card => card.value))
+    .nullable()
+    .optional(),
+
+  // 취소/환불 정책 동의
+  isAgreed: z.boolean().refine(agreed => agreed === true, {
+    message: PAYMENT_MESSAGES.SELECT_AGREED,
+  }),
+});
+
+export type PaymentFormData = z.infer<typeof paymentFormSchema>;
 // 초기값
-export const discountFormDefaultValues: DiscountFormData = {
-  activeTab: null,
-  selectedDiscountId: null,
+export const paymentFormDefaultValues = {
+  selectedCoupon: null,
+  selectedPolicy: false,
+  selectedPoint: null,
   isChecked: false,
+  selectedPaymentMethod: null,
+  paymentType: PAYMENT_TYPES[0].key,
+  selectedCard: null,
+  isAgreed: false,
 };
