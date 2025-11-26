@@ -1,25 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { Header, Movie, Button } from '@components/index';
 import { InfoSection, ReviewSection } from '@pages/movie-detail/@section';
 import { useMovieDetail } from '@pages/movie-detail/hooks/use-movie-detail';
-import {
-  MOVIE_DETAIL_META,
-  MOVIE_DETAIL_STATS,
-  MOVIE_DETAIL_DESCRIPTION,
-  MOVIE_DETAIL_AUDIENCE_CARD,
-} from '@pages/movie-detail/mock';
-import {
-  Tab,
-  TabContainer,
-} from '@pages/movie-detail/components/MovieDetailTabs';
-import {
-  useGetMovieDetailQuery,
-  useGetMovieReviewsQuery,
-} from '@pages/movie-detail/api/use-movie-detail-queries';
+import {MOVIE_DETAIL_META, MOVIE_DETAIL_STATS, MOVIE_DETAIL_DESCRIPTION, MOVIE_DETAIL_AUDIENCE_CARD} from '@pages/movie-detail/mock';
+import {Tab, TabContainer} from '@pages/movie-detail/components/MovieDetailTabs';
+import {useGetMovieDetailQuery, useGetMovieReviewsQuery} from '@pages/movie-detail/api/use-movie-detail-queries';
+import { ROUTES } from '@router/constant/routes';
 
 export default function MovieDetail() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
   const fallbackId = MOVIE_DETAIL_META.id ?? 1;
   const movieId = Number(id ?? fallbackId) || fallbackId;
 
@@ -94,6 +86,12 @@ export default function MovieDetail() {
     maximumFractionDigits: 1,
   }).format(stats.totalReviewCount);
 
+  const handleClickReserve = () => {
+    navigate(ROUTES.MOVIE_RESERVATION, {
+      state: { movieId: movie.id },
+    });
+  };
+
   return (
     <div className='min-h-screen'>
       <Header variant='movie' title={movie.title} />
@@ -136,7 +134,11 @@ export default function MovieDetail() {
           </div>
         </section>
 
-        <Button variant='primary' className='mt-[1.8rem]'>
+        <Button
+          variant='primary'
+          className='mt-[1.8rem]'
+          onClick={handleClickReserve}
+        >
           바로예매
         </Button>
 
