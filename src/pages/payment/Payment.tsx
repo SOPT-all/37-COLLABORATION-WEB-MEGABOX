@@ -10,8 +10,12 @@ import {
   PaymentAmountSection,
   GiftCardSection,
 } from '@/pages/payment/@section';
-import { mockMovie, mockPaymentAmount } from '@pages/payment/mock';
 import { MOVIES } from '@constants/movies';
+import { mockMovie, mockPaymentAmount } from '@pages/payment/mock';
+import {
+  ADULT_PRICE,
+  FIXED_DISCOUNT_AMOUNT,
+} from '@pages/payment/constants/payment';
 
 interface ReservationState {
   memberId: number;
@@ -54,8 +58,17 @@ export default function Payment() {
       }
     : mockMovie;
 
+  const productAmount = reservationData
+    ? reservationData.numOfPeople * ADULT_PRICE
+    : mockPaymentAmount.productAmount;
+  const discountAmount = reservationData
+    ? FIXED_DISCOUNT_AMOUNT
+    : mockPaymentAmount.discountAmount;
+  const deductionAmount = reservationData
+    ? 0
+    : mockPaymentAmount.deductionAmount;
   const totalAmount = reservationData
-    ? reservationData.numOfPeople * 12000
+    ? Math.max(productAmount - discountAmount - deductionAmount, 0)
     : mockPaymentAmount.totalAmount;
 
   const handleSubmitClick = () => {
@@ -105,10 +118,10 @@ export default function Payment() {
           handleSelectedCard={handleSelectedCard}
         />
         <PaymentAmountSection
-          productAmount={mockPaymentAmount.productAmount}
-          discountAmount={mockPaymentAmount.discountAmount}
-          deductionAmount={mockPaymentAmount.deductionAmount}
-          totalAmount={mockPaymentAmount.totalAmount}
+          productAmount={productAmount}
+          discountAmount={discountAmount}
+          deductionAmount={deductionAmount}
+          totalAmount={totalAmount}
         />
       </div>
       <div className='bg-gray-0 pt-[2rem]'>
