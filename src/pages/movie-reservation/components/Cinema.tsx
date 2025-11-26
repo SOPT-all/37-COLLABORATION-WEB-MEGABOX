@@ -28,7 +28,7 @@ export default function Cinema({
       <UpArrow
         width={12}
         height={12}
-        className={cn('text-gray-300 cursor-pointer', isShowtimeOpen ? 'rotate-0' : 'rotate-180')}
+        className={cn('text-gray-300 cursor-pointer animation-rotate duration-300 ease-in-out', isShowtimeOpen ? 'rotate-0' : 'rotate-180')}
         onClick={() => handleOpenShowtime(!isShowtimeOpen)}
       />
     </div>
