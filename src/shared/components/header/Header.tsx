@@ -42,17 +42,22 @@ export default function Header({
   }
 
   return (
-    <header className={headerClassName}>
+   <header className={headerClassName}>
+    <div className="w-[3.6rem] flex items-center justify-start">
       <IconSystemBack
         aria-label='뒤로가기'
         className='h-[2.4rem] w-[2.4rem] cursor-pointer transition-transform active:scale-90 hover:opacity-70'
         onClick={handleClickBack}
       />
+    </div>
 
-      <h1 className='font-title1 flex-1 text-center'>{title}</h1>
+    <h1 className="flex-1 text-center font-title1">
+      {title}
+    </h1>
 
-      {icon &&
-        <div className='flex items-center gap-[1.3rem]'>
+    <div className="w-[3.6rem] flex items-center justify-end">
+      {icon && (
+        <div className="flex items-center gap-[1.3rem]">
           {liked ? (
             <IconHeartFill
               aria-label='하트 취소'
@@ -72,7 +77,8 @@ export default function Header({
             className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white transition-transform active:scale-90 hover:opacity-70'
           />
         </div>
-      }
-    </header>
+      )}
+    </div>
+  </header>
   );
 }
