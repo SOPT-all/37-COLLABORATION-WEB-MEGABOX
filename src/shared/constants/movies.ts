@@ -72,14 +72,14 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 4,
     title: '퍼스트 라이드',
     tag: '#드라마',
-    image: '/assets/@movie/img-movieposter-firstride.svg',
+    image: '/assets/@movie/img-movieposter-firstride-1.svg',
     backgroundImage: '/assets/@movie/img-stillcut-firstride.svg',
 
     trailers: [
       '/assets/img-trailer1.svg',
     ],
     posters: [
-      '/assets/@movie/img-stillcut-firstride.svg',
+      '/assets/@movie/img-stillcut-firstride-1.svg',
     ],
     goods: {
       title: '퍼스트 라이드 굿즈',
@@ -110,7 +110,7 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 6,
     title: '위키드',
     tag: '#드라마',
-    image: '/assets/@movie/img-movieposter-wicked.svg',
+    image: '/assets/@movie/img-movieposter-wicked-1.svg',
     backgroundImage: '/assets/@movie/img-stillcut-wicked.svg',
 
     trailers: [
