@@ -118,9 +118,9 @@ export default function Reservation() {
           {isLoading ? (
             <Spinner className='w-[15rem]' />
           ) : (
-            <>
+            <div className='relative w-full'>
               {filteredShowtimes.length !== 0 && isTooltipOpen && (
-                <div className='absolute top-[34rem] left-[5rem]'>
+                <div className='absolute -top-[3.2rem] left-[3.5rem]'>
                   <Tooltip
                     message='최근 이용극장을 선호극장에 추가해보세요'
                     handleClose={handleCloseTooltip}
@@ -138,7 +138,7 @@ export default function Reservation() {
               ) : (
                 <div className='flex justify-center items-center w-full mt-[16rem] text-[1.3rem] text-gray-0'>상영정보가 존재하지 않습니다.</div>
               )}
-            </>
+            </div>
           )}
         </div>
         <Modal

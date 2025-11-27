@@ -30,7 +30,7 @@ export default function Review({
         <p className='font-body1'>{content}</p>
       </div>
       <div className='flex items-center justify-end gap-[0.1rem]'>
-        <IconGoodFill className='cursor-pointer text-gray-200' />
+        <IconGoodFill className='cursor-pointer text-gray-200 transition-transform active:scale-90 hover:opacity-70' />
         <span className='font-caption2 text-blue-500'>0</span>
         <IconKebab className='cursor-pointer text-gray-200' />
       </div>

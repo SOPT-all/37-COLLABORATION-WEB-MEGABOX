@@ -6,6 +6,7 @@ import {
   IconSystemShare,
 } from '@assets/index';
 import ImgLogo from '@/../public/assets/img-logo.svg';
+import { cn } from '@utils/cn';
 
 type HeaderVariant = 'main' | 'movie';
 
@@ -15,6 +16,9 @@ interface HeaderProps {
   icon?: boolean;
   handleClickBack?: () => void;
 }
+
+const ICON_BASE_CLASS =
+  'h-[2.4rem] w-[2.4rem] cursor-pointer transition-transform active:scale-90 hover:opacity-70';
 
 export default function Header({
   variant = 'movie',
@@ -43,36 +47,40 @@ export default function Header({
 
   return (
     <header className={headerClassName}>
-      <IconSystemBack
-        aria-label='뒤로가기'
-        className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-        onClick={handleClickBack}
-      />
+      <div className='w-[3.6rem] flex items-center justify-start'>
+        <IconSystemBack
+          aria-label='뒤로가기'
+          className={ICON_BASE_CLASS}
+          onClick={handleClickBack}
+        />
+      </div>
 
-      <h1 className='font-title1 flex-1 text-center'>{title}</h1>
+      <h1 className='flex-1 text-center font-title1'>{title}</h1>
 
-      {icon &&
-        <div className='flex items-center gap-[1.3rem]'>
-          {liked ? (
-            <IconHeartFill
-              aria-label='하트 취소'
-              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-              onClick={() => setLiked(false)}
+      <div className='w-[3.6rem] flex items-center justify-end'>
+        {icon && (
+          <div className='flex items-center gap-[1.3rem]'>
+            {liked ? (
+              <IconHeartFill
+                aria-label='하트 취소'
+                className={ICON_BASE_CLASS}
+                onClick={() => setLiked(false)}
+              />
+            ) : (
+              <IconHeart
+                aria-label='하트 클릭'
+                className={ICON_BASE_CLASS}
+                onClick={() => setLiked(true)}
+              />
+            )}
+
+            <IconSystemShare
+              aria-label='공유하기'
+              className={cn(ICON_BASE_CLASS, 'text-white')}
             />
-          ) : (
-            <IconHeart
-              aria-label='하트 클릭'
-              className='h-[2.4rem] w-[2.4rem] cursor-pointer'
-              onClick={() => setLiked(true)}
-            />
-          )}
-
-          <IconSystemShare
-            aria-label='공유하기'
-            className='h-[2.4rem] w-[2.4rem] cursor-pointer text-white'
-          />
-        </div>
-      }
+          </div>
+        )}
+      </div>
     </header>
   );
 }

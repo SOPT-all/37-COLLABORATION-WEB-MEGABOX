@@ -25,8 +25,7 @@ export default function InfoSection({
   const goods = movieMedia.goods ?? null;
 
   return (
-    <div className='flex flex-col gap-[2.8rem] p-[1.7rem]'>
-≈
+    <div className='flex flex-col gap-[2rem] pt-[1rem] px-[1.75rem] pb-[1.75rem]'>
       <section className='flex flex-col gap-[1.4rem]'>
         <h2 className='font-title3 text-gray-0 mb-[1rem]'>누적관람</h2>
 
