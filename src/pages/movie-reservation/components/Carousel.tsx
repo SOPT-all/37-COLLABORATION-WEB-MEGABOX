@@ -1,25 +1,19 @@
 import { cn } from '@utils/cn';
 import { MOVIES } from '@constants/movies';
-
-import { type Date } from '@pages/movie-reservation/types/date';
-import { type ShowtimeReadRequest } from 'apis/data-contracts';
+import type { PrefetchConfig } from '@pages/movie-reservation/types/index';
 
 interface CarouselProps {
   selectedMovieIds: number[];
   initialSelectedMovie: number;
-  handleClick: (_id: number) => void;
-  prefetchShowtimes: (_: ShowtimeReadRequest) => void;   // ⭐ 추가
-  selectedDate: Date;                                  // ⭐ 추가
-  selectedTimeSlot: ShowtimeReadRequest['timeSlot'];     // ⭐ 추가
+  handleClickMovie: (_id: number) => void;
+  prefetchConfig: PrefetchConfig;
 }
 
 export default function Carousel({
   selectedMovieIds,
   initialSelectedMovie,
-  handleClick,
-  prefetchShowtimes,
-  selectedDate,
-  selectedTimeSlot,
+  handleClickMovie,
+  prefetchConfig
 }: CarouselProps) {
   const moviesWithSelectedFirst = Object.values(MOVIES).sort((a, b) => {
     if (a.id === initialSelectedMovie) return -1;
@@ -38,13 +32,14 @@ export default function Carousel({
                 ? 'border-gray-0 rounded-[0.4rem] border'
                 : 'rounded-[0.6rem] border border-transparent opacity-30'
             )}
-            onClick={() => handleClick(movie.id)}
+            onClick={() => handleClickMovie(movie.id)}
             onMouseEnter={() =>
-              prefetchShowtimes({
-                movieIds: [movie.id, ...selectedMovieIds.filter(id => id !== movie.id)].sort(),
-                // movieIds: selectedMovieIds,
-                date: selectedDate.date,
-                timeSlot: selectedTimeSlot,
+              prefetchConfig.prefetchShowtimes(prefetchConfig.queryClient, {
+                movieIds: selectedMovieIds.includes(movie.id)
+                            ? selectedMovieIds.filter(id => id !== movie.id)
+                            : [movie.id, ...selectedMovieIds.filter(id => id !== movie.id)],
+                date: prefetchConfig.date,
+                timeSlot: prefetchConfig.timeSlot,
               })
             }
           >

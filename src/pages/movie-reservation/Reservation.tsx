@@ -1,5 +1,6 @@
 import { useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
@@ -12,6 +13,7 @@ import {
   useModalDetail,
   useDate,
   useShowtimes,
+  prefetchShowtimes
 } from '@pages/movie-reservation/hooks/index';
 import { Carousel } from '@pages/movie-reservation/components/index';
 import {
@@ -22,30 +24,7 @@ import {
 } from '@pages/movie-reservation/section/index';
 import { type TimeType, TIMES } from '@pages/movie-reservation/constants/index';
 import { type ShowtimeDetail } from '@pages/movie-reservation/types/index';
-import { type CinemaResponse, type ShowtimeReadRequest } from 'apis/data-contracts';
-
-import { useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-
-async function apiGetShowtimesFixed(params: ShowtimeReadRequest) {
-  const { movieIds, date, timeSlot } = params;
-
-  const response = await axios.get(
-    'https://sopt37mega.kro.kr/api/v1/showtimes',
-    {
-      params: {
-        movieIds,
-        date,
-        timeSlot,
-      },
-      paramsSerializer: {
-        indexes: null,
-      },
-    }
-  );
-
-  return response.data.data?.cinemas;
-}
+import { type CinemaResponse } from 'apis/data-contracts';
 
 export default function Reservation() {
   const navigate = useNavigate();
@@ -110,31 +89,6 @@ export default function Reservation() {
     }));
   };
 
-  // const showtimesKey = (params: ShowtimeReadRequest) => [
-  //   'showtimes',
-  //   [...(params.movieIds ?? [])].sort((a, b) => a - b),
-  //   params.date,
-  //   params.timeSlot ?? null,
-  // ];
-  const showtimesKey = (params: ShowtimeReadRequest) => [
-    'showtimes',
-    JSON.stringify([...(params.movieIds ?? [])].sort((a, b) => a - b)),
-    params.date,
-    params.timeSlot ?? null,
-  ];
-
-  const prefetchShowtimes = async (params: ShowtimeReadRequest) => {
-    if (!params.movieIds?.length) return;
-
-    await queryClient.prefetchQuery({
-      // queryKey: ['showtimes', params.movieIds, params.date, params.timeSlot],
-      queryKey: showtimesKey(params),
-      queryFn: () => apiGetShowtimesFixed(params),
-      staleTime: 1000 * 60,  // 1분
-      gcTime: 1000 * 60 * 5, // 5분
-    });
-  };
-
   return (
     <div>
       <Header
@@ -148,19 +102,15 @@ export default function Reservation() {
           <Carousel
             selectedMovieIds={selectedMovieIds}
             initialSelectedMovie={initialSelectedMovie}
-            handleClick={id => handleClickMovie(id)}
-            prefetchShowtimes={prefetchShowtimes}   // ⭐ 추가
-            selectedDate={selectedDate}        // ⭐ 추가
-            selectedTimeSlot={selectedTimeSlot}     // ⭐ 추가
+            handleClickMovie={id => handleClickMovie(id)}
+            prefetchConfig={{date: selectedDate.date, timeSlot: selectedTimeSlot, prefetchShowtimes, queryClient}}
           />
           <CinemaChips selectedCinemas={selectedCinemas} />
           <DateChips
             dates={dates}
             selectedDate={selectedDate}
             handleClickDate={handleClickDate}
-            movieIds={selectedMovieIds}
-            timeSlot={selectedTimeSlot}
-            prefetchShowtimes={prefetchShowtimes}
+            prefetchConfig={{movieIds: selectedMovieIds, timeSlot: selectedTimeSlot, prefetchShowtimes, queryClient}}
           />
         </div>
         <div className='mt-[1.8rem] mb-[1.6rem]'>
@@ -170,9 +120,7 @@ export default function Reservation() {
           <TimeChips
             selectedTimeId={selectedTimeId}
             handleClickTime={handleClickTime}
-            movieIds={selectedMovieIds}
-            selectedDate={selectedDate}
-            prefetchShowtimes={prefetchShowtimes}
+            prefetchConfig={{movieIds: selectedMovieIds, date: selectedDate.date, prefetchShowtimes, queryClient}}
           />
           {isLoading ? (
             <Spinner className='w-[15rem]' />
