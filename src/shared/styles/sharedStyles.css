@@ -2,10 +2,18 @@
 @import './tokens/typography.css';
 
 @theme {
-  --custom-max-width: 60rem;
+  --custom-max-width: 50rem;
 }
 
 @layer base {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    overflow-y: hidden;
+  }
   html {
     font-size: 62.5%;
     font-family:
@@ -36,7 +44,8 @@
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.04);
     max-width: var(--custom-max-width);
     margin: 0 auto;
-    min-height: 100dvh;
+    height: 100vh;
+    overflow-y: auto;
   }
 }
 
@@ -64,9 +73,10 @@
   }
 
   .scroll-fade {
-    position:relative;
+    position: relative;
   }
-  .scroll-fade::before, .scroll-fade::after {
+  .scroll-fade::before,
+  .scroll-fade::after {
     content: '';
     position: absolute;
     top: 0;
@@ -77,11 +87,11 @@
   .scroll-fade::before {
     left: -0.2rem;
     width: 2rem;
-    background :linear-gradient(to right,#131313,transparent);
+    background: linear-gradient(to right, #131313, transparent);
   }
   .scroll-fade::after {
     right: -0.2rem;
     width: 2rem;
-    background: linear-gradient(to left,#131313,transparent);
+    background: linear-gradient(to left, #131313, transparent);
   }
 }
