@@ -12,7 +12,7 @@ const variants = {
     style: 'border-[0.05rem] rounded-[0.6rem] border-gray-600 bg-gray-800',
     selectedStyle: 'border-gradient-1',
     text: 'font-button2 text-gray-0 opacity-40',
-    selectedText: 'font-button3 text-gray-0',
+    selectedText: 'text-[1.4rem] font-bold leading-[150%] tracking-[-0.05em] text-gray-0',
   },
   date: {
     layout: 'flex flex-col justify-end gap-[0.2rem] shrink-0 w-[4.8rem] h-[5.2rem] px-[0.8rem] py-[0.5rem]',
