@@ -14,7 +14,14 @@ export default function CardDropdown({
 }: CardDropdownProps) {
   return (
     <div className='mb-[1rem]'>
-      <Select.Root value={selectedCard || ''} onValueChange={handleSelect}>
+      <Select.Root
+        value={selectedCard || ''}
+        onValueChange={value => {
+          if (value) {
+            handleSelect(value as NonNullable<PaymentFormData['selectedCard']>);
+          }
+        }}
+      >
         <Select.Trigger className='font-button2 flex w-full items-center justify-between rounded-[0.4rem] border border-gray-300 px-[1rem] py-[1.2rem]'>
           <Select.Value placeholder='카드 선택하기' />
           <Select.Icon>
@@ -23,17 +30,18 @@ export default function CardDropdown({
         </Select.Trigger>
         <Select.Portal>
           <Select.Content
-            className='bg-gray-0 rounded-[0.8rem] border border-gray-300 shadow-lg'
-            // position='popper'
-            // side='bottom'
-            // align='start'
-            // sideOffset={8}
-            // collisionPadding={16}
+            className='min-w-[30rem] mx-auto bg-gray-0 rounded-[0.8rem] border border-gray-300 shadow-lg'
+            position='popper'
+            sideOffset={5}
           >
             <Select.Viewport className='p-[0.8rem]'>
               {CARD_OPTIONS.map(option => (
-                <Select.Item key={option.value} value={option.value}>
-                  {option.label}
+                <Select.Item
+                  key={option.value}
+                  value={option.value}
+                  className='font-button2 cursor-pointer rounded-[0.4rem] px-[1rem] py-[0.8rem] text-gray-700 outline-none hover:bg-gray-100 focus:bg-gray-100 data-[highlighted]:bg-gray-100'
+                >
+                  <Select.ItemText>{option.label}</Select.ItemText>
                 </Select.Item>
               ))}
             </Select.Viewport>

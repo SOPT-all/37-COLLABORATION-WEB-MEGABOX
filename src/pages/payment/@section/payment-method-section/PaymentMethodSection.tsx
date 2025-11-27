@@ -61,7 +61,7 @@ export default function PaymentMethodSection({
             selectedPaymentMethod={selectedPaymentMethod}
             handleSelect={handleSelectedPaymentMethod}
           />
-          {selectedPaymentMethod && (
+          {selectedPaymentMethod === 'credit-card' && (
             <>
               <CardDropdown
                 selectedCard={selectedCard}
