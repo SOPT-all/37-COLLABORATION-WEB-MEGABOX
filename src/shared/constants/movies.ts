@@ -110,7 +110,7 @@ export const MOVIES: Record<number, Movie> = Object.freeze({
     id: 6,
     title: '위키드',
     tag: '#드라마',
-    image: '/assets/@movie/img-movieposter-wicked.svg',
+    image: '/assets/@movie/img-movieposter-wicked-1.svg',
     backgroundImage: '/assets/@movie/img-stillcut-wicked.svg',
 
     trailers: [
