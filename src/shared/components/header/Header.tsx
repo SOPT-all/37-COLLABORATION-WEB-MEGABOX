@@ -6,7 +6,7 @@ import {
   IconSystemShare,
 } from '@assets/index';
 import ImgLogo from '@/../public/assets/img-logo.svg';
-import { cn } from '@utils/cn'; 
+import { cn } from '@utils/cn';
 
 type HeaderVariant = 'main' | 'movie';
 
