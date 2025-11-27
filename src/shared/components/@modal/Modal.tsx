@@ -43,15 +43,17 @@ export default function Modal({
 
           <div className='mb-[4.4rem] flex w-full items-center justify-between'>
             <span className='font-body2 text-gray-100'>성인</span>
-            <div className='border-gray-0 flex items-center justify-center gap-[1rem] rounded-[0.4rem] border p-[0.5rem]'>
+            <div className='border-gray-0 flex flex-none items-center justify-center gap-[1rem] rounded-[0.4rem] border p-[0.5rem]'>
               <IconItemMinus
                 onClick={handleDecrease}
-                className='text-gray-0 h-[1.6rem] w-[1.6rem]'
+                className='text-gray-0 h-[1.6rem] w-[1.6rem] flex-shrink-0'
               />
-              <span className='font-button2 text-violet-400'>{quantity}</span>
+              <span className='font-button2 min-w-[2rem] text-center text-violet-400'>
+                {quantity}
+              </span>
               <IconItemPlus
                 onClick={handleIncrease}
-                className='text-gray-0 h-[1.6rem] w-[1.6rem]'
+                className='text-gray-0 h-[1.6rem] w-[1.6rem] flex-shrink-0'
               />
             </div>
           </div>
