@@ -25,6 +25,9 @@
       'Segoe UI Symbol',
       sans-serif;
   }
+  body {
+    background-color: var(--color-gray-900);
+  }
   * {
     box-sizing: border-box;
   }

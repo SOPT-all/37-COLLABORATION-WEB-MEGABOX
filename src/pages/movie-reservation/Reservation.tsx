@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
@@ -26,6 +26,8 @@ import { type CinemaResponse } from 'apis/data-contracts';
 
 export default function Reservation() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const initialSelectedMovie = location.state?.movieId;
 
   const [selectedShowtime, setSelectedShowtime] = useState<ShowtimeDetail | null>(null);
   const dates = useDate();
@@ -38,7 +40,7 @@ export default function Reservation() {
     handleClickMovie,
     handleClickDate,
     handleClickTime,
-  } = useSelection(dates[0]);
+  } = useSelection({initialSelectedMovie, initialSelectedDate: dates[0]});
 
   const selectedTimeSlot = selectedTimeId === null
     ? undefined
@@ -95,6 +97,7 @@ export default function Reservation() {
         <div className='scroll-fade flex w-full flex-col items-start gap-[1.2rem]'>
           <Carousel
             selectedMovieIds={selectedMovieIds}
+            initialSelectedMovie={initialSelectedMovie}
             handleClick={id => handleClickMovie(id)}
           />
           <CinemaChips selectedCinemas={selectedCinemas} />
