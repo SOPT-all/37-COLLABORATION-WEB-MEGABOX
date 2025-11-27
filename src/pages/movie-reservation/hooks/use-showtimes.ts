@@ -22,6 +22,13 @@ async function apiGetShowtimesFixed(params: ShowtimeReadRequest) {
   return response.data.data?.cinemas;
 }
 
+const showtimesKey = (params: ShowtimeReadRequest) => [
+  'showtimes',
+  JSON.stringify([...(params.movieIds ?? [])].sort((a, b) => a - b)),
+  params.date,
+  params.timeSlot ?? null,
+];
+
 /**
  * 상영정보 조회 API
  * @param movieIds 선택된 영화들
@@ -35,9 +42,11 @@ export function useShowtimes({
   timeSlot
 }: ShowtimeReadRequest) {
   return useQuery({
-    queryKey: ['showtimes', movieIds, date, timeSlot],
+    // queryKey: ['showtimes', movieIds, date, timeSlot],
+    queryKey: showtimesKey({ movieIds, date, timeSlot }),
     queryFn: () =>
       apiGetShowtimesFixed({ movieIds, date, timeSlot }),
     enabled: movieIds && movieIds.length > 0,
+    staleTime: 1000 * 60,
   });
 }
