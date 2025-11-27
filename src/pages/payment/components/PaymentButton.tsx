@@ -34,8 +34,8 @@ const PaymentButton = ({
     <div className='relative'>
       {isTooltip && (
         <div className='absolute -top-[2.5rem] right-[7rem]'>
-          <Tooltip 
-            message={tooltipMessage} 
+          <Tooltip
+            message={tooltipMessage}
             handleClose={handleCloseTooltip}
           />
         </div>
