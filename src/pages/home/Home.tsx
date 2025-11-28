@@ -5,7 +5,7 @@ import { useMovie } from '@/pages/home/hooks/use-movie';
 import HomeClient from '@pages/home/Home.client';
 
 export default function Home() {
-  const { selectedMovie, items, handleClickItem, handleClickCard } = useMovie();
+  const { selectedMovie, items, handleClickItem, handleClickCard, handleClickReservation } = useMovie();
 
   return (
     <div className='flex max-h-screen flex-col overflow-hidden'>
@@ -29,7 +29,7 @@ export default function Home() {
         </ErrorBoundary>
       </div>
       <footer className='fixed-center right-0 bottom-0 left-0 px-[1.7rem] pb-[4.9rem]'>
-        <Button variant='primary' onClick={handleClickCard}>
+        <Button variant='primary' onClick={handleClickReservation}>
           바로 예매 하기
         </Button>
       </footer>
