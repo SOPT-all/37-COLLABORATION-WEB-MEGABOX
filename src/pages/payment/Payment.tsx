@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usePaymentForm } from '@pages/payment/hooks/use-payment-form';
 import PaymentButton from '@/pages/payment/components/PaymentButton';
@@ -32,6 +33,14 @@ export default function Payment() {
   const navigate = useNavigate();
   const location = useLocation();
   const reservationData = location.state as ReservationState | null;
+
+  // 페이지 진입 시 스크롤을 맨 위로 이동
+  useLayoutEffect(() => {
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   const {
     form,
