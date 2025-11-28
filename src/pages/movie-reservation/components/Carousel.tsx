@@ -1,16 +1,19 @@
 import { cn } from '@utils/cn';
 import { MOVIES } from '@constants/movies';
+import type { PrefetchConfig } from '@pages/movie-reservation/types/index';
 
 interface CarouselProps {
   selectedMovieIds: number[];
   initialSelectedMovie: number;
-  handleClick: (_id: number) => void;
+  handleClickMovie: (_id: number) => void;
+  prefetchConfig: PrefetchConfig;
 }
 
 export default function Carousel({
   selectedMovieIds,
   initialSelectedMovie,
-  handleClick,
+  handleClickMovie,
+  prefetchConfig
 }: CarouselProps) {
   const moviesWithSelectedFirst = Object.values(MOVIES).sort((a, b) => {
     if (a.id === initialSelectedMovie) return -1;
@@ -29,7 +32,16 @@ export default function Carousel({
                 ? 'border-gray-0 rounded-[0.4rem] border'
                 : 'rounded-[0.6rem] border border-transparent opacity-30'
             )}
-            onClick={() => handleClick(movie.id)}
+            onClick={() => handleClickMovie(movie.id)}
+            onMouseEnter={() =>
+              prefetchConfig.prefetchShowtimes(prefetchConfig.queryClient, {
+                movieIds: selectedMovieIds.includes(movie.id)
+                            ? selectedMovieIds.filter(id => id !== movie.id)
+                            : [movie.id, ...selectedMovieIds.filter(id => id !== movie.id)],
+                date: prefetchConfig.date,
+                timeSlot: prefetchConfig.timeSlot,
+              })
+            }
           >
             <img src={movie.image} className='w-full h-full rounded-[0.4rem] object-cover' />
           </button>

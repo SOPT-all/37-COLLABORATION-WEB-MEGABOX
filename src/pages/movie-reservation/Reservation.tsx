@@ -1,5 +1,6 @@
 import { useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import Modal from '@components/@modal/Modal';
 import Header from '@components/header/Header';
 import Divider from '@components/divider/Divider';
@@ -12,6 +13,7 @@ import {
   useModalDetail,
   useDate,
   useShowtimes,
+  prefetchShowtimes
 } from '@pages/movie-reservation/hooks/index';
 import { Carousel } from '@pages/movie-reservation/components/index';
 import {
@@ -28,6 +30,8 @@ export default function Reservation() {
   const navigate = useNavigate();
   const location = useLocation();
   const initialSelectedMovie = location.state?.movieId;
+
+  const queryClient = useQueryClient()
 
   const [selectedShowtime, setSelectedShowtime] = useState<ShowtimeDetail | null>(null);
   const dates = useDate();
@@ -98,13 +102,15 @@ export default function Reservation() {
           <Carousel
             selectedMovieIds={selectedMovieIds}
             initialSelectedMovie={initialSelectedMovie}
-            handleClick={id => handleClickMovie(id)}
+            handleClickMovie={id => handleClickMovie(id)}
+            prefetchConfig={{date: selectedDate.date, timeSlot: selectedTimeSlot, prefetchShowtimes, queryClient}}
           />
           <CinemaChips selectedCinemas={selectedCinemas} />
           <DateChips
             dates={dates}
             selectedDate={selectedDate}
             handleClickDate={handleClickDate}
+            prefetchConfig={{movieIds: selectedMovieIds, timeSlot: selectedTimeSlot, prefetchShowtimes, queryClient}}
           />
         </div>
         <div className='mt-[1.8rem] mb-[1.6rem]'>
@@ -114,6 +120,7 @@ export default function Reservation() {
           <TimeChips
             selectedTimeId={selectedTimeId}
             handleClickTime={handleClickTime}
+            prefetchConfig={{movieIds: selectedMovieIds, date: selectedDate.date, prefetchShowtimes, queryClient}}
           />
           {isLoading ? (
             <Spinner className='w-[15rem]' />
