@@ -21,6 +21,10 @@ export function useMovie() {
   };
 
   const handleClickCard = () => {
+    navigate(`/movie/${selectedMovieId}`);
+  };
+
+  const handleClickReservation = () => {
     navigate(ROUTES.MOVIE_RESERVATION, {
       state: { movieId: selectedMovieId },
     });
@@ -31,5 +35,6 @@ export function useMovie() {
     items,
     handleClickItem,
     handleClickCard,
+    handleClickReservation
   };
 }
