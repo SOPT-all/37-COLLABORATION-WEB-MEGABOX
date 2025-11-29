@@ -1,4 +1,11 @@
 ## DIVE SOPT 37기 합동세미나 모바일 웹 2조 MEGABOX 
+<img width="1920" height="1080" alt="5" src="https://github.com/user-attachments/assets/b39c86c2-087d-423d-abb0-2917a0bc5f2f" />
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/1e124c54-e4b8-45fe-b786-562ed7ab768a" />
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/1cd6a100-205d-4fda-88f6-89b12616d83a" />
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/33325f70-3a72-425d-aeb4-46cfda87f039" />
+<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/6fd87a20-1843-4f91-8869-5278e5baa792" />
+
+
 
 ## 👥 팀원 소개
 
@@ -53,7 +60,6 @@
 | Deployment | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) |
 | Cooperation | ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white) ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white) ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) |
 
-
 ## 🧾 컨벤션
 
 ### Commit Message Convention
@@ -76,19 +82,9 @@ git commit -m "feat: 사용자 프로필 페이지 구현"
 | --- | --- | --- |
 | **init** | 초기 설정 | `init: 프로젝트 초기 설정 - ESLint 설정 - 폴더 구조` |
 | **feat** | 새로운 기능 추가 | `feat: 로그인 기능 구현 - JWT 토큰 처리 - 리다이렉트 로직` |
-| **remove** | 파일이나 코드 삭제 | `remove: 사용하지 않는 컴포넌트 삭제 - legacy 코드 제거` |
 | **fix** | 버그, 오류 수정 | `fix: 회원가입 유효성 검사 오류 - 이메일 정규식 수정` |
-| **typo** | 단순 오타 수정 | `typo: 변수명 오타 수정 - userName 스펠링` |
-| **docs** | 문서 관련 수정 | `docs: README 업데이트 - 설치 가이드 추가` |
 | **style** | CSS 등 UI 디자인 변경 | `style: 버튼 디자인 수정 - hover 효과 추가` |
 | **refactor** | 코드 리팩토링 | `refactor: API 호출 로직 개선 - axios 인터셉터 적용` |
-| **test** | 테스트 코드 추가/삭제/변경 | `test: 로그인 컴포넌트 테스트 추가 - 유효성 검사 테스트` |
-| **ci** | 빌드/배포 파이프라인 | `ci: 의존성 업데이트 - React 18.0 설치` |
-| **assets** | 이미지·아이콘 등 자산 | `assets: 로고 이미지 추가 - favicon 설정` |
-| **chore** | 기타 유지보수 | `chore: webpack 설정 변경 - build 스크립트 수정` |
-| **merge** | 브랜치 병합 | `merge: develop에서 feature/login 병합` |
-| **comment** | 주석, 코멘트 | `comment: API 함수 주석 추가 - 매개변수 설명` |
-| **rename** | 파일/폴더명 변경 | `rename: 컴포넌트 파일명 변경 - Button.tsx로 수정` |
 
 ### Folder Convention
 ```
