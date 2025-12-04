@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import Modal from '@components/@modal/Modal';
@@ -56,15 +56,45 @@ export default function Reservation() {
     timeSlot: selectedTimeSlot
   });
 
+  // 즐겨찾기 영화관 정렬
+  const sortedShowtimes = useMemo(() => {
+    if (!filteredShowtimes) return [];
+    
+    const favoriteCinemas = JSON.parse(
+      localStorage.getItem('favoriteCinemas') || '[]'
+    );
+    
+    const favorites = filteredShowtimes.filter((cinema: CinemaResponse) => 
+      favoriteCinemas.includes(cinema.cinemaName)
+    );
+    const others = filteredShowtimes.filter((cinema: CinemaResponse) => 
+      !favoriteCinemas.includes(cinema.cinemaName)
+    );
+    
+    return [...favorites, ...others];
+  }, [filteredShowtimes]);
+
   const [showtimeOpenMap, setShowtimeOpenMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!filteredShowtimes) return;
+    if (!sortedShowtimes) return;
     const newMap = Object.fromEntries(
-      filteredShowtimes.map((cinema: CinemaResponse) => [cinema.cinemaName, true])
+      sortedShowtimes.map((cinema: CinemaResponse) => [cinema.cinemaName, true])
     );
     setShowtimeOpenMap(newMap);
-  }, [filteredShowtimes]);
+  }, [sortedShowtimes]);
+
+  // 즐겨찾기 변경 시 리렌더링
+  const [, setFavoriteUpdate] = useState(0);
+  useEffect(() => {
+    const handleFavoriteChange = () => {
+      setFavoriteUpdate(prev => prev + 1);
+    };
+    window.addEventListener('favoriteCinemasChanged', handleFavoriteChange);
+    return () => {
+      window.removeEventListener('favoriteCinemasChanged', handleFavoriteChange);
+    };
+  }, []);
 
   const {
     isOpen,
@@ -134,9 +164,9 @@ export default function Reservation() {
                   />
                 </div>
               )}
-              {filteredShowtimes.length !== 0 ? (
+              {sortedShowtimes.length !== 0 ? (
                 <Schedule
-                  filteredShowtimes={filteredShowtimes ?? []}
+                  filteredShowtimes={sortedShowtimes ?? []}
                   showtimeOpenMap={showtimeOpenMap}
                   handleOpenShowtime={handleOpenShowtime}
                   handleOpenChange={handleOpenChange}
