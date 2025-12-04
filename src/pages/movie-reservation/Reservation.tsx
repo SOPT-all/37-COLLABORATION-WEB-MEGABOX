@@ -59,18 +59,15 @@ export default function Reservation() {
   // 즐겨찾기 영화관 정렬
   const sortedShowtimes = useMemo(() => {
     if (!filteredShowtimes) return [];
-    
     const favoriteCinemas = JSON.parse(
       localStorage.getItem('favoriteCinemas') || '[]'
     );
-    
-    const favorites = filteredShowtimes.filter((cinema: CinemaResponse) => 
+    const favorites = filteredShowtimes.filter((cinema: CinemaResponse) =>
       favoriteCinemas.includes(cinema.cinemaName)
     );
-    const others = filteredShowtimes.filter((cinema: CinemaResponse) => 
+    const others = filteredShowtimes.filter((cinema: CinemaResponse) =>
       !favoriteCinemas.includes(cinema.cinemaName)
     );
-    
     return [...favorites, ...others];
   }, [filteredShowtimes]);
 
